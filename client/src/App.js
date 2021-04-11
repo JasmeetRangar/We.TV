@@ -3,10 +3,11 @@ import useApplicationData from './hooks/useApplicationData';
 import { MuiThemeProvider, createMuiTheme, makeStyles } from '@material-ui/core/styles'
 import { green, orange } from '@material-ui/core/colors';
 import CssBaseline from "@material-ui/core/CssBaseline";
+import { FormHelperText } from '@material-ui/core';
 
 import Navbar from './components/Navbar.jsx'
 import ShowCard from './components/ShowCard.jsx'
-import { FormHelperText } from '@material-ui/core';
+import Login from './components/Login';
 
 const theme = createMuiTheme({
   palette: {
@@ -44,13 +45,14 @@ return (
   <div className="App" >
       <MuiThemeProvider theme={theme} >
         <CssBaseline />
-        <Navbar />
+        <Login />
+        {/* <Navbar />
         <div className={classes.mainContent} style={{marginTop: '100px'}}>
         <ShowCard />
         <h1> Users </h1>
 
         <ul> {userList} </ul>
-        </div>
+        </div> */}
       </MuiThemeProvider>
     </div >
 );
