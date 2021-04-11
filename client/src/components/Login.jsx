@@ -12,6 +12,11 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
 
 function Copyright() {
   return (
@@ -47,7 +52,16 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Login() {
+  const [open, setOpen] = React.useState(false);
   const classes = useStyles();
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   return (
     <Container component="main" maxWidth="xs">
@@ -97,7 +111,7 @@ export default function Login() {
           </Button>
           <Grid container>
             <Grid item xs>
-              <Link href="#" variant="body2">
+              <Link href="#" variant="body2" onClick={handleClickOpen}>
                 Forgot password?
               </Link>
             </Grid>
@@ -112,6 +126,27 @@ export default function Login() {
       <Box mt={8}>
         <Copyright />
       </Box>
+      <Dialog
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      > 
+        <DialogTitle>{"Forgot your password?"}</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            Oohooooo you forgot your password? Well that's just TOO BAD suckerrrrrrrr!
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose} color="primary">
+            Disagree
+          </Button>
+          <Button onClick={handleClose} color="primary" autoFocus>
+            Agree
+          </Button>
+        </DialogActions>
+      </Dialog>
     </Container>
   );
 }
