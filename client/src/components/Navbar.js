@@ -2,10 +2,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
 import AccountCircle from '@material-ui/icons/AccountCircle'
 import ExitToAppIcon from '@material-ui/icons/ExitToApp'
 import SearchIcon from '@material-ui/icons/Search'
@@ -17,8 +14,7 @@ const useStyles = makeStyles((theme) => ({
   },
   Toolbar: {
     display: 'flex',
-    justifyContent: 'space-between'
-    // marginRight: theme.spacing(2),
+    justifyContent: 'space-around'
   }
 }));
 
@@ -29,16 +25,16 @@ export default function Navbar() {
     <div className={classes.root}>
     <AppBar position="fixed">
       <Toolbar className={classes.Toolbar}>
-        <IconButton color="inherit" aria-label="menu">
+        <IconButton color="inherit" aria-label="shows">
           <TvIcon />
         </IconButton>
-        <IconButton color="inherit" aria-label="menu">
+        <IconButton color="inherit" aria-label="search">
           <SearchIcon />
         </IconButton>
-        <IconButton color="inherit" aria-label="menu">
+        <IconButton color="inherit" aria-label="account">
           <AccountCircle />
         </IconButton>
-        <IconButton color="inherit" aria-label="menu">
+        <IconButton color="inherit" aria-label="logout">
           <ExitToAppIcon />
         </IconButton>
       </Toolbar>
