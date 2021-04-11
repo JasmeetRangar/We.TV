@@ -1,66 +1,14 @@
 import React from "react";
-import Style from 'style-it';
+import Style from "style-it";
 
 import { makeStyles } from "@material-ui/core/styles";
-import Card from "@material-ui/core/Card";
-import CardActionArea from "@material-ui/core/CardActionArea";
-import CardActions from "@material-ui/core/CardActions";
-import CardContent from "@material-ui/core/CardContent";
-import CardMedia from "@material-ui/core/CardMedia";
-import Button from "@material-ui/core/Button";
-import Typography from "@material-ui/core/Typography";
 
 const useStyles = makeStyles({
   root: {
-    maxWidth: '20vw',
-    // borderRadius: ' 10%'
+    maxWidth: "20vw",
   },
   media: {
-    height: 200,
-    margin: 'auto'
-  },
-  monitor: {
-    maxWidth: 345,
-
-    background: "#000",
-    position: "relative",
-    borderTop: "3px solid #888",
-    margin: "5%",
-    padding: "2% 2% 4% 2%",
-    borderRadius: "10px",
-    borderBottomLeftRadius: "50% 2%",
-    borderBottomRightRadius: "50% 2%",
-    transition: "margin-right 1s",
-  },
-  monitor_after: {
-    // content: "",
-    display: "block",
-    position: "absolute",
-    bottom: "3%",
-    left: "36%",
-    height: "0.5%",
-    width: "28%",
-    background: "#ddd",
-    borderRadius: "50%",
-    boxShadow: "0 0 3px 0 white",
-  },
-  monitorscreen: {
-    position: "relative",
-    backgroundColor: "#777",
-    backgroundSize: "cover",
-    backgroundPosition: "top center",
-    height: "0",
-    paddingBottom: "56.25%",
-    overflow: "hidden",
-  },
-  "@media all and (min-width: 960px)": {
-    expression: "all and (min-width: 960px)",
-    monitor: {
-      WebkitAnimation: "tvflicker 0.2s infinite alternate",
-      MozAnimation: "tvflicker 0.5s infinite alternate",
-      OAnimation: "tvflicker 0.5s infinite alternate",
-      animation: "tvflicker 0.5s infinite alternate",
-    },
+    objectFit: "contain",
   },
 });
 
@@ -69,16 +17,15 @@ export default function MediaCard() {
 
   return Style.it(
     `#monitor {
-      max-width: 28em;
       background: #000; 
       position: relative;
       border-top: 3px solid #888; 
-      margin: 5%;
-      padding: 2% 2% 4% 2%; 
+      padding: 0.5% 0.5% 1.5% 0.5%; 
       border-radius: 10px; 
       border-bottom-left-radius: 50% 2%; 
       border-bottom-right-radius: 50% 2%; 
       transition: margin-right 1s;
+      drop-shadow: 1px 1px 1px black;
     }
     
     #monitor:after {
@@ -103,18 +50,65 @@ export default function MediaCard() {
       padding-bottom: 56.25%; 
       position: relative;
       overflow: hidden;
-    }`,
+      // display: inline-block;
+    }
+
+    // OPTIONAL BREAKPOINT FOR TV GLOW ANIMATION
+    // @media all and (min-width: 960px)
+@media all and (min-width: 960px) {
+	#monitor {
+		-webkit-animation: tvflicker .2s infinite alternate; 
+		-moz-animation:    tvflicker .5s infinite alternate; 
+		-o-animation:      tvflicker .5s infinite alternate; 
+		animation:         tvflicker .5s infinite alternate; 
+	}
+
+	@-webkit-keyframes tvflicker {
+	  0%   { box-shadow: 0 0 100px 0 rgba(200,235,255,0.4); }
+	  100% { box-shadow: 0 0 95px 0 rgba(200,230,255,0.45); }
+	}
+	@-moz-keyframes tvflicker {
+	  0%   { box-shadow: 0 0 100px 0 rgba(225,235,255,0.4); }
+	  100% { box-shadow: 0 0 60px 0 rgba(200,220,255,0.6); }
+	}
+	@-o-keyframes tvflicker {
+	  0%   { box-shadow: 0 0 100px 0 rgba(225,235,255,0.4); }
+	  100% { box-shadow: 0 0 60px 0 rgba(200,220,255,0.6); }
+	}
+	@keyframes tvflicker {
+	  0%   { box-shadow: 0 0 100px 0 rgba(225,235,255,0.4); }
+	  100% { box-shadow: 0 0 60px 0 rgba(200,220,255,0.6); }
+	}
+}
+    
+    #image {
+    width: 100%;
+    height: auto; 
+    }
+
+    h2 {
+      color: white;
+      font-size: 2.5em;
+      background: black;
+      opacity: 0.6;
+      position: absolute;
+      z-index: 999;
+      margin: 0 auto;
+      left: 0;
+      right: 0;        
+      text-align: center;
+      top: 0%;
+    }
+    `,
+    // TV Frame design inspired by https://codepen.io/leon-ho/pen/KqrBt
     <div id="monitor">
       <div id="monitorscreen">
-        <Card className={classes.root}>
-          <CardActionArea>
-            <CardMedia
-              className={classes.media}
-              image="https://fanart.tv/fanart/tv/80337/seasonposter/mad-men-5905e7beb233c.jpg"
-              title="Contemplative Reptile"
-            />
-          </CardActionArea>
-        </Card>
+        <h2>The Office (US)</h2>
+        <img
+          src="https://m.media-amazon.com/images/M/MV5BMDNkOTE4NDQtMTNmYi00MWE0LWE4ZTktYTc0NzhhNWIzNzJiXkEyXkFqcGdeQXVyMzQ2MDI5NjU@._V1_SX300.jpg"
+          alt="Crazy Boys"
+          id="image"
+        />
       </div>
     </div>
   );

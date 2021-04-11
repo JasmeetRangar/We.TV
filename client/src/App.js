@@ -1,16 +1,17 @@
 import './App.css';
 import useApplicationData from './hooks/useApplicationData';
-import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles'
+import { MuiThemeProvider, createMuiTheme, makeStyles } from '@material-ui/core/styles'
 import { green, orange } from '@material-ui/core/colors';
 import CssBaseline from "@material-ui/core/CssBaseline";
 
 import Navbar from './components/Navbar.jsx'
 import ShowCard from './components/ShowCard.jsx'
+import { FormHelperText } from '@material-ui/core';
 
 const theme = createMuiTheme({
   palette: {
     background: {
-      default: "#303030"
+      default: '#303030'
     },
     secondary: {
       main: orange[500]
@@ -21,7 +22,18 @@ const theme = createMuiTheme({
   }
 });
 
+const useStyles = makeStyles({
+  mainContent: {
+    width: '100%',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'column'
+  }
+});
+
 const App = () => {
+  const classes = useStyles();
   const {
       state,
       dispatch
@@ -33,7 +45,7 @@ return (
       <MuiThemeProvider theme={theme} >
         <CssBaseline />
         <Navbar />
-        <div style={{marginTop: '100px', marginLeft: '50px'}}>
+        <div className={classes.mainContent} style={{marginTop: '100px'}}>
         <ShowCard />
         <h1> Users </h1>
 
