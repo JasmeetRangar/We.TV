@@ -45,14 +45,14 @@ return (
   <div className="App" >
       <MuiThemeProvider theme={theme} >
         <CssBaseline />
-        <Login />
-        {/* <Navbar />
+        {/* <Login /> */}
+        <Navbar />
         <div className={classes.mainContent} style={{marginTop: '100px'}}>
         <ShowCard />
         <h1> Users </h1>
 
         <ul> {userList} </ul>
-        </div> */}
+        </div>
       </MuiThemeProvider>
     </div >
 );

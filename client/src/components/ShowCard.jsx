@@ -2,6 +2,7 @@ import React from "react";
 import Style from "style-it";
 
 import { makeStyles } from "@material-ui/core/styles";
+import { CardActionArea } from "@material-ui/core";
 
 const useStyles = makeStyles({
   root: {
@@ -103,12 +104,14 @@ export default function MediaCard() {
     // TV Frame design inspired by https://codepen.io/leon-ho/pen/KqrBt
     <div id="monitor">
       <div id="monitorscreen">
+        <CardActionArea>
         <h2>The Office (US)</h2>
         <img
           src="https://m.media-amazon.com/images/M/MV5BMDNkOTE4NDQtMTNmYi00MWE0LWE4ZTktYTc0NzhhNWIzNzJiXkEyXkFqcGdeQXVyMzQ2MDI5NjU@._V1_SX300.jpg"
           alt="Crazy Boys"
           id="image"
-        />
+          />
+          </CardActionArea>
       </div>
     </div>
   );
