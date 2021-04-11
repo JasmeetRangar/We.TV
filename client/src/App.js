@@ -1,11 +1,11 @@
-import logo from './logo.svg';
 import './App.css';
 import useApplicationData from './hooks/useApplicationData';
-import Navbar from './components/Navbar'
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles'
 import { green, orange } from '@material-ui/core/colors';
 import CssBaseline from "@material-ui/core/CssBaseline";
 
+import Navbar from './components/Navbar.jsx'
+import ShowCard from './components/ShowCard.jsx'
 
 const theme = createMuiTheme({
   palette: {
@@ -30,12 +30,15 @@ const App = () => {
 ));
 return (
   <div className="App" >
-      <MuiThemeProvider theme={theme}>
+      <MuiThemeProvider theme={theme} >
         <CssBaseline />
-        <Navbar></Navbar>
+        <Navbar />
+        <div style={{marginTop: '100px', marginLeft: '50px'}}>
+        <ShowCard />
         <h1> Users </h1>
 
         <ul> {userList} </ul>
+        </div>
       </MuiThemeProvider>
     </div >
 );
