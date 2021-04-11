@@ -8,6 +8,7 @@ import { FormHelperText } from '@material-ui/core';
 import Navbar from './components/Navbar.jsx'
 import ShowCard from './components/ShowCard.jsx'
 import Login from './components/Login';
+import Register from './components/Register';
 
 const theme = createMuiTheme({
   // palette: {
@@ -45,14 +46,15 @@ return (
   <div className="App" >
       <MuiThemeProvider theme={theme} >
         <CssBaseline />
+        <Register />
         {/* <Login /> */}
-        <Navbar />
+        {/* <Navbar />
         <div className={classes.mainContent} style={{marginTop: '100px'}}>
         <ShowCard />
         <h1> Users </h1>
 
         <ul> {userList} </ul>
-        </div>
+        </div> */}
       </MuiThemeProvider>
     </div >
 );
