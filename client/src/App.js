@@ -10,17 +10,17 @@ import ShowCard from './components/ShowCard.jsx'
 import Login from './components/Login';
 
 const theme = createMuiTheme({
-  palette: {
-    background: {
-      default: '#303030'
-    },
-    secondary: {
-      main: orange[500]
-    },
-    text: {
-      primary : green[500]
-    }
-  }
+  // palette: {
+  //   background: {
+  //     default: '#303030'
+  //   },
+  //   secondary: {
+  //     main: orange[500]
+  //   },
+  //   text: {
+  //     primary : green[500]
+  //   }
+  // }
 });
 
 const useStyles = makeStyles({
