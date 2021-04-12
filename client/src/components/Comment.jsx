@@ -12,7 +12,7 @@ import {
   IconButton,
   Dialog,
   DialogContent,
-  DialogContentText,
+  DialogContentText
 } from "@material-ui/core";
 
 import Image from "material-ui-image";
