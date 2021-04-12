@@ -17,6 +17,7 @@ import ThumbDownIcon from "@material-ui/icons/ThumbDown";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import Comment from "./Comment";
+import InputArea from "./InputArea";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -113,8 +114,7 @@ export default function PostCard() {
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
-          <Typography paragraph>Method:</Typography>
-          <Typography paragraph>Comments will go here.</Typography>
+          <InputArea />
           <Comment comments={comments}/>
         </CardContent>
       </Collapse>
