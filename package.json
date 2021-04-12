@@ -18,6 +18,7 @@
   "homepage": "https://github.com/JasmeetRangar/final-project#readme",
   "dependencies": {
     "axios": "^0.21.1",
+    "material-ui-image": "^3.3.1",
     "node-sass": "^5.0.0"
   }
 }
