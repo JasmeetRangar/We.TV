@@ -19,12 +19,7 @@ import Login from './components/Login';
 import Register from './components/Register';
 import PostCard from './components/PostCard'
 import Comment from './components/Comment';
-<<<<<<< HEAD
 import SearchBar from './components/SearchBar';
-=======
-import ShowBanner from './components/ShowBanner'
-import ShowDetails from './components/ShowDetails'
->>>>>>> feature/show-banner
 
 const theme = createMuiTheme({
   // palette: {
@@ -66,7 +61,6 @@ const App = () => {
             <Switch>
               <Route path="/" exact>
                 <Navbar />
-  
                 <div className={classes.mainContent} style={{marginTop: '100px'}}>
                   <PostCard />
                   <ShowCard />
