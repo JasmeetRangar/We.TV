@@ -20,7 +20,7 @@ import Comment from "./Comment";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    maxWidth: 345,
+    maxWidth: 500,
   },
   media: {
     height: 0,
@@ -51,7 +51,7 @@ export default function PostCard() {
 
   const comments = [
     { id: 1,
-      name:'Name1',
+      name:'FDKLGJDFILGJ ',
     body:'Ut do veniam consequat exercitation laborum. Exercitation Lorem id aute velit minim sunt fugiat labore eiusmod exercitation velit consequat. Deserunt veniam veniam Lorem elit elit et aliqua. Ipsum mollit eiusmod velit sint aliqua sunt fugiat pariatur labore incididunt laborum ea qui quis. Ipsum nostrud nostrud deserunt sunt nisi voluptate ex reprehenderit duis. Exercitation culpa eiusmod est eu ex pariatur et id id commodo proident. Qui ex est consequat proident nulla tempor esse exercitation laborum non velit eu.',
     email: 'hello@world.com'},
     { id: 2,

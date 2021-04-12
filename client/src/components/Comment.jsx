@@ -8,7 +8,11 @@ import {
   ListItemAvatar,
   Avatar,
   Typography,
+  Badge,
+  IconButton
 } from "@material-ui/core";
+import ThumbUpIcon from "@material-ui/icons/ThumbUp";
+import ThumbDownIcon from "@material-ui/icons/ThumbDown";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -22,6 +26,8 @@ const useStyles = makeStyles((theme) => ({
     display: "inline",
   },
 }));
+
+// Comment component modified from Gunasai's git repo: https://github.com/gunasai/material-ui-comments
 
 export default function Comment({ comments }) {
   const classes = useStyles();
@@ -41,19 +47,25 @@ export default function Comment({ comments }) {
                   <Typography className={classes.fonts}>
                     {comment.name}
                   </Typography>
+                  
                 }
                 secondary={
                   <>
-                    <Typography
-                      component="span"
-                      variant="body2"
-                      className={classes.inline}
-                      color="textPrimary"
-                    >
-                      {comment.email}
-                    </Typography>
-                    {` - ${comment.body}`}
+                    
+                    {comment.body}
+                    <br></br>
+                    <IconButton aria-label="like post">
+          <Badge badgeContent={4} color="primary">
+            <ThumbUpIcon />
+          </Badge>
+        </IconButton>
+        <IconButton aria-label="dislike post">
+        <Badge badgeContent={4} color="primary">
+          <ThumbDownIcon />
+          </Badge>
+        </IconButton>
                   </>
+                  
                 }
               />
             </ListItem>
