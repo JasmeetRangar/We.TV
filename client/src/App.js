@@ -54,6 +54,7 @@ const App = () => {
     const userList = state.users.map((user) => (<li key={user.id} > {user.first_name} {user.last_name} {user.email} {user.display_name}</li>));
 
       
+      return(
       <Router>
         <div className="App" >
           <MuiThemeProvider theme={theme} >
@@ -82,6 +83,5 @@ const App = () => {
           </MuiThemeProvider>
         </div >
       </Router>
-  
     );
 };
