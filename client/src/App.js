@@ -19,6 +19,8 @@ import Login from './components/Login';
 import Register from './components/Register';
 import PostCard from './components/PostCard'
 import Comment from './components/Comment';
+import ShowBanner from './components/ShowBanner'
+import ShowDetails from './components/ShowDetails'
 
 const theme = createMuiTheme({
   // palette: {
@@ -66,6 +68,7 @@ const App = () => {
                 <PostCard />
                 <ShowCard />
               </div>
+              <ShowDetails />
             </Route>
             <Route path="/register" exact>
               <Register />
@@ -78,6 +81,9 @@ const App = () => {
                 <h1> Users </h1>
                 <ul> {userList} </ul>
               </div>
+            </Route>
+            <Route path="/show" exact>
+              <ShowBanner />
             </Route>
           </Switch>
         </MuiThemeProvider>
