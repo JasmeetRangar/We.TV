@@ -10,8 +10,12 @@ import {
   Typography,
   Badge,
   IconButton,
+  Dialog,
+  DialogContent,
+  DialogContentText,
 } from "@material-ui/core";
-import Image from 'material-ui-image';
+
+import Image from "material-ui-image";
 import ThumbUpIcon from "@material-ui/icons/ThumbUp";
 import ThumbDownIcon from "@material-ui/icons/ThumbDown";
 
@@ -26,12 +30,25 @@ const useStyles = makeStyles((theme) => ({
   inline: {
     display: "inline",
   },
+  transparentBG: {
+    background: "transparent"
+  }
 }));
 
 // Comment component modified from Gunasai's git repo: https://github.com/gunasai/material-ui-comments
 
 export default function Comment({ comments }) {
+  const [open, setOpen] = React.useState(false);
   const classes = useStyles();
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   return (
     <List className={classes.root}>
       {comments.map((comment) => {
@@ -52,8 +69,9 @@ export default function Comment({ comments }) {
                 secondary={
                   <>
                     <Image
-                      src={`https://amazinganimalphotos.com/wp-content/uploads/2014/11/funny-polar-bear-meme-.jpg`}
-                      cover = 'true'
+                      src={`https://www.felineliving.net/wp-content/uploads/2017/12/funny-cat-e1522100034583-150x147.jpg`}
+                      cover="true"
+                      onClick={handleClickOpen}
                       disableSpinner
                     />
                     {comment.body}
@@ -72,6 +90,21 @@ export default function Comment({ comments }) {
                 }
               />
             </ListItem>
+            <Dialog
+              open={open}
+              onClose={handleClose}
+              aria-labelledby="alert-dialog-title"
+              aria-describedby="alert-dialog-description"
+              classes={classes.transparentBG}
+            >
+              <DialogContent>
+                <img
+                    alt="ggg"
+                    src="https://www.felineliving.net/wp-content/uploads/2017/12/funny-cat-e1522100034583-150x147.jpg"
+                    style={{ height: "auto", width: "500px" }}
+                  ></img>
+              </DialogContent>
+            </Dialog>
             <Divider />
           </React.Fragment>
         );

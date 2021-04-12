@@ -50,16 +50,16 @@ return (
   <div className="App" >
       <MuiThemeProvider theme={theme} >
         <CssBaseline />
-        <PostCard />
         {/* <Register /> */}
         {/* <Login /> */}
-        {/* <Navbar />
+        <Navbar />
         <div className={classes.mainContent} style={{marginTop: '100px'}}>
-        <ShowCard />
-        <h1> Users </h1>
+        <PostCard />
+        {/* <ShowCard /> */}
+        {/* <h1> Users </h1> */}
 
-        <ul> {userList} </ul>
-        </div> */}
+        {/* <ul> {userList} </ul> */}
+        </div>
       </MuiThemeProvider>
     </div >
 );
