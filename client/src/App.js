@@ -81,9 +81,12 @@ const App = () => {
                 <ul> {userList} </ul>
               </div>
             </Route>
-            <Route path="/users/profile" exact>
+            <Route path="/profile" exact>
+            <Navbar />
+              <div className={classes.mainContent} style={{marginTop: '100px'}}>
               <ProfileDisplay />
-              <ProfileForm />              
+              {/* <ProfileForm />  */}
+              </div>             
             </Route>
           </Switch>
         </MuiThemeProvider>

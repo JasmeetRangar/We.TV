@@ -8,6 +8,7 @@ import {
   Fab,
   TextField,
   Grid,
+  IconButton,
 } from "@material-ui/core";
 import { Done, PhotoCamera } from "@material-ui/icons";
 
@@ -42,12 +43,15 @@ export default function ProfileForm() {
   return (
     <Container component="main" maxWidth="xs">
       <Paper className={classes.paper}>
+
         <Avatar
           alt="Remy Sharp"
           src="/static/images/avatar/1.jpg"
           className={classes.large}
-        >
+          >
+            <IconButton>
           <PhotoCamera />
+          </IconButton>
         </Avatar>
         <form>
           <Grid container spacing={2}>
