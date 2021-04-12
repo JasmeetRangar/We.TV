@@ -11,6 +11,7 @@ import {
   Badge,
   IconButton,
 } from "@material-ui/core";
+import Image from 'material-ui-image';
 import ThumbUpIcon from "@material-ui/icons/ThumbUp";
 import ThumbDownIcon from "@material-ui/icons/ThumbDown";
 
@@ -50,6 +51,11 @@ export default function Comment({ comments }) {
                 }
                 secondary={
                   <>
+                    <Image
+                      src={`https://amazinganimalphotos.com/wp-content/uploads/2014/11/funny-polar-bear-meme-.jpg`}
+                      cover = 'true'
+                      disableSpinner
+                    />
                     {comment.body}
                     <br></br>
                     <IconButton aria-label="like post">
