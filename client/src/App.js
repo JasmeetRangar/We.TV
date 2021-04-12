@@ -10,6 +10,7 @@ import ShowCard from './components/ShowCard.jsx'
 import Login from './components/Login';
 import Register from './components/Register';
 import PostCard from './components/PostCard'
+import Comment from './components/Comment';
 
 const theme = createMuiTheme({
   // palette: {
@@ -43,6 +44,8 @@ const App = () => {
   } = useApplicationData();
     const userList = state.users.map((user) => (<li key={user.id} > {user.first_name} {user.last_name} {user.email} {user.display_name}</li>
 ));
+
+      
 return (
   <div className="App" >
       <MuiThemeProvider theme={theme} >
