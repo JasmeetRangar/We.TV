@@ -11,6 +11,7 @@ import Login from './components/Login';
 import Register from './components/Register';
 import PostCard from './components/PostCard'
 import Comment from './components/Comment';
+import SearchBar from './components/SearchBar';
 
 const theme = createMuiTheme({
   // palette: {
@@ -54,6 +55,7 @@ return (
         {/* <Login /> */}
         <Navbar />
         <div className={classes.mainContent} style={{marginTop: '100px'}}>
+        <SearchBar label="Show Search"/>
         <PostCard />
         {/* <ShowCard /> */}
         {/* <h1> Users </h1> */}
