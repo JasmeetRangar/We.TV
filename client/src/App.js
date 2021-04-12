@@ -19,7 +19,12 @@ import Login from './components/Login';
 import Register from './components/Register';
 import PostCard from './components/PostCard'
 import Comment from './components/Comment';
+<<<<<<< HEAD
 import SearchBar from './components/SearchBar';
+=======
+import ShowBanner from './components/ShowBanner'
+import ShowDetails from './components/ShowDetails'
+>>>>>>> feature/show-banner
 
 const theme = createMuiTheme({
   // palette: {
@@ -54,7 +59,6 @@ const App = () => {
     const userList = state.users.map((user) => (<li key={user.id} > {user.first_name} {user.last_name} {user.email} {user.display_name}</li>));
 
       
-    return (
       <Router>
         <div className="App" >
           <MuiThemeProvider theme={theme} >
@@ -87,4 +91,3 @@ const App = () => {
   
     );
 };
-export default App;

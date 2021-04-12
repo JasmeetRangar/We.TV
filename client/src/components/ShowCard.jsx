@@ -13,7 +13,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function MediaCard() {
+export default function ShowCard() {
   const classes = useStyles();
 
   return Style.it(
