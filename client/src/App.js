@@ -54,23 +54,37 @@ const App = () => {
     const userList = state.users.map((user) => (<li key={user.id} > {user.first_name} {user.last_name} {user.email} {user.display_name}</li>));
 
       
-return (
-  <div className="App" >
-      <MuiThemeProvider theme={theme} >
-        <CssBaseline />
-        {/* <Register /> */}
-        {/* <Login /> */}
-        <Navbar />
-        <div className={classes.mainContent} style={{marginTop: '100px'}}>
-        <SearchBar label="Show Search"/>
-        <PostCard />
-        {/* <ShowCard /> */}
-        {/* <h1> Users </h1> */}
-
-        {/* <ul> {userList} </ul> */}
-        </div>
-      </MuiThemeProvider>
-    </div >
-);
+    return (
+      <Router>
+        <div className="App" >
+          <MuiThemeProvider theme={theme} >
+            <CssBaseline />
+            <Switch>
+              <Route path="/" exact>
+                <Navbar />
+  
+                <div className={classes.mainContent} style={{marginTop: '100px'}}>
+                  <PostCard />
+                  <ShowCard />
+                </div>
+              </Route>
+              <Route path="/register" exact>
+                <Register />
+              </Route>
+              <Route path="/login" exact>
+                <Login />
+              </Route>
+              <Route path="/users" exact>
+                <div className={classes.mainContent} style={{marginTop: '100px'}}>
+                  <h1> Users </h1>
+                  <ul> {userList} </ul>
+                </div>
+              </Route>
+            </Switch>
+          </MuiThemeProvider>
+        </div >
+      </Router>
+  
+    );
 };
 export default App;
