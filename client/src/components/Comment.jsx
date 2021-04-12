@@ -9,7 +9,7 @@ import {
   Avatar,
   Typography,
   Badge,
-  IconButton
+  IconButton,
 } from "@material-ui/core";
 import ThumbUpIcon from "@material-ui/icons/ThumbUp";
 import ThumbDownIcon from "@material-ui/icons/ThumbDown";
@@ -47,25 +47,22 @@ export default function Comment({ comments }) {
                   <Typography className={classes.fonts}>
                     {comment.name}
                   </Typography>
-                  
                 }
                 secondary={
                   <>
-                    
                     {comment.body}
                     <br></br>
                     <IconButton aria-label="like post">
-          <Badge badgeContent={4} color="primary">
-            <ThumbUpIcon />
-          </Badge>
-        </IconButton>
-        <IconButton aria-label="dislike post">
-        <Badge badgeContent={4} color="primary">
-          <ThumbDownIcon />
-          </Badge>
-        </IconButton>
+                      <Badge badgeContent={4} color="primary">
+                        <ThumbUpIcon />
+                      </Badge>
+                    </IconButton>
+                    <IconButton aria-label="dislike post">
+                      <Badge badgeContent={4} color="primary">
+                        <ThumbDownIcon />
+                      </Badge>
+                    </IconButton>
                   </>
-                  
                 }
               />
             </ListItem>
