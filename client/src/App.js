@@ -45,7 +45,7 @@ const useStyles = makeStyles({
   }
 });
 
-const App = () => {
+export default function App () {
   const classes = useStyles();
   const {
       state,
