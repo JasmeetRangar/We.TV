@@ -9,6 +9,7 @@ import Navbar from './components/Navbar.jsx'
 import ShowCard from './components/ShowCard.jsx'
 import Login from './components/Login';
 import Register from './components/Register';
+import PostCard from './components/PostCard'
 
 const theme = createMuiTheme({
   // palette: {
@@ -46,7 +47,8 @@ return (
   <div className="App" >
       <MuiThemeProvider theme={theme} >
         <CssBaseline />
-        <Register />
+        <PostCard />
+        {/* <Register /> */}
         {/* <Login /> */}
         {/* <Navbar />
         <div className={classes.mainContent} style={{marginTop: '100px'}}>
