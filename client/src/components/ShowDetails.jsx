@@ -1,7 +1,7 @@
 import React from "react";
 
 import { makeStyles } from "@material-ui/core/styles";
-import { Paper } from '@material-ui/core';
+import { Paper, Typography } from '@material-ui/core';
 import ShowBanner from './ShowBanner';
 
 
@@ -41,10 +41,10 @@ export default function ShowDetails() {
       </div>
       <div className={classes.showDetails} style={{width: '40%'}}>
         <Paper elevation={1} style={{color:"white", background:'black', height: '80%'}}>
-          The Book of Disquiet
+          <Typography>The Book of Disquiet</Typography> 
         </Paper>
         <Paper elevation={1} style={{backgroundColor:"black", color:"white"}}>
-          Fernando Pessoa
+          <Typography>Fernando Pessoa</Typography> 
         </Paper>
       </div>
         

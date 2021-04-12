@@ -52,7 +52,6 @@ export default function App () {
       dispatch
   } = useApplicationData();
     const userList = state.users.map((user) => (<li key={user.id} > {user.first_name} {user.last_name} {user.email} {user.display_name}</li>));
-
       
       return(
       <Router>
@@ -72,6 +71,9 @@ export default function App () {
               </Route>
               <Route path="/login" exact>
                 <Login />
+              </Route>
+              <Route path="/search" exact>
+                <SearchBar />
               </Route>
               <Route path="/users" exact>
                 <div className={classes.mainContent} style={{marginTop: '100px'}}>
