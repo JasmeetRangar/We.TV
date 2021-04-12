@@ -19,6 +19,8 @@ import Login from './components/Login';
 import Register from './components/Register';
 import PostCard from './components/PostCard'
 import Comment from './components/Comment';
+import ProfileDisplay from './components/ProfileDisplay'
+import ProfileForm from './components/ProfileForm';
 
 const theme = createMuiTheme({
   // palette: {
@@ -78,6 +80,10 @@ const App = () => {
                 <h1> Users </h1>
                 <ul> {userList} </ul>
               </div>
+            </Route>
+            <Route path="/users/profile" exact>
+              <ProfileDisplay />
+              <ProfileForm />              
             </Route>
           </Switch>
         </MuiThemeProvider>
