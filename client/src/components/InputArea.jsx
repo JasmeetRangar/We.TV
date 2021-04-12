@@ -1,6 +1,5 @@
 import React from "react";
 import {
-  TextField,
   Grid,
   IconButton,
   FormControl,
@@ -8,7 +7,6 @@ import {
   Input
    } from "@material-ui/core";
 import { PhotoCamera, Movie, ArrowForward } from "@material-ui/icons";
-//  import MovieIcon from '@material-ui/icons/Movie';
 
 export default function InputArea() {
   return (
@@ -25,7 +23,6 @@ export default function InputArea() {
             </IconButton>
           </InputAdornment>
         }
-        // style={{width:"95%"}}
       />
       <Grid container>
         <Grid item>
