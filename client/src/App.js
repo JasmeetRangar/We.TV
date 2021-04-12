@@ -61,8 +61,11 @@ const App = () => {
           <Switch>
             <Route path="/" exact>
               <Navbar />
-              <PostCard />
-              <ShowCard />
+              
+              <div className={classes.mainContent} style={{marginTop: '100px'}}>
+                <PostCard />
+                <ShowCard />
+              </div>
             </Route>
             <Route path="/register" exact>
               <Register />
