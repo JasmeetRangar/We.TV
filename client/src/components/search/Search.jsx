@@ -5,6 +5,25 @@ import { Typography } from "@material-ui/core";
 import { spacing } from '@material-ui/system';
 const axios = require('axios');
 
+const data = 
+ [{
+    show: {
+      name: 'Girls',
+      image: {
+       medium: 'https://static.tvmaze.com/uploads/images/medium_portrait/31/78286.jpg'
+      }
+  }
+}
+  ,{
+    show: {
+      name: 'Girls',
+      image: {
+        medium: 'https://static.tvmaze.com/uploads/images/medium_portrait/31/78286.jpg'
+      }
+  }}]
+
+
+
 export default function Search(props) {
   const [term, setTerm] = useState("");
   const [results, setResults] = useState([]);
