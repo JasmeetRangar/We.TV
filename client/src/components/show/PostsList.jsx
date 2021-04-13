@@ -43,8 +43,10 @@ const posts = [
 	},
 ];
 export default function PostsList(props) {
-	const { posts } = props;
-	return posts.map((post) => {
-		return <PostCard comments={comments} post={post} />;
+	// const { posts } = props;
+	console.log("👉🏻", posts)
+	return posts.map(post => {
+		// return <h1>Hello</h1>
+		return (<PostCard comments={comments} post={post} />)
 	});
 }

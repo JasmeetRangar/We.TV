@@ -17,11 +17,12 @@ import Navbar from './components/Navbar.jsx'
 import ShowCard from './components/ShowCard.jsx'
 import Login from './components/Login';
 import Register from './components/Register';
-import PostCard from './components/PostCard'
-import Comment from './components/Comment';
+import PostCard from './components/show/PostCard'
 import ProfileDisplay from './components/ProfileDisplay'
 import ProfileForm from './components/ProfileForm';
 import Search from './components/search/Search';
+import PostsList from './components/show/PostsList';
+import Show from './components/show/Show';
 
 const theme = createMuiTheme({
   // palette: {
@@ -65,8 +66,7 @@ export default function App () {
               <Navbar />
               
               <div className={classes.mainContent} style={{marginTop: '100px'}}>
-                <PostCard />
-                <ShowCard />
+                <Show />
               </div>
             </Route>
             <Route path="/register" exact>

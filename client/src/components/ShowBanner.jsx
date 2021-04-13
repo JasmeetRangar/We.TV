@@ -33,18 +33,18 @@ const useStyles = makeStyles((theme) => ({
 
 export default function ShowBanner(props) {
   const classes = useStyles();
-
+  const {name, description, image_url} = props
   return (
     <div className={classes.paperClass}>
       <div style={{width: '40%'}}>
-        <ShowImage />
+        <ShowImage imageSource={image_url}/>
       </div>
       <div className={classes.showDetails} style={{width: '40%'}}>
         <Paper elevation={1} style={{color:"white", background:'black', height: '80%'}}>
-          <Typography>The Book of Disquiet</Typography> 
+          <Typography>{name}</Typography> 
         </Paper>
         <Paper elevation={1} style={{backgroundColor:"black", color:"white"}}>
-          <Typography>Fernando Pessoa</Typography> 
+          <Typography>{description}</Typography> 
         </Paper>
       </div>
         

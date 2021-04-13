@@ -17,8 +17,7 @@ import ThumbDownIcon from "@material-ui/icons/ThumbDown";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import Comment from "./Comment";
-import InputArea from "./InputArea";
-import { PinDropSharp } from "@material-ui/icons";
+import InputArea from "../InputArea";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -51,13 +50,14 @@ export default function PostCard(props) {
     setExpanded(!expanded);
   };
 
-  const {post, comments}
+  const { post, comments } = props;
 
+  console.log("💦", post);
   return (
     <Card className={classes.root}>
       <CardHeader
         avatar={
-          <Avatar aria-label="recipe" className={classes.avatar}>
+          <Avatar aria-label="recipe" className={classes.avatar} alt={"User_Name"}>
             R
           </Avatar>
         }
@@ -67,27 +67,29 @@ export default function PostCard(props) {
           </IconButton>
         }
         title="UserName"
-        subheader="September 14, 2016"
+        subheader={post.created_at}
       />
-      <CardMedia
-        className={classes.media}
-        image="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.ytimg.com%2Fvi%2FP6A-wjuyF-Y%2Fmaxresdefault.jpg&f=1&nofb=1"
-        title="Paella dish"
-      />
+      {post.image && (
+        <CardMedia
+          className={classes.media}
+          image="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.ytimg.com%2Fvi%2FP6A-wjuyF-Y%2Fmaxresdefault.jpg&f=1&nofb=1"
+          title="Paella dish"
+        />
+      )}
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
-          This is a post. Test test test hello. hello. hello.
+          {post.description}
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
         <IconButton aria-label="like post">
-          <Badge badgeContent={4} color="primary">
+          <Badge badgeContent={post.likes} color="primary">
             <ThumbUpIcon />
           </Badge>
         </IconButton>
         <IconButton aria-label="dislike post">
-        <Badge badgeContent={4} color="primary">
-          <ThumbDownIcon />
+          <Badge badgeContent={post.dislikes} color="primary">
+            <ThumbDownIcon />
           </Badge>
         </IconButton>
         <IconButton
@@ -104,7 +106,7 @@ export default function PostCard(props) {
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
           <InputArea />
-          <Comment comments={props.comments}/>
+          <Comment comments={comments} />
         </CardContent>
       </Collapse>
     </Card>
