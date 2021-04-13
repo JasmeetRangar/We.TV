@@ -3,7 +3,7 @@ import useApplicationData from './hooks/useApplicationData';
 import { MuiThemeProvider, createMuiTheme, makeStyles } from '@material-ui/core/styles'
 import { green, orange } from '@material-ui/core/colors';
 import CssBaseline from "@material-ui/core/CssBaseline";
-import { FormHelperText } from '@material-ui/core';
+import SearchBar from './components/search/SearchBar'
 
 import {
   BrowserRouter as Router,
@@ -19,7 +19,6 @@ import Login from './components/Login';
 import Register from './components/Register';
 import PostCard from './components/PostCard'
 import Comment from './components/Comment';
-import SearchBar from './components/SearchBar';
 import ProfileDisplay from './components/ProfileDisplay'
 import ProfileForm from './components/ProfileForm';
 
@@ -80,6 +79,9 @@ export default function App () {
                 <h1> Users </h1>
                 <ul> {userList} </ul>
               </div>
+            </Route>
+            <Route path="/search" exact>
+              <SearchBar />
             </Route>
             <Route path="/profile" exact>
             <Navbar />

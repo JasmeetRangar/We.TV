@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useState, useEffect, useCallback } from "react";
 import { makeStyles } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
 import SearchIcon from '@material-ui/icons/Search';
-import { Input, InputAdornment ,
-        TextField } from '@material-ui/core';
+import { Input, InputAdornment } from '@material-ui/core';
+
+
+
+import useDebounce from "../../hooks/useDebounce";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -21,12 +24,24 @@ const useStyles = makeStyles((theme) => ({
 
 export default function CustomizedInputBase(props) {
   const classes = useStyles();
-  const {label, handleSubmit} = props;
+  const {label, onSearch} = props;
+
+  const [value, setValue] = useState("");
+  const term = useDebounce(value, 400);
+
+  const onSearchShow = useCallback(onSearch, [term]);
+
+  useEffect(() => {
+    onSearchShow(term);
+  }, [term, onSearchShow]);
+
   return (
-    <form component="form" className={classes.root} onSubmit={handleSubmit}>
+    <form component="form" className={classes.root} onSubmit={event => event.preventDefault()}>
       <Input
         label={label}
+        value={value}
         className={classes.input}
+        onChange={event => setValue(event.target.value)}
         startAdornment={
           <InputAdornment position="start">
             <IconButton>

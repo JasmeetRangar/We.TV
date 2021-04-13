@@ -1,8 +1,8 @@
 import React from "react";
 
 import { makeStyles } from "@material-ui/core/styles";
-import { Paper } from '@material-ui/core';
-import Image from "material-ui-image";
+import { Paper, Typography } from '@material-ui/core';
+import ShowImage from './ShowImage';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -18,23 +18,40 @@ const useStyles = makeStyles((theme) => ({
   },
   paperClass: {
     display: 'flex',
+    flexDirection: 'column',
     justifyContent: 'center',
+  },
+  showDetails: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    width: '30%',
+    flexWrap: 'wrap',
   }
 }));
 
-export default function ShowBanner() {
+export default function ShowBanner(props) {
   const classes = useStyles();
 
   return (
-    <div className={classes.root}>
-      <Paper className={classes.paperClass} elevation={1} square={false} style={{ background:'linear-gradient(to top, rgba(255,0,0,0), rgba(255,0,0,1))'}}>
-        <Image
-          src={`https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1591219012l/40881621._SX318_.jpg`}
-          cover="true"
-          style={{width:'90%'}}
-        />
-        {/* <img alt="" style={{width:'90%'}} src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1591219012l/40881621._SX318_.jpg"></img> */}
-      </Paper>
+    <div className={classes.paperClass}>
+      <div style={{width: '40%'}}>
+        <ShowImage />
+      </div>
+      <div className={classes.showDetails} style={{width: '40%'}}>
+        <Paper elevation={1} style={{color:"white", background:'black', height: '80%'}}>
+          <Typography>The Book of Disquiet</Typography> 
+        </Paper>
+        <Paper elevation={1} style={{backgroundColor:"black", color:"white"}}>
+          <Typography>Fernando Pessoa</Typography> 
+        </Paper>
+      </div>
+        
+      
     </div>
+    
+
   );
+
 };

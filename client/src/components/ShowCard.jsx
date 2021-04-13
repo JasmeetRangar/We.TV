@@ -13,7 +13,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function ShowCard() {
+export default function ShowCard(props) {
   const classes = useStyles();
 
   return Style.it(
