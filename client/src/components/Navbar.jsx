@@ -27,18 +27,24 @@ export default function Navbar() {
       <AppBar position="fixed">
         <Toolbar className={classes.Toolbar}>
           <IconButton color="inherit" aria-label="shows">
+            <Link style={{color:"white"}}>
             <TvIcon />
+            </Link>
           </IconButton>
           <IconButton color="inherit" aria-label="search">
+            <Link style={{color:"white"}}>
             <SearchIcon />
+            </Link>
           </IconButton>
-          <IconButton color="inherit" aria-label="account">
-            <Link to="/profile">
+          <IconButton color="secondary" aria-label="account">
+            <Link to="/profile" style={{color:"white"}}>
               <AccountCircle />
             </Link>
           </IconButton>
           <IconButton color="inherit" aria-label="logout">
+            <Link style={{color:"white"}}>
             <ExitToAppIcon />
+            </Link>
           </IconButton>
         </Toolbar>
       </AppBar>
