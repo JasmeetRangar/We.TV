@@ -18,6 +18,7 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import Comment from "./Comment";
 import InputArea from "./InputArea";
+import { PinDropSharp } from "@material-ui/icons";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -42,7 +43,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function PostCard() {
+export default function PostCard(props) {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
 
@@ -50,19 +51,7 @@ export default function PostCard() {
     setExpanded(!expanded);
   };
 
-  const comments = [
-    { id: 1,
-      name:'FDKLGJDFILGJ ',
-    body:'Ut do veniam consequat exercitation laborum. Exercitation Lorem id aute velit minim sunt fugiat labore eiusmod exercitation velit consequat. Deserunt veniam veniam Lorem elit elit et aliqua. Ipsum mollit eiusmod velit sint aliqua sunt fugiat pariatur labore incididunt laborum ea qui quis. Ipsum nostrud nostrud deserunt sunt nisi voluptate ex reprehenderit duis. Exercitation culpa eiusmod est eu ex pariatur et id id commodo proident. Qui ex est consequat proident nulla tempor esse exercitation laborum non velit eu.',
-    email: 'hello@world.com'},
-    { id: 2,
-      name:'Name2',
-    body:'Consectetur irure adipisicing qui irure occaecat et qui anim quis sit eu excepteur pariatur. Esse minim id labore dolor quis irure ex et esse. Quis non ex proident consectetur sit laboris. Sint laborum adipisicing Lorem qui sit cupidatat. Officia magna nostrud duis occaecat id consequat consectetur tempor est sint occaecat.',
-    email: 'hello@world.com'},
-    { id: 3,
-      name:'Name3',
-    body:'Reprehenderit elit irure magna eiusmod voluptate. Ea cupidatat do deserunt irure voluptate est non proident excepteur aliquip. Lorem ea amet irure sit quis ad qui officia id sit cupidatat. Irure incididunt enim est est incididunt aliquip occaecat qui ipsum nostrud velit sint ut duis.Minim nisi aute deserunt proident magna non nulla labore laborum quis. Excepteur proident incididunt est ea deserunt adipisicing dolor sint officia laboris labore. Ipsum velit nisi deserunt voluptate veniam. Ut tempor minim cillum anim laborum cupidatat dolor eu anim dolor voluptate. Enim non elit non incididunt occaecat nulla commodo.Reprehenderit non ex culpa ex tempor deserunt laboris tempor amet. Culpa consequat magna excepteur voluptate dolor laboris ullamco voluptate dolor aliquip est duis. Fugiat magna cupidatat dolor incididunt proident cupidatat.',
-    email: 'hello@world.com'},]
+  const {post, comments}
 
   return (
     <Card className={classes.root}>
@@ -115,7 +104,7 @@ export default function PostCard() {
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
           <InputArea />
-          <Comment comments={comments}/>
+          <Comment comments={props.comments}/>
         </CardContent>
       </Collapse>
     </Card>
