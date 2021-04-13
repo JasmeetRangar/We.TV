@@ -21,6 +21,7 @@ import PostCard from './components/PostCard'
 import Comment from './components/Comment';
 import ProfileDisplay from './components/ProfileDisplay'
 import ProfileForm from './components/ProfileForm';
+import Search from './components/search/Search';
 
 const theme = createMuiTheme({
   // palette: {
@@ -81,7 +82,7 @@ export default function App () {
               </div>
             </Route>
             <Route path="/search" exact>
-              <SearchBar />
+              <Search />
             </Route>
             <Route path="/profile" exact>
             <Navbar />

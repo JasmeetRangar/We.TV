@@ -24,16 +24,16 @@ const useStyles = makeStyles((theme) => ({
 
 export default function CustomizedInputBase(props) {
   const classes = useStyles();
-  const {label, onSearch} = props;
+  const {label} = props;
 
   const [value, setValue] = useState("");
-  const term = useDebounce(value, 400);
+  const term = useDebounce(value, 2000);
 
-  const onSearchShow = useCallback(onSearch, [term]);
+  const onSearch = useCallback(props.onSearch, [term]);
 
   useEffect(() => {
-    onSearchShow(term);
-  }, [term, onSearchShow]);
+    onSearch(term);
+  }, [term, onSearch]);
 
   return (
     <form component="form" className={classes.root} onSubmit={event => event.preventDefault()}>
