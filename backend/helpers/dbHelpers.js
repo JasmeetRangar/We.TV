@@ -21,6 +21,19 @@ module.exports = (db) => {
       .catch((err) => err);
   };
 
+  const getCommentsByShow = (show_id) => {
+    const query = {
+      text: `SELECT comments.creator_id, comments.post_id, comments.created_at, comments.likes, comments.dislikes, comments.image, comments.video, comments.text FROM comments JOIN posts ON posts.id = comments.post_id WHERE posts.show_
+      id=$1 GROUP BY comments.id`,
+      values: [show_id]  
+    };
+
+    return db
+      .query(query)
+      .then((result) => result.rows)
+      .catch((err) => err);
+  };
+
   const getUserByEmail = email => {
 
       const query = {
@@ -50,6 +63,7 @@ module.exports = (db) => {
       getUsers,
       getUserByEmail,
       addUser,
-      getPosts
+      getPosts,
+      getCommentsByShow
   };
 };
