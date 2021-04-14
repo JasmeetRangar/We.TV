@@ -111,6 +111,16 @@ export default function PostCard(props) {
           <InputArea />
           <Comment comments={comments} />
         </CardContent>
+        <IconButton
+          className={clsx(classes.expand, {
+            [classes.expandOpen]: expanded,
+          })}
+          onClick={handleExpandClick}
+          aria-expanded={expanded}
+          aria-label="show more"
+        >
+          <ExpandMoreIcon />
+        </IconButton>
       </Collapse>
     </Card>
   );
