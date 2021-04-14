@@ -2,7 +2,7 @@ import { useState, useEffect, useReducer } from "react";
 import dataReducer, { SET_USERS } from "../reducers/dataReducer";
 import axios from "axios";
 
-export default function useApplicationData() {
+export default function useApplicationData(id) {
   // const [state, dispatch] = useReducer(dataReducer, {
   //   users: [],
   //   posts: [],
@@ -17,7 +17,7 @@ export default function useApplicationData() {
   useEffect(()=> {
     Promise.all([
       axios.get('/api/users'),
-      axios.get('/api/posts'),
+      axios.get(`/api/posts/${id}`),
       axios.get('/api/comments'),
       // axios.get('/api/interviewers')
     ]).then(all => {

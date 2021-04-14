@@ -21,11 +21,33 @@ module.exports = (db) => {
       .catch((err) => err);
   };
 
+  const getPostsByShow = (show_id) => {
+    const query = {
+      text: `SELECT * FROM posts WHERE show_id=$1`,
+      values: [show_id]
+    };
+
+    return db
+      .query(query)
+      .then((result) => result.rows)
+      .catch((err) => err);
+  };
+
   const getCommentsByShow = () => {
     const query = {
-      text: `SELECT comments.creator_id, comments.post_id, comments.created_at, comments.likes, comments.dislikes, comments.image, comments.video, comments.text FROM comments JOIN posts ON posts.id = comments.post_id WHERE posts.show_
-      id=$1 GROUP BY comments.id`,
-      values: [show_id]  
+      text: `SELECT * FROM comments`
+    };
+
+    return db
+      .query(query)
+      .then((result) => result.rows)
+      .catch((err) => err);
+  };
+
+  const getCommentsByPost = (post_id) => {
+    const query = {
+      text: `SELECT * FROM comments WHERE post_id=$1`,
+      values:[post_id]
     };
 
     return db
@@ -64,6 +86,8 @@ module.exports = (db) => {
       getUserByEmail,
       addUser,
       getPosts,
-      getCommentsByShow
+      getCommentsByShow,
+      getPostsByShow,
+      getCommentsByPost
   };
 };

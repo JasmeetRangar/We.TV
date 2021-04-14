@@ -18,6 +18,8 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import Comment from "./Comment";
 import InputArea from "../InputArea";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -54,7 +56,21 @@ export default function PostCard(props) {
     setExpanded(!expanded);
   };
 
-  const { post, comments } = props;
+  const [state, setState] = useState({
+   
+    comments: [],
+  });
+
+
+  useEffect(()=> {
+   
+    axios.get(`/api/posts/${post.id}`)
+    .then(commentsFrom => {
+      setState(prev => ({...prev, comments:commentsFrom.data}))});
+  
+  }, [])
+
+  const { post } = props;
 
   console.log("💦", post);
   return (
@@ -110,7 +126,7 @@ export default function PostCard(props) {
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
           <InputArea />
-          <Comment comments={comments} />
+          <Comment comments={state.comments} />
         </CardContent>
         <IconButton
           className={clsx(classes.expand, {
