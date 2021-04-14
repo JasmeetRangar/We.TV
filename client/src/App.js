@@ -51,10 +51,11 @@ const useStyles = makeStyles({
 export default function App () {
   const classes = useStyles();
   const {
-      state,
-      dispatch
+      state
   } = useApplicationData();
     const userList = state.users.map((user) => (<li key={user.id} > {user.first_name} {user.last_name} {user.email} {user.display_name}</li>));
+    const postsList = state.posts.map((post) => (<li key={post.id} > {post.text}</li>));
+  
       
   return (
     <Router>
@@ -79,6 +80,12 @@ export default function App () {
               <div className={classes.mainContent} style={{marginTop: '100px'}}>
                 <h1> Users </h1>
                 <ul> {userList} </ul>
+              </div>
+            </Route>
+            <Route path="/posts" exact>
+              <div className={classes.mainContent} style={{marginTop: '100px'}}>
+                <h1> Posts </h1>
+                <ul> {postsList} </ul>
               </div>
             </Route>
             <Route path="/search" exact>
