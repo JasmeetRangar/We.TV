@@ -17,11 +17,15 @@ const useStyles = makeStyles((theme) => ({
       height: theme.spacing(16),
     },
   },
+  bannerBox: {
+    display: "flex",
+    justifyContent: "center"
+  },
   showDetails: {
     display: "flex",
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "space-between",
+    justifyContent: "center",
     width: "30%",
     flexWrap: "wrap",
   },
@@ -37,7 +41,7 @@ export default function ShowBanner(props) {
   const { name, description, image_url } = props;
   return (
     <React.Fragment>
-      <Box>
+      <Box className={classes.bannerBox}>
         {/* <Paper className={classes.imageBannerPaper} elevation={4}>
         <Image
             src={image_url}
