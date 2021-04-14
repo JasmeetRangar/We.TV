@@ -37,6 +37,7 @@ const posts = [
 		dislikes: 21,
 		creator_id: 1,
 		created_at: "2 days ago",
+		image_url: "https://www.nybooks.com/wp-content/uploads/2015/04/Manet-Argenteuil.jpg"
 	},
 	{
 		id: 2,

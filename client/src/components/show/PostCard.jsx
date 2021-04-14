@@ -69,10 +69,10 @@ export default function PostCard(props) {
         title="UserName"
         subheader={post.created_at}
       />
-      {post.image && (
+      {post.image_url && (
         <CardMedia
           className={classes.media}
-          image="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.ytimg.com%2Fvi%2FP6A-wjuyF-Y%2Fmaxresdefault.jpg&f=1&nofb=1"
+          image={post.image_url}
           title="Paella dish"
         />
       )}
