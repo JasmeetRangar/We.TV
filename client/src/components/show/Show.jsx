@@ -20,6 +20,7 @@ const useStyles = makeStyles(() => ({
 }));
 
 export default function Show(props) {
+  const {posts} = props;
   const {name, description, image_url} = testShow
   const classes = useStyles();
   return (
@@ -31,7 +32,9 @@ export default function Show(props) {
         image_url={image_url}
         />
         <PostInput />
-      <PostsList />
+      <PostsList 
+        posts={posts}
+      />
         </Box>
     </React.Fragment>
   );

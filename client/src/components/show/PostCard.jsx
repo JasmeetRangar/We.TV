@@ -82,7 +82,7 @@ export default function PostCard(props) {
       )}
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
-          {post.description}
+          {post.text}
         </Typography>
       </CardContent>
       <CardActions disableSpacing>

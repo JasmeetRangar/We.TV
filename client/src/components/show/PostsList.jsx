@@ -29,27 +29,27 @@ const comments = [
 		dislikes: 2
 	},
 ];
-const posts = [
-	{
-		id: 1,
-		description: "this is a post",
-		likes: 34,
-		dislikes: 21,
-		creator_id: 1,
-		created_at: "2 days ago",
-		image_url: "https://www.nybooks.com/wp-content/uploads/2015/04/Manet-Argenteuil.jpg"
-	},
-	{
-		id: 2,
-		description: "this is another post",
-		likes: 3,
-		dislikes: 666,
-		creator_id: 2,
-		created_at: "1 day ago",
-	},
-];
+// const posts = [
+// 	{
+// 		id: 1,
+// 		description: "this is a post",
+// 		likes: 34,
+// 		dislikes: 21,
+// 		creator_id: 1,
+// 		created_at: "2 days ago",
+// 		image_url: "https://www.nybooks.com/wp-content/uploads/2015/04/Manet-Argenteuil.jpg"
+// 	},
+// 	{
+// 		id: 2,
+// 		description: "this is another post",
+// 		likes: 3,
+// 		dislikes: 666,
+// 		creator_id: 2,
+// 		created_at: "1 day ago",
+// 	},
+// ];
 export default function PostsList(props) {
-	// const { posts } = props;
+	const { posts } = props;
 	console.log("👉🏻", posts)
 	return posts.map(post => {
 		// return <h1>Hello</h1>
