@@ -8,7 +8,8 @@ const testShow = {
   id: 1,
   name: "Watchmen",
   description: "Who watches the watchmen?",
-  image_url: "https://cdn.collider.com/wp-content/uploads/2019/12/watchmen-poster.jpg"
+  image_url: "https://cdn.collider.com/wp-content/uploads/2019/12/watchmen-poster.jpg" 
+  // image_url: "https://uploads5.wikiart.org/images/edgar-degas/ballet-class-the-dance-hall-1880.jpg"
 }
 
 const useStyles = makeStyles(() => ({
