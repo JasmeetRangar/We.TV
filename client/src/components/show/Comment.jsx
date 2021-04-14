@@ -77,7 +77,7 @@ export default function Comment(props) {
                     disableSpinner
                     />
                   }
-                    {comment.body}
+                    {comment.text}
                     <br></br>
                     <IconButton aria-label="like post">
                       <Badge badgeContent={comment.likes} color="primary">

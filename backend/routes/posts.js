@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { getPosts } = require("../helpers/dataHelpers");
+const { getPosts } = require("../helpers/dbHelpers");
 
 module.exports = ({ getPosts }) => {
   /* GET posts listing. */
