@@ -20,7 +20,7 @@ const useStyles = makeStyles(() => ({
 }));
 
 export default function Show(props) {
-  const {posts} = props;
+  const {posts, comments} = props;
   const {name, description, image_url} = testShow
   const classes = useStyles();
   return (
@@ -34,6 +34,7 @@ export default function Show(props) {
         <PostInput />
       <PostsList 
         posts={posts}
+        comments={comments}
       />
         </Box>
     </React.Fragment>

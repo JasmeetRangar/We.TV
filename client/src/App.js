@@ -54,7 +54,8 @@ export default function App () {
       state
   } = useApplicationData();
     const userList = state.users.map((user) => (<li key={user.id} > {user.first_name} {user.last_name} {user.email} {user.display_name}</li>));
-    const postsList = state.posts.map((post) => (<li key={post.id} > {post.text}</li>));
+    const postsList = state.posts.map((post) => (<li key={post.id} > {post.text}</li>))
+    //const commentsList = state.comments.map((comment) => (<li key={comment.id} > {comment.text}</li>));   
   
       
   return (
@@ -67,7 +68,7 @@ export default function App () {
               <Navbar />
               
               <div className={classes.mainContent} style={{marginTop: '100px'}}>
-                <Show posts={state.posts}/>
+                <Show posts={state.posts} comments={state.comments}/>
               </div>
             </Route>
             <Route path="/register" exact>

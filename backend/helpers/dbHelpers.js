@@ -23,9 +23,10 @@ module.exports = (db) => {
 
   const getCommentsByShow = (show_id) => {
     const query = {
-      text: `SELECT comments.creator_id, comments.post_id, comments.created_at, comments.likes, comments.dislikes, comments.image, comments.video, comments.text FROM comments JOIN posts ON posts.id = comments.post_id WHERE posts.show_
-      id=$1 GROUP BY comments.id`,
-      values: [show_id]  
+      // text: `SELECT comments.creator_id, comments.post_id, comments.created_at, comments.likes, comments.dislikes, comments.image, comments.video, comments.text FROM comments JOIN posts ON posts.id = comments.post_id WHERE posts.show_
+      // id=1 GROUP BY comments.id`,
+      // values: [show_id]  
+      text: `SELECT * from comments`
     };
 
     return db
