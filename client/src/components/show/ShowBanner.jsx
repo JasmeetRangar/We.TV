@@ -25,8 +25,10 @@ const useStyles = makeStyles((theme) => ({
     width: "30%",
     flexWrap: "wrap",
   },
-  imageBannerPaper: {
-    marginBottom: "2%",
+  showBannerBox: {
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
   },
 }));
 
