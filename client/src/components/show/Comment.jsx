@@ -37,9 +37,10 @@ const useStyles = makeStyles((theme) => ({
 
 // Comment component modified from Gunasai's git repo: https://github.com/gunasai/material-ui-comments
 
-export default function Comment({ comments }) {
+export default function Comment(props) {
   const [open, setOpen] = React.useState(false);
   const classes = useStyles();
+  const {comments} = props
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -68,12 +69,14 @@ export default function Comment({ comments }) {
                 }
                 secondary={
                   <>
+                  {comment.image_url && 
                     <Image
-                      src={`https://www.felineliving.net/wp-content/uploads/2017/12/funny-cat-e1522100034583-150x147.jpg`}
-                      cover="true"
-                      onClick={handleClickOpen}
-                      disableSpinner
+                    src={comment.image_url}
+                    cover="true"
+                    onClick={handleClickOpen}
+                    disableSpinner
                     />
+                  }
                     {comment.body}
                     <br></br>
                     <IconButton aria-label="like post">
@@ -100,7 +103,7 @@ export default function Comment({ comments }) {
               <DialogContent>
                 <img
                     alt="ggg"
-                    src="https://www.felineliving.net/wp-content/uploads/2017/12/funny-cat-e1522100034583-150x147.jpg"
+                    src={comment.image_url}
                     style={{ height: "auto", width: "500px" }}
                   ></img>
               </DialogContent>
