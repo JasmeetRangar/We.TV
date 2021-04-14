@@ -67,7 +67,7 @@ export default function App () {
               <Navbar />
               
               <div className={classes.mainContent} style={{marginTop: '100px'}}>
-                <Show />
+                <Show posts={state.posts}/>
               </div>
             </Route>
             <Route path="/register" exact>
