@@ -1,6 +1,8 @@
 import React from "react";
-import ShowBanner from "../ShowBanner";
+import { makeStyles } from "@material-ui/core/styles";
+import ShowBanner from "./ShowBanner";
 import PostsList from "./PostsList";
+import Box from "@material-ui/core/Box"
 
 const testShow = {
   id: 1,
@@ -9,16 +11,25 @@ const testShow = {
   image_url: "https://cdn.collider.com/wp-content/uploads/2019/12/watchmen-poster.jpg"
 }
 
+const useStyles = makeStyles(() => ({
+  show: {
+    // margin: "2%"
+  },
+}));
+
 export default function Show(props) {
   const {name, description, image_url} = testShow
+  const classes = useStyles();
   return (
-    <React.Fragment>
+    <React.Fragment className={classes.show}>
+      <Box className={classes.show}>
       <ShowBanner 
         name={name}
         description={description}
         image_url={image_url}
         />
       <PostsList />
+        </Box>
     </React.Fragment>
   );
 }

@@ -22,6 +22,9 @@ import InputArea from "../InputArea";
 const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 500,
+    minWidth: "40%",
+    marginTop: "1%",
+    marginBottom: "1%"
   },
   media: {
     height: 0,
