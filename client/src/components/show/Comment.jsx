@@ -80,12 +80,12 @@ export default function Comment(props) {
                     {comment.body}
                     <br></br>
                     <IconButton aria-label="like post">
-                      <Badge badgeContent={4} color="primary">
+                      <Badge badgeContent={comment.likes} color="primary">
                         <ThumbUpIcon />
                       </Badge>
                     </IconButton>
                     <IconButton aria-label="dislike post">
-                      <Badge badgeContent={4} color="primary">
+                      <Badge badgeContent={comment.dislikes} color="primary">
                         <ThumbDownIcon />
                       </Badge>
                     </IconButton>
