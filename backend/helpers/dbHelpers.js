@@ -10,7 +10,7 @@ module.exports = (db) => {
           .catch((err) => err);
   };
 
-  const getPosts = () => {
+  const getPosts = (db) => {
     const query = {
       text: "SELECT * FROM posts",
     };
