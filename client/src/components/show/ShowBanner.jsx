@@ -17,11 +17,6 @@ const useStyles = makeStyles((theme) => ({
       height: theme.spacing(16),
     },
   },
-  paperClass: {
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "center",
-  },
   showDetails: {
     display: "flex",
     flexDirection: "row",
@@ -41,19 +36,24 @@ export default function ShowBanner(props) {
   return (
     <React.Fragment>
       <Box>
-        <Paper className={classes.imageBannerPaper} elevation={4}>
-          <Image
+        {/* <Paper className={classes.imageBannerPaper} elevation={4}>
+        <Image
             src={image_url}
             cover="true"
-            // style={{height:"100%"}}
+            style={{width:"100%"}}
           />
-        </Paper>
+        </Paper> */}
         <div className={classes.showDetails}>
           <Paper
             elevation={4}
-            style={{ color: "white", background: "black", height: "80%" }}
+            style={{ color: "white", background: "black" }}
           >
-            <Typography variant="h1">{name}</Typography>
+          <Image
+            src={image_url}
+            // cover="true"
+            style={{width:"100%"}}
+          />
+            <Typography variant="h2">{name}</Typography>
             <Typography>{description}</Typography>
             <ShowNav />
           </Paper>
