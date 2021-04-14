@@ -10,6 +10,17 @@ module.exports = (db) => {
           .catch((err) => err);
   };
 
+  const getPosts = () => {
+    const query = {
+      text: "SELECT * FROM posts",
+    };
+
+    return db
+      .query(query)
+      .then((result) => result.rows)
+      .catch((err) => err);
+  };
+
   const getUserByEmail = email => {
 
       const query = {
@@ -39,5 +50,6 @@ module.exports = (db) => {
       getUsers,
       getUserByEmail,
       addUser,
+      getPosts
   };
 };
