@@ -7,5 +7,6 @@ CREATE TABLE "comments" (
   "likes" int,
   "dislikes" int,
   "image" varchar,
-  "video" varchar
+  "video" varchar,
+  "text" varchar
 );

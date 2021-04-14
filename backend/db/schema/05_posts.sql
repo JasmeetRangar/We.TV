@@ -1,7 +1,7 @@
 DROP TABLE IF EXISTS posts CASCADE;
 CREATE TABLE "posts" (
   "id" SERIAL PRIMARY KEY,
-  "description" varchar,
+  "text" varchar,
   "likes" int,
   "dislikes" int,
   "image" varchar,
