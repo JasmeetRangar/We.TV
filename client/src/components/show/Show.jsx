@@ -3,6 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import ShowBanner from "./ShowBanner";
 import PostsList from "./PostsList";
 import Box from "@material-ui/core/Box"
+import PostInput from "./PostInput";
 
 const testShow = {
   id: 1,
@@ -29,6 +30,7 @@ export default function Show(props) {
         description={description}
         image_url={image_url}
         />
+        <PostInput />
       <PostsList />
         </Box>
     </React.Fragment>
