@@ -18,6 +18,7 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import Comment from "./Comment";
 import InputArea from "../InputArea";
+import InputComment from "../InputComment";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
@@ -64,7 +65,7 @@ export default function PostCard(props) {
 
   useEffect(()=> {
    
-    axios.get(`/api/posts/${post.id}`)
+    axios.get(`/api/comments/${post.id}`)
     .then(commentsFrom => {
       setState(prev => ({...prev, comments:commentsFrom.data}))});
   
@@ -125,7 +126,7 @@ export default function PostCard(props) {
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
-          <InputArea />
+          <InputComment onSubmitComment={props.onSubmitComment} post_id={post.id} />
           <Comment comments={state.comments} />
         </CardContent>
         <IconButton

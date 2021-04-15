@@ -52,6 +52,26 @@ export default function Show(props) {
     })
   }
 
+  function onSubmitComment(comment, post_id) {
+    console.log('Line 55 Show.jsx', comment);
+    //console.log(params.id)
+    axios({
+      method: 'post',
+      url: '/api/comments',
+      data: {
+        text: comment,
+        post_id: post_id
+    }})
+    .then((res) => {
+
+      console.log('postInput',res.data);
+
+      setState((prev) => ({...prev, comments:[...state.comments, res.data]}))
+      
+    })
+  }
+
+
   
 
   console.log(params);
@@ -72,6 +92,7 @@ export default function Show(props) {
         posts={posts}
         comments={comments}
         id={params.id}
+        onSubmitComment={onSubmitComment}
       />
         </Box>
     </React.Fragment>

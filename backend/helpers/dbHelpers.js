@@ -129,7 +129,7 @@ module.exports = (db) => {
 
   const addComment = (text, post_id) => {
     const query = {
-        text: `INSERT INTO comments (text, show_id) VALUES ($1, $2) RETURNING *` ,
+        text: `INSERT INTO comments (text, post_id) VALUES ($1, $2) RETURNING *` ,
         values: [text, post_id]
     }
 
