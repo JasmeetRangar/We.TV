@@ -8,6 +8,7 @@ import {
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { PhotoCamera, Movie, ArrowForward } from "@material-ui/icons";
+import { useState, useEffect } from "react";
 
 const useStyles = makeStyles((theme) => ({
   input: {
@@ -16,20 +17,33 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function InputArea(props) {
+
+  const [post,setPost] = useState('');
+
   const classes = useStyles();
 
-  const id = props.id;
+  // const id = props.id;
+
+  function onSubmit() {
+    console.log(post);
+    props.onSubmit(post);
+  }
+
+
+  
 
   return (
-    <FormControl style={{ width: "95%" }}>
+    <FormControl style={{ width: "95%" }} >
       <Input
         id="standard-textarea"
+        value={post}
+        onChange={(evt) => setPost(evt.target.value)}
         label="Comment"
         placeholder="Add Post"
         multiline
         endAdornment={
           <InputAdornment position="end">
-            <IconButton>
+            <IconButton onClick={onSubmit}>
               <ArrowForward />
             </IconButton>
           </InputAdornment>

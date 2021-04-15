@@ -24,7 +24,7 @@ export default function useApplicationData(id) {
       setState(prev => ({...prev, users: all[0].data, posts: all[1].data, comments: all[2].data}))
     })
     
-  }, [])
+  }, [state.posts])
   
   // useEffect(() => {
   //   axios({

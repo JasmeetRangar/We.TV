@@ -32,15 +32,11 @@ export default function Show(props) {
   } = useApplicationData(params.id);
 
   const {posts, comments} = state;
-  const {name, description, image_url} = testShow
   const classes = useStyles();
   return (
     <React.Fragment className={classes.show}>
       <Box className={classes.show}>
       <ShowBanner 
-        name={name}
-        description={description}
-        image_url={image_url}
         id={params.id}
         />
       <PostInput id={params.id} />
