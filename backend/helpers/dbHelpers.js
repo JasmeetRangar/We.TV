@@ -37,8 +37,21 @@ module.exports = (db) => {
   const getUserByEmail = email => {
 
       const query = {
-          text: `SELECT * FROM users WHERE email = $1` ,
+          text: `SELECT * FROM users WHERE email = 1` ,
           values: [email]
+      }
+
+      return db
+          .query(query)
+          .then(result => result.rows[0])
+          .catch((err) => err);
+  }
+  
+  const getFavouriteShowsForUser = user_id => {
+
+      const query = {
+        text: `SELECT shows.id, shows.name, shows.description, shows.image FROM SHOWS JOIN favourites ON shows.id = favourites.show_id WHERE favourites.user_id = $1;` ,
+          values: [user_id]
       }
 
       return db
@@ -64,6 +77,7 @@ module.exports = (db) => {
       getUserByEmail,
       addUser,
       getPosts,
-      getCommentsByShow
+      getCommentsByShow,
+      getFavouriteShowsForUser
   };
 };
