@@ -67,7 +67,8 @@ export default function App() {
               <Navbar />
               
               <div className={classes.mainContent} style={{marginTop: '100px'}}>
-                <Show />
+               <h1>Bro welcome to the app</h1>
+                {/* <Show /> */}
               </div>
             </Route>
 
