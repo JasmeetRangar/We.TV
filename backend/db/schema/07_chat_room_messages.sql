@@ -1,8 +1,8 @@
 DROP TABLE IF EXISTS chat_room_messages CASCADE;
 CREATE TABLE "chat_room_messages" (
   "id" SERIAL PRIMARY KEY,
-  "chat_room_id" int,
-  "creator_id" int,
+  "show_id" int FOREIGN KEY REFERENCES "shows" ("id"),
+  "creator_id" int FOREIGN KEY REFERENCES "users" ("id"),
   "created_at" timestamp,
   "message" varchar
 );
