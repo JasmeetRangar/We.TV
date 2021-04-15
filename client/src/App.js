@@ -49,6 +49,7 @@ const useStyles = makeStyles({
 
 export default function App() {
   const classes = useStyles();
+<<<<<<< HEAD
   const { state } = useApplicationData();
   const userList = state.users.map((user) => (
     <li key={user.id}>
@@ -61,6 +62,16 @@ export default function App() {
   ));
   //const commentsList = state.comments.map((comment) => (<li key={comment.id} > {comment.text}</li>));
 
+=======
+  // const {
+  //     state
+  // } = useApplicationData();
+  //   const userList = state.users.map((user) => (<li key={user.id} > {user.first_name} {user.last_name} {user.email} {user.display_name}</li>));
+  //   const postsList = state.posts.map((post) => (<li key={post.id} > {post.text}</li>))
+    //const commentsList = state.comments.map((comment) => (<li key={comment.id} > {comment.text}</li>));   
+  
+      
+>>>>>>> master
   return (
     <Router>
       <div className="App">
@@ -69,25 +80,41 @@ export default function App() {
           <Switch>
             <Route path="/" exact>
               <Navbar />
+<<<<<<< HEAD
 
               <div
                 className={classes.mainContent}
                 style={{ marginTop: "100px" }}
               >
                 <Show posts={state.posts} comments={state.comments} />
+=======
+              
+              <div className={classes.mainContent} style={{marginTop: '100px'}}>
+                <Show />
+>>>>>>> master
               </div>
             </Route>
+
+            <Route path="/shows/:id">
+              <Show />
+            </Route>
+
             <Route path="/register" exact>
               <Register />
             </Route>
             <Route path="/login" exact>
               <Login />
             </Route>
+<<<<<<< HEAD
             <Route path="/users" exact>
               <div
                 className={classes.mainContent}
                 style={{ marginTop: "100px" }}
               >
+=======
+            {/* <Route path="/users" exact>
+              <div className={classes.mainContent} style={{marginTop: '100px'}}>
+>>>>>>> master
                 <h1> Users </h1>
                 <ul> {userList} </ul>
               </div>
@@ -100,7 +127,7 @@ export default function App() {
                 <h1> Posts </h1>
                 <ul> {postsList} </ul>
               </div>
-            </Route>
+            </Route> */}
             <Route path="/search" exact>
               <Search />
             </Route>

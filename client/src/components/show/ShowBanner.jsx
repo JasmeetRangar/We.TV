@@ -38,7 +38,9 @@ const useStyles = makeStyles((theme) => ({
 
 export default function ShowBanner(props) {
   const classes = useStyles();
-  const { name, description, image_url } = props;
+  const { name, description, image_url, id } = props;
+
+  
   return (
     <React.Fragment>
       <Box className={classes.bannerBox}>

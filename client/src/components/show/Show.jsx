@@ -4,6 +4,8 @@ import ShowBanner from "./ShowBanner";
 import PostsList from "./PostsList";
 import Box from "@material-ui/core/Box"
 import PostInput from "./PostInput";
+import useApplicationData from '../../hooks/useApplicationData';
+import { useParams } from 'react-router-dom';
 
 const testShow = {
   id: 1,
@@ -20,7 +22,16 @@ const useStyles = makeStyles(() => ({
 }));
 
 export default function Show(props) {
-  const {posts, comments} = props;
+
+  const params = useParams();
+
+  console.log(params);
+
+  const {
+    state
+  } = useApplicationData(params.id);
+
+  const {posts, comments} = state;
   const {name, description, image_url} = testShow
   const classes = useStyles();
   return (
@@ -30,11 +41,13 @@ export default function Show(props) {
         name={name}
         description={description}
         image_url={image_url}
+        id={params.id}
         />
-        <PostInput />
+        <PostInput id={params.id} />
       <PostsList 
         posts={posts}
         comments={comments}
+        id={params.id}
       />
         </Box>
     </React.Fragment>
