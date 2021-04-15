@@ -24,10 +24,10 @@ const io = socketio(server);
 /**
  * Listen on provided port, on all network interfaces.
  */
- io.on('Testing Socket........', function(data){ 	console.log("got here"); });
 io.on('connection', socket => {
   console.log("Client Connected!");
-  socket.emit('initial', {user: 'hello world'});
+  socket.emit('initial', [{display_name: 'user1', message: 'Lets do a watch party'},
+  {display_name: 'user2', message: 'Nah bro, I\'m busy'}]);
   socket.emit
 })
 server.listen(port);
