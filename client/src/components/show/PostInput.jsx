@@ -4,6 +4,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import InputArea from "../InputArea";
 
 
+
 const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 500,
@@ -14,13 +15,18 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function PostInput() {
+export default function PostInput(props) {
+
+  
+
+
+
   const classes = useStyles();
   return (
     <Card className={classes.root}>
       <CardContent>
         <Typography>What's on your mind?</Typography>
-        <InputArea />
+        <InputArea onSubmit={props.onSubmit}/>
       </CardContent>
     </Card>
   );

@@ -5,6 +5,8 @@ import { Paper, Typography, Box } from "@material-ui/core";
 import ShowImage from "../ShowImage";
 import ShowNav from "./ShowNav";
 import Image from "material-ui-image";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -38,8 +40,23 @@ const useStyles = makeStyles((theme) => ({
 
 export default function ShowBanner(props) {
   const classes = useStyles();
-  const { name, description, image_url, id } = props;
+  
 
+  const [state, setState] = useState({
+   
+    show: [{}],
+  });
+
+
+  useEffect(()=> {
+   
+    axios.get(`/api/shows/${props.id}`)
+    .then(showInfo => { 
+      setState(prev => ({...prev, show:showInfo.data}))});
+  
+  }, [])
+
+  console.log("this the state",state.show[0])
   
   return (
     <React.Fragment>
@@ -57,12 +74,14 @@ export default function ShowBanner(props) {
             style={{ color: "white", background: "black" }}
           >
           <Image
-            src={image_url}
-            // cover="true"
+            src={state.show[0].image}
+            cover="true"
             style={{width:"100%"}}
+
+
           />
-            <Typography variant="h2">{name}</Typography>
-            <Typography>{description}</Typography>
+            <Typography variant="h2">{state.show[0].name}</Typography>
+            <Typography>{state.show[0].description}</Typography>
             <ShowNav />
           </Paper>
         </div>

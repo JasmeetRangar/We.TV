@@ -7,6 +7,9 @@ const app = require('../app');
 const debug = require('debug')('backend:server');
 const http = require('http');
 const socketio = require('socket.io');
+const cors = require('cors');
+app.use(cors());
+
 /**
  * Get port from environment and store in Express.
  */

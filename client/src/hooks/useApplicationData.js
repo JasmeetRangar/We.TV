@@ -10,16 +10,18 @@ export default function useApplicationData(id) {
   // });
   const [state, setState] = useState({
     users: [],
-    posts: []
+    posts: [],
+    comments:[]
   })
 
   useEffect(()=> {
     Promise.all([
       axios.get('/api/users'),
-      axios.get(`/api/posts/${id}`)
+      axios.get(`/api/posts/${id}`),
+      axios.get('/api/comments'),
       // axios.get('/api/interviewers')
     ]).then(all => {
-      setState(prev => ({...prev, users: all[0].data, posts: all[1].data}))
+      setState(prev => ({...prev, users: all[0].data, posts: all[1].data, comments: all[2].data}))
     })
     
   }, [])
@@ -42,6 +44,6 @@ export default function useApplicationData(id) {
  
 
   return {
-    state
+    state, setState
   };
 };

@@ -6,7 +6,8 @@ import IconButton from '@material-ui/core/IconButton';
 import AccountCircle from '@material-ui/icons/AccountCircle'
 import ExitToAppIcon from '@material-ui/icons/ExitToApp'
 import SearchIcon from '@material-ui/icons/Search'
-import TvIcon from '@material-ui/icons/Tv'
+import TvIcon from '@material-ui/icons/Tv';
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -20,6 +21,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Navbar() {
   const classes = useStyles();
+  const preventDefault = (event) => event.preventDefault();
 
   return (
     <div className={classes.root}>
@@ -28,9 +30,12 @@ export default function Navbar() {
         <IconButton color="inherit" aria-label="shows">
           <TvIcon />
         </IconButton>
-        <IconButton color="inherit" aria-label="search">
-          <SearchIcon />
-        </IconButton>
+        <Link to={{ pathname: "/search"}} onClick={preventDefault} color="inherit">
+          <IconButton color="inherit" aria-label="search">
+            <SearchIcon />
+          </IconButton>
+        </Link>
+        
         <IconButton color="inherit" aria-label="account">
           <AccountCircle />
         </IconButton>

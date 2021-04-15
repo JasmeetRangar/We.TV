@@ -18,16 +18,16 @@ const useStyles = makeStyles((theme) => ({
 
 export default function InputArea(props) {
 
-  const [post,setPost] = useState('');
+  const [comment,setComment] = useState('');
 
   const classes = useStyles();
 
   // const id = props.id;
 
-  function onSubmit() {
-    console.log(post);
-    props.onSubmit(post);
-    setPost('');
+  function onSubmitComment() {
+    console.log("hello comment", comment);
+    props.onSubmitComment(comment, props.post_id);
+    setComment('');
   }
 
 
@@ -39,14 +39,14 @@ export default function InputArea(props) {
         autoFocus="true"
         type="reset"
         id="standard-textarea"
-        value={post}
-        onChange={(evt) => setPost(evt.target.value)}
+        value={comment}
+        onChange={(evt) => setComment(evt.target.value)}
         label="Comment"
-        placeholder="Add Post"
+        placeholder="Add Comment"
         multiline
         endAdornment={
           <InputAdornment position="end">
-            <IconButton onClick={onSubmit}>
+            <IconButton onClick={onSubmitComment}>
               <ArrowForward />
             </IconButton>
           </InputAdornment>

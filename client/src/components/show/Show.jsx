@@ -6,6 +6,8 @@ import Box from "@material-ui/core/Box"
 import PostInput from "./PostInput";
 import useApplicationData from '../../hooks/useApplicationData';
 import { useParams } from 'react-router-dom';
+import { useState } from "react";
+import axios from 'axios';
 
 const testShow = {
   id: 1,
@@ -23,27 +25,69 @@ const useStyles = makeStyles(() => ({
 
 export default function Show(props) {
 
+  
   const params = useParams();
+
+  const {
+    state, setState
+  } = useApplicationData(params.id);
+
+
+  function onSubmit(post) {
+    console.log('Line 20 PostInput.jsx', post);
+    console.log(params.id)
+    axios({
+      method: 'post',
+      url: '/api/posts',
+      data: {
+        text: post,
+        show_id: params.id
+    }})
+    .then((res) => {
+
+      console.log('postInput',res.data);
+      
+
+      setState((prev) => ({...prev, posts:[...state.posts, res.data]}))
+    })
+  }
+
+  // function onSubmitComment(comment, post_id) {
+  //   console.log('Line 55 Show.jsx', comment);
+  //   //console.log(params.id)
+  //   axios({
+  //     method: 'post',
+  //     url: '/api/comments',
+  //     data: {
+  //       text: comment,
+  //       post_id: post_id
+  //   }})
+  //   .then((res) => {
+
+  //     console.log('postInput',res.data);
+
+  //     setState((prev) => ({...prev, comments:[...state.comments, res.data]}))
+      
+  //   })
+  // }
+
+
+  
 
   console.log(params);
 
-  const {
-    state
-  } = useApplicationData(params.id);
+  
 
   const {posts, comments} = state;
-  const {name, description, image_url} = testShow
+
   const classes = useStyles();
   return (
     <React.Fragment className={classes.show}>
       <Box className={classes.show}>
       <ShowBanner 
-        name={name}
-        description={description}
-        image_url={image_url}
         id={params.id}
         />
-        <PostInput id={params.id} />
+      <PostInput id={params.id} onSubmit={onSubmit} />
       <PostsList 
         posts={posts}
         comments={comments}

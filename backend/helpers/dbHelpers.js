@@ -21,6 +21,29 @@ module.exports = (db) => {
       .catch((err) => err);
   };
 
+  const getShows = () => {
+    const query = {
+      text: "SELECT * FROM shows",
+    };
+
+    return db
+      .query(query)
+      .then((result) => result.rows)
+      .catch((err) => err);
+  };
+
+  const getShow = (id) => {
+    const query = {
+      text: "SELECT * FROM shows WHERE id=$1",
+      values:[id]
+    };
+
+    return db
+      .query(query)
+      .then((result) => result.rows)
+      .catch((err) => err);
+  };
+
   const getPostsByShow = (show_id) => {
     const query = {
       text: `SELECT * FROM posts WHERE show_id=$1`,
@@ -82,6 +105,43 @@ module.exports = (db) => {
           .catch((err) => err);
   }
 
+  const addShow = (name, description, image, api_id) => {
+    const query = {
+        text: `INSERT INTO shows (name, description, image, api_id) VALUES ($1, $2, $3, $4) RETURNING *` ,
+        values: [name, description, image, api_id]
+    }
+
+    return db.query(query)
+        .then(result => result.rows[0])
+        .catch(err => err);
+  }
+
+  const addPost = (text, show_id) => {
+    const query = {
+        text: `INSERT INTO posts (text, show_id) VALUES ($1, $2) RETURNING *` ,
+        values: [text, show_id]
+    }
+
+    return db.query(query)
+        .then(result => result.rows[0])
+        .catch(err => err);
+  }
+
+  const addComment = (text, post_id) => {
+    const query = {
+        text: `INSERT INTO comments (text, post_id) VALUES ($1, $2) RETURNING *` ,
+        values: [text, post_id]
+    }
+
+    return db.query(query)
+        .then(result => result.rows[0])
+        .catch(err => err);
+  }
+
+
+  
+
+
   const addUser = (firstName, lastName, email, password, display_name) => {
       const query = {
           text: `INSERT INTO users (first_name, last_name, email, password, display_name) VALUES ($1, $2, $3, $4, $5) RETURNING *` ,
@@ -99,6 +159,9 @@ module.exports = (db) => {
       values: [show_id]
     }
   }
+
+  
+
   return {
       getUsers,
       getUserByEmail,
@@ -107,6 +170,11 @@ module.exports = (db) => {
       getCommentsByShow,
       getFavouriteShowsForUser,
       getPostsByShow,
-      getCommentsByPost
+      getCommentsByPost,
+      getShows,
+      getShow,
+      addShow,
+      addPost,
+      addComment
   };
 };
