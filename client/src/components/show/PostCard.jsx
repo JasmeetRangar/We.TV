@@ -71,7 +71,28 @@ export default function PostCard(props) {
   
   }, [])
 
+
+
   const { post } = props;
+
+  function onSubmitComment(comment, post_id) {
+    console.log('Line 55 Show.jsx', comment);
+    //console.log(params.id)
+    axios({
+      method: 'post',
+      url: '/api/comments',
+      data: {
+        text: comment,
+        post_id: post.id
+    }})
+    .then((res) => {
+
+      console.log('postInput',res.data);
+
+      setState((prev) => ({...prev, comments:[...state.comments, res.data]}))
+      
+    })
+  }
 
   console.log("💦", post);
   return (
@@ -126,7 +147,7 @@ export default function PostCard(props) {
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
-          <InputComment onSubmitComment={props.onSubmitComment} post_id={post.id} />
+          <InputComment onSubmitComment={onSubmitComment} post_id={post.id} />
           <Comment comments={state.comments} />
         </CardContent>
         <IconButton

@@ -53,6 +53,6 @@ export default function PostsList(props) {
 	console.log("👉🏻", posts)
 	return posts.map(post => {
 		// return <h1>Hello</h1>
-		return (<PostCard comments={comments} post={post} onSubmitComment={props.onSubmitComment}/>)
+		return (<PostCard comments={comments} post={post} />)
 	});
 }
