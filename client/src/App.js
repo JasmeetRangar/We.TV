@@ -1,28 +1,27 @@
-import './App.css';
-import useApplicationData from './hooks/useApplicationData';
-import { MuiThemeProvider, createMuiTheme, makeStyles } from '@material-ui/core/styles'
-import { green, orange } from '@material-ui/core/colors';
-import CssBaseline from "@material-ui/core/CssBaseline";
-import SearchBar from './components/search/SearchBar'
-
+import "./App.css";
+import useApplicationData from "./hooks/useApplicationData";
 import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link
-} from "react-router-dom";
+  MuiThemeProvider,
+  createMuiTheme,
+  makeStyles,
+} from "@material-ui/core/styles";
+import { green, orange } from "@material-ui/core/colors";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import SearchBar from "./components/search/SearchBar";
 
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
-import Navbar from './components/Navbar.jsx'
-import ShowCard from './components/ShowCard.jsx'
-import Login from './components/Login';
-import Register from './components/Register';
-import PostCard from './components/show/PostCard'
-import ProfileDisplay from './components/ProfileDisplay'
-import ProfileForm from './components/ProfileForm';
-import Search from './components/search/Search';
-import PostsList from './components/show/PostsList';
-import Show from './components/show/Show';
+import Navbar from "./components/Navbar.jsx";
+import ShowCard from "./components/ShowCard.jsx";
+import Login from "./components/Login";
+import Register from "./components/Register";
+import PostCard from "./components/show/PostCard";
+import ProfileDisplay from "./components/ProfileDisplay";
+import ProfileForm from "./components/ProfileForm";
+import Search from "./components/search/Search";
+import PostsList from "./components/show/PostsList";
+import Show from "./components/show/Show";
+import MyShows from "./components/MyShows/MyShows";
 
 const theme = createMuiTheme({
   // palette: {
@@ -40,15 +39,15 @@ const theme = createMuiTheme({
 
 const useStyles = makeStyles({
   mainContent: {
-    width: '100%',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    flexDirection: 'column'
-  }
+    width: "100%",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    flexDirection: "column",
+  },
 });
 
-export default function App () {
+export default function App() {
   const classes = useStyles();
   // const {
   //     state
@@ -60,14 +59,16 @@ export default function App () {
       
   return (
     <Router>
-      <div className="App" >
-        <MuiThemeProvider theme={theme} >
+      <div className="App">
+        <MuiThemeProvider theme={theme}>
           <CssBaseline />
           <Switch>
             <Route path="/" exact>
               <Navbar />
               
               <div className={classes.mainContent} style={{marginTop: '100px'}}>
+               <h1>Bro welcome to the app</h1>
+                {/* <Show /> */}
               </div>
             </Route>
 
@@ -91,7 +92,10 @@ export default function App () {
               </div>
             </Route>
             <Route path="/posts" exact>
-              <div className={classes.mainContent} style={{marginTop: '100px'}}>
+              <div
+                className={classes.mainContent}
+                style={{ marginTop: "100px" }}
+              >
                 <h1> Posts </h1>
                 <ul> {postsList} </ul>
               </div>
@@ -99,17 +103,28 @@ export default function App () {
             <Route path="/search" exact>
               <Search />
             </Route>
+            <Route path="/myshows" exact>
+              <Navbar />
+              <div
+                className={classes.mainContent}
+                style={{ marginTop: "100px" }}
+              >
+                <MyShows />
+              </div>
+            </Route>
             <Route path="/profile" exact>
-            <Navbar />
-              <div className={classes.mainContent} style={{marginTop: '100px'}}>
-              <ProfileDisplay />
-              {/* <ProfileForm />  */}
-              </div>             
+              <Navbar />
+              <div
+                className={classes.mainContent}
+                style={{ marginTop: "100px" }}
+              >
+                <ProfileDisplay />
+                {/* <ProfileForm />  */}
+              </div>
             </Route>
           </Switch>
         </MuiThemeProvider>
-      </div >
+      </div>
     </Router>
-    
   );
-};
+}

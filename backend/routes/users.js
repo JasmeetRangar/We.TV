@@ -1,12 +1,22 @@
 const express = require("express");
 const router = express.Router();
-const { getPostsByUsers } = require("../helpers/dataHelpers");
 
-module.exports = ({ getUsers, getUserByEmail, addUser, getUsersPosts }) => {
+module.exports = ({ getUsers, getUserByEmail, getUsersPosts, getFavouriteShowsForUser }) => {
   /* GET users listing. */
   router.get("/", (req, res) => {
     getUsers()
       .then((users) => res.json(users))
+      .catch((err) =>
+        res.json({
+          error: err.message,
+        })
+      );
+  });
+  
+  router.get("/shows", (req, res) => {
+
+    getFavouriteShowsForUser()
+      .then((shows) => res.json(shows))
       .catch((err) =>
         res.json({
           error: err.message,
