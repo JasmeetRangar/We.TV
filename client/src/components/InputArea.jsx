@@ -15,8 +15,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function InputArea() {
+export default function InputArea(props) {
   const classes = useStyles();
+
+  const id = props.id;
 
   return (
     <FormControl style={{ width: "95%" }}>

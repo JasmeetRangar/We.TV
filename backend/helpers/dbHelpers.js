@@ -116,6 +116,8 @@ module.exports = (db) => {
         .catch(err => err);
   }
 
+  
+
 
   const addUser = (firstName, lastName, email, password, display_name) => {
       const query = {

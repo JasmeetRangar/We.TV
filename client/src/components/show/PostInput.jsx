@@ -14,13 +14,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function PostInput() {
+export default function PostInput(props) {
   const classes = useStyles();
   return (
     <Card className={classes.root}>
       <CardContent>
         <Typography>What's on your mind?</Typography>
-        <InputArea />
+        <InputArea id={props.id}/>
       </CardContent>
     </Card>
   );

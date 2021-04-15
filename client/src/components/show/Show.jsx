@@ -43,7 +43,7 @@ export default function Show(props) {
         image_url={image_url}
         id={params.id}
         />
-        <PostInput id={params.id} />
+      <PostInput id={params.id} />
       <PostsList 
         posts={posts}
         comments={comments}
