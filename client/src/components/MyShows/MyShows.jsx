@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
-import Results from "./search/Results"
+import Results from "./Results"
 import { Typography, Paper } from '@material-ui/core';
 
 const data = 
@@ -23,6 +24,16 @@ const data =
 export default function MyShows() {
   const [results, setResults] = useState([]);
   
+  useEffect(() => {
+    if (results.length === 0) {
+    axios.get("/api/users/shows")
+    .then((res) => {
+      // console.log(res.data)
+      setResults(() => res.data)})
+      .catch(e => console.log(e))
+    }
+    }, [])
+
   return (
     <React.Fragment>
       <Paper
@@ -31,7 +42,7 @@ export default function MyShows() {
           >
     <Typography variant="h1">My Shows</Typography>
           </Paper>
-    <Results results={results.length > 0? results : data} />
+    <Results results={results.length > 0? results : []} />
     </React.Fragment>
   )
 }

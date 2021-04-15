@@ -69,16 +69,16 @@ module.exports = (db) => {
           .catch((err) => err);
   }
   
-  const getFavouriteShowsForUser = user_id => {
+  const getFavouriteShowsForUser = () => {
 
       const query = {
-        text: `SELECT shows.id, shows.name, shows.description, shows.image FROM SHOWS JOIN favourites ON shows.id = favourites.show_id WHERE favourites.user_id = $1;` ,
-          values: [user_id]
+        text: `SELECT shows.id, shows.name, shows.description, shows.image FROM SHOWS JOIN favourites ON shows.id = favourites.show_id WHERE favourites.user_id = 1;` 
+          // values: [user_id]
       }
 
       return db
           .query(query)
-          .then(result => result.rows[0])
+          .then(result => result.rows)
           .catch((err) => err);
   }
 
