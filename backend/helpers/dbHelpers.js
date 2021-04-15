@@ -92,6 +92,18 @@ module.exports = (db) => {
           .catch((err) => err);
   }
 
+  const addShow = (name, description, image, api_id) => {
+    const query = {
+        text: `INSERT INTO shows (name, description, image, api_id) VALUES ($1, $2, $3, $4) RETURNING *` ,
+        values: [name, description, image, api_id]
+    }
+
+    return db.query(query)
+        .then(result => result.rows[0])
+        .catch(err => err);
+  }
+
+
   const addUser = (firstName, lastName, email, password, display_name) => {
       const query = {
           text: `INSERT INTO users (first_name, last_name, email, password, display_name) VALUES ($1, $2, $3, $4, $5) RETURNING *` ,
@@ -103,22 +115,8 @@ module.exports = (db) => {
           .catch(err => err);
   }
 
-      // name: show.name,
-      // description: show.description,
-      // image: show.image,
-      // api_id: show.id
 
-  const addShow = (name, description, image, api_id) => {
-    const query = {
-        text: `INSERT INTO users (name, description, image, api_id) VALUES ($1, $2, $3, $4) RETURNING *` ,
-        values: [name, description, image, api_id]
-    }
-
-    return db.query(query)
-        .then(result => result.rows[0])
-        .catch(err => err);
-  }
-
+  
 
   return {
       getUsers,

@@ -7,16 +7,17 @@ import axios from 'axios';
 
 
 function clickHandler(show) {
+  console.log(show);
   axios({
     method: 'post',
-    url: 'http://localhost:3001/api/shows',
+    url: '/api/shows',
     data: {
       name: show.name,
       description: show.description,
-      image: show.image,
+      image: show.image.medium,
       api_id: show.id
   }})
-  .then((res) => console.log(res.data))
+  .then(console.log("posted"))
 }
 
 export default function Results(props) {

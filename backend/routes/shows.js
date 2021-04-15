@@ -19,7 +19,7 @@ module.exports = ({ getShows, getShow, addShow }) => {
     const id = req.params.id;
 
     getShow(id)
-      .then((posts) => res.json(posts))
+      .then((shows) => res.json(shows))
       .catch((err) =>
         res.json({
           error: err.message,
@@ -29,12 +29,15 @@ module.exports = ({ getShows, getShow, addShow }) => {
 
   router.post("/", (req, res) => {
 
-    const {name, description, image, api_id} = req.body;
+    const {name, description, image, api_id } = req.body;
 
     console.log(req.body);
 
     addShow(name, description, image, api_id)
-      .then((posts) => res.json(posts))
+      .then((shows) => {
+        res.json(shows)
+        console.log(shows)
+      })
       .catch((err) =>
         res.json({
           error: err.message,
