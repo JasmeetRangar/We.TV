@@ -27,6 +27,7 @@ export default function InputArea(props) {
   function onSubmit() {
     console.log(post);
     props.onSubmit(post);
+    setPost('');
   }
 
 
@@ -35,6 +36,8 @@ export default function InputArea(props) {
   return (
     <FormControl style={{ width: "95%" }} >
       <Input
+        autoFocus="true"
+        type="reset"
         id="standard-textarea"
         value={post}
         onChange={(evt) => setPost(evt.target.value)}
