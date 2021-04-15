@@ -3,26 +3,37 @@ import React from "react";
 import ShowImage from "../ShowImage";
 import { Typography, Button } from '@material-ui/core';
 import axios from 'axios';
+import { useHistory } from 'react-router-dom';
 
 
 
-function clickHandler(show) {
-  console.log(show);
-  axios({
-    method: 'post',
-    url: '/api/shows',
-    data: {
-      name: show.name,
-      description: show.description,
-      image: show.image.medium,
-      api_id: show.id
-  }})
-  .then(console.log("posted"))
-}
 
 export default function Results(props) {
+
+  const history = useHistory();
+
   const { results } = props;
   console.log(results);
+
+  async function clickHandler(show) {
+    console.log(show);
+    const res = await axios({
+      method: 'post',
+      url: '/api/shows',
+      data: {
+        name: show.name,
+        description: show.summary,
+        image: show.image.original,
+        api_id: show.id
+    }})
+
+    console.log(res.data);
+    
+
+    const url = `/shows/${res.data.id}`
+    history.push(url);
+  }
+  
 
   
 

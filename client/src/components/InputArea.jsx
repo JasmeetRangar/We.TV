@@ -23,7 +23,7 @@ export default function InputArea() {
       <Input
         id="standard-textarea"
         label="Comment"
-        placeholder="Add Comment"
+        placeholder="Add Post"
         multiline
         endAdornment={
           <InputAdornment position="end">
