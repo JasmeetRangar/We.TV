@@ -93,7 +93,12 @@ module.exports = (db) => {
           .catch(err => err);
   }
 
-
+  const getChatMessagesByShow = (show_id) => {
+    const query = {
+      text: `SELECT display_name, message, created_at FROM chat_room_messages JOIN users ON creator_id=users.id WHERE show_id=$1 ORDER BY created_at DESC;`,
+      values: [show_id]
+    }
+  }
   return {
       getUsers,
       getUserByEmail,
