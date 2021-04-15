@@ -7,21 +7,16 @@ import {
 } from "@material-ui/core/styles";
 import { green, orange } from "@material-ui/core/colors";
 import CssBaseline from "@material-ui/core/CssBaseline";
-import SearchBar from "./components/search/SearchBar";
-
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 import Navbar from "./components/Navbar.jsx";
-import ShowCard from "./components/ShowCard.jsx";
 import Login from "./components/Login";
 import Register from "./components/Register";
-import PostCard from "./components/show/PostCard";
 import ProfileDisplay from "./components/ProfileDisplay";
-import ProfileForm from "./components/ProfileForm";
 import Search from "./components/search/Search";
-import PostsList from "./components/show/PostsList";
 import Show from "./components/show/Show";
 import MyShows from "./components/MyShows/MyShows";
+import Chat from "./components/Chat";
 
 const theme = createMuiTheme({
   // palette: {
@@ -68,6 +63,7 @@ export default function App() {
               
               <div className={classes.mainContent} style={{marginTop: '100px'}}>
                <h1>Bro welcome to the app</h1>
+               <Chat />
                 {/* <Show /> */}
               </div>
             </Route>

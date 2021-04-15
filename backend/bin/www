@@ -3,10 +3,10 @@
 /**
  * Module dependencies.
  */
-var app = require('../app');
-var debug = require('debug')('backend:server');
-var http = require('http');
-
+const app = require('../app');
+const debug = require('debug')('backend:server');
+const http = require('http');
+const socketio = require('socket.io');
 /**
  * Get port from environment and store in Express.
  */
@@ -18,12 +18,18 @@ app.set('port', port);
  * Create HTTP server.
  */
 
-var server = http.createServer(app);
+const server = http.createServer(app);
+const io = socketio(server);
 
 /**
  * Listen on provided port, on all network interfaces.
  */
-
+ io.on('Testing Socket........', function(data){ 	console.log("got here"); });
+io.on('connection', socket => {
+  console.log("Client Connected!");
+  socket.emit('initial', {user: 'hello world'});
+  socket.emit
+})
 server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);

@@ -8,12 +8,16 @@
     "db:reset": "node ./db/reset.js"
   },
   "dependencies": {
+    "2": "^3.0.0",
     "cookie-parser": "~1.4.4",
+    "cors": "^2.8.5",
     "debug": "~2.6.9",
     "express": "~4.16.1",
+    "http": "0.0.1-security",
     "morgan": "~1.9.1",
     "pg": "^8.5.1",
-    "pg-native": "^3.0.0"
+    "pg-native": "^3.0.0",
+    "socket.io": "^4.0.1"
   },
   "devDependencies": {
     "dotenv": "^8.2.0",
