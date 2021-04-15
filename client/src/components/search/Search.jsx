@@ -42,7 +42,7 @@ export default function Search(props) {
     <React.Fragment>
       <Typography variant='h4' spacing='2'>Search Shows</Typography>
       <SearchBar onSearch={term => setTerm(term)} />
-      <Results results={results.length > 0? results : data} />
+      <Results results={results.length > 0? results : []} />
     </React.Fragment>
   )
 }

@@ -21,6 +21,29 @@ module.exports = (db) => {
       .catch((err) => err);
   };
 
+  const getShows = () => {
+    const query = {
+      text: "SELECT * FROM shows",
+    };
+
+    return db
+      .query(query)
+      .then((result) => result.rows)
+      .catch((err) => err);
+  };
+
+  const getShow = (id) => {
+    const query = {
+      text: "SELECT * FROM shows WHERE id=$1",
+      values:[id]
+    };
+
+    return db
+      .query(query)
+      .then((result) => result.rows)
+      .catch((err) => err);
+  };
+
   const getPostsByShow = (show_id) => {
     const query = {
       text: `SELECT * FROM posts WHERE show_id=$1`,
@@ -80,6 +103,22 @@ module.exports = (db) => {
           .catch(err => err);
   }
 
+      // name: show.name,
+      // description: show.description,
+      // image: show.image,
+      // api_id: show.id
+
+  const addShow = (name, description, image, api_id) => {
+    const query = {
+        text: `INSERT INTO users (name, description, image, api_id) VALUES ($1, $2, $3, $4) RETURNING *` ,
+        values: [name, description, image, api_id]
+    }
+
+    return db.query(query)
+        .then(result => result.rows[0])
+        .catch(err => err);
+  }
+
 
   return {
       getUsers,
@@ -88,6 +127,9 @@ module.exports = (db) => {
       getPosts,
       getCommentsByShow,
       getPostsByShow,
-      getCommentsByPost
+      getCommentsByPost,
+      getShows,
+      getShow,
+      addShow
   };
 };

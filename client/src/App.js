@@ -68,12 +68,14 @@ export default function App () {
               <Navbar />
               
               <div className={classes.mainContent} style={{marginTop: '100px'}}>
-                <Show />
               </div>
             </Route>
 
             <Route path="/shows/:id">
-              <Show />
+            <Navbar />
+              <div className={classes.mainContent} style={{marginTop: '100px'}}>
+                <Show />
+              </div>
             </Route>
 
             <Route path="/register" exact>
