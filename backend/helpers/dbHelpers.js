@@ -116,6 +116,29 @@ module.exports = (db) => {
         .catch(err => err);
   }
 
+  const addPost = (text, show_id) => {
+    const query = {
+        text: `INSERT INTO posts (text, show_id) VALUES ($1, $2) RETURNING *` ,
+        values: [text, show_id]
+    }
+
+    return db.query(query)
+        .then(result => result.rows[0])
+        .catch(err => err);
+  }
+
+  const addComment = (text, post_id) => {
+    const query = {
+        text: `INSERT INTO comments (text, show_id) VALUES ($1, $2) RETURNING *` ,
+        values: [text, post_id]
+    }
+
+    return db.query(query)
+        .then(result => result.rows[0])
+        .catch(err => err);
+  }
+
+
   
 
 
@@ -144,6 +167,8 @@ module.exports = (db) => {
       getCommentsByPost,
       getShows,
       getShow,
-      addShow
+      addShow,
+      addPost,
+      addComment
   };
 };
