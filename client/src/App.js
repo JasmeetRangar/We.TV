@@ -63,7 +63,7 @@ export default function App() {
               
               <div className={classes.mainContent} style={{marginTop: '100px'}}>
                <h1>Bro welcome to the app</h1>
-               <Chat />
+               <Chat id={1}/>
                 {/* <Show /> */}
               </div>
             </Route>

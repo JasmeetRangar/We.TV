@@ -158,6 +158,10 @@ module.exports = (db) => {
       text: `SELECT display_name, message, created_at FROM chat_room_messages JOIN users ON creator_id=users.id WHERE show_id=$1 ORDER BY created_at DESC;`,
       values: [show_id]
     }
+
+    return db.query(query)
+          .then(result => result.rows)
+          .catch(err => err);
   }
 
   
@@ -175,6 +179,7 @@ module.exports = (db) => {
       getShow,
       addShow,
       addPost,
-      addComment
+      addComment,
+      getChatMessagesByShow
   };
 };

@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { getShows, getShow, addShow } = require("../helpers/dbHelpers");
+const { getShows, getShow, addShow, getChatMessagesByShow } = require("../helpers/dbHelpers");
 
 module.exports = ({ getShows, getShow, addShow }) => {
   /* GET posts listing. */
@@ -45,6 +45,18 @@ module.exports = ({ getShows, getShow, addShow }) => {
       );
   });
 
+  router.get("/:id/chat", (req, res) => {
+
+    const id = req.params.id;
+
+    getChatMessagesByShow(id)
+      .then((shows) => res.json(shows))
+      .catch((err) =>
+        res.json({
+          error: err.message,
+        })
+      );
+  });
   
 
   return router;

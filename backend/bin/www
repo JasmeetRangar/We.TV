@@ -29,9 +29,12 @@ const io = socketio(server);
  */
 io.on('connection', socket => {
   console.log("Client Connected!");
-  socket.emit('initial', [{display_name: 'user1', message: 'Lets do a watch party'},
-  {display_name: 'user2', message: 'Nah bro, I\'m busy'}]);
-  socket.emit
+  dbHelpers.getChatMessagesByShow(socket.id)
+  .then((res) => {
+    socket.emit('initial', res);
+    // socket.emit('initial', [{display_name: 'user1', message: 'Lets do a watch party'},
+    // {display_name: 'user2', message: 'Nah bro, I\'m busy'}]);
+  })
 })
 server.listen(port);
 server.on('error', onError);
