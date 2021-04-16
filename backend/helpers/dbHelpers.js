@@ -164,10 +164,10 @@ module.exports = (db) => {
         .catch(err => err);
   }
 
-  const addPost = (text, show_id) => {
+  const addPost = (text, show_id, image) => {
     const query = {
-        text: `INSERT INTO posts (text, show_id) VALUES ($1, $2) RETURNING *` ,
-        values: [text, show_id]
+        text: `INSERT INTO posts (text, show_id, image) VALUES ($1, $2, $3) RETURNING *` ,
+        values: [text, show_id, image]
     }
 
     return db.query(query)

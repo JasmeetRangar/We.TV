@@ -27,13 +27,17 @@ export default function InputArea(props) {
   const classes = useStyles();
 
   // const id = props.id;
+  
 
   function onSubmit() {
     console.log(post);
     props.onSubmit(post);
     setPost('');
   }
-
+  function uploadHandler(url) {
+    console.log('setting upload in inputArea.jsx');
+    props.uploadHandler(url);
+  }
 
 
   
@@ -79,11 +83,14 @@ export default function InputArea(props) {
                   borderRadius: '4px',
                   height: '25px',
                   marginTop: '5px',
-                  marginLeft: '0'
+                  marginLeft: '0',
+                  cursor:'pointer',
+                  outline: '0'
                 }} // inline styling only or style id='cloudinary_upload_button'
             folder={'my_folder'} // set cloudinary folder name to send file
             cropping={false} // set ability to crop images -> default = true
-            onSuccess={(res) => console.log(res)} // add success callback -> returns result
+            onSuccess={(res)=>uploadHandler(res.info.url)
+            } // add success callback -> returns result
             onFailure={(res) => console.log(res)} // add failure callback -> returns 'response.error' + 'response.result'
             logging={false} // logs will be provided for success and failure messages, 
             // set to false for production -> default = true

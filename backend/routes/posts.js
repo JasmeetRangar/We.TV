@@ -16,11 +16,11 @@ module.exports = ({ getPosts, getPostsByShow, addPost, addLike, addDisLike }) =>
 
   router.post("/", (req, res) => {
 
-    const {text, show_id } = req.body;
+    const {text, show_id, image } = req.body;
 
     console.log(req.body);
 
-    addPost(text, show_id)
+    addPost(text, show_id, image)
       .then((shows) => {
         res.json(shows)
         console.log(shows)

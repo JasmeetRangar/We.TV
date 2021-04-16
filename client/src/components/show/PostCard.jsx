@@ -138,7 +138,7 @@ export default function PostCard(props) {
 
   
 
-  console.log("💦", post);
+  //console.log("💦", post);
   return (
     <Card className={classes.root}>
       <CardHeader
@@ -158,7 +158,7 @@ export default function PostCard(props) {
       {post.image_url && (
         <CardMedia
           className={classes.media}
-          image={post.image_url}
+          image={post.image}
           title="Paella dish"
         />
       )}

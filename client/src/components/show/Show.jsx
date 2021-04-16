@@ -25,8 +25,15 @@ const useStyles = makeStyles(() => ({
 
 export default function Show(props) {
 
-  
+  const [ upload, setUpload ] = useState('')
   const params = useParams();
+
+  function uploadHandler(url) {
+    setUpload(url);
+    console.log('state set for upload');
+  }
+
+  //console.log("this my stateeeeee for upload", upload);
 
   const {
     state, setState
@@ -34,14 +41,16 @@ export default function Show(props) {
 
 
   function onSubmit(post) {
-    console.log('Line 37 Show.jsx', post);
-    console.log(params.id)
+    //console.log('Line 37 Show.jsx', post);
+    console.log("this my stateeeeee for upload", upload);
+    
     axios({
       method: 'post',
       url: '/api/posts',
       data: {
         text: post,
-        show_id: params.id
+        show_id: params.id,
+        image: upload
     }})
     .then((res) => {
 
@@ -53,10 +62,10 @@ export default function Show(props) {
   }
 
   function likeHandler(post_id, index) {
-    console.log("adding a like from show")
+    //console.log("adding a like from show")
 
     axios.put(`/api/posts/${post_id}/like`).then(res => {
-      console.log('response', res.data[0]);
+      //console.log('response', res.data[0]);
 
       const { posts } = state;
 
@@ -83,10 +92,10 @@ export default function Show(props) {
   }
 
   function dislikeHandler(post_id, index) {
-    console.log("adding a disike from show")
+    //console.log("adding a disike from show")
 
     axios.put(`/api/posts/${post_id}/dislike`).then(res => {
-      console.log('response', res.data[0]);
+      //console.log('response', res.data[0]);
       const { posts } = state;
       posts[index] = res.data[0]
       setState({posts})
@@ -115,7 +124,7 @@ export default function Show(props) {
 
   
 
-  console.log(params);
+  //console.log(params);
 
   
 
@@ -128,7 +137,7 @@ export default function Show(props) {
       <ShowBanner 
         id={params.id}
         />
-      <PostInput id={params.id} onSubmit={onSubmit} />
+      <PostInput id={params.id} onSubmit={onSubmit} uploadHandler={uploadHandler} />
       <PostsList 
         posts={posts}
         comments={comments}
