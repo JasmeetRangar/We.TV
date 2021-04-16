@@ -171,7 +171,6 @@ module.exports = (db) => {
     return db
       .query(query)
       .then((result) => console.log("🎶🎷",result.rows[0]))
-      // .then(()=> io.in(roomId).emit(NEW_CHAT_MESSAGE_EVENT, data))
       .catch((err) => console.log("😩",err));
   };
 
