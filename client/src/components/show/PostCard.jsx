@@ -78,6 +78,22 @@ export default function PostCard(props) {
     })
   }
 
+  function commentDisLikeHandler(comment_id, index) {
+    console.log("adding a comment dislike from post card");
+
+    axios.put(`/api/comments/${comment_id}/dislike`).then(res => {
+      console.log('response', res.data[0]);
+
+      const { comments } = state;
+
+      comments[index] = res.data[0]
+
+      setState({comments})
+      
+      // setState((prev) => ({...prev, posts:[...state.posts, posts.post_id]}))
+    })
+  }
+
 
   useEffect(()=> {
    
@@ -176,7 +192,7 @@ export default function PostCard(props) {
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
           <InputComment onSubmitComment={onSubmitComment} post_id={post.id} />
-          <Comment comments={state.comments} commentLikeHandler={commentLikeHandler} />
+          <Comment comments={state.comments} commentLikeHandler={commentLikeHandler} commentDisLikeHandler={commentDisLikeHandler} />
         </CardContent>
         <IconButton
           className={clsx(classes.expand, {

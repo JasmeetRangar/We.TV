@@ -1,8 +1,8 @@
 const express = require("express");
 const router = express.Router();
-const { getCommentsByShow, getCommentsByPost, addComment, addCommentLike } = require("../helpers/dbHelpers");
+const { getCommentsByShow, getCommentsByPost, addComment, addCommentLike, addCommentDisLike } = require("../helpers/dbHelpers");
 
-module.exports = ({ getCommentsByShow, getCommentsByPost, addComment, addCommentLike }) => {
+module.exports = ({ getCommentsByShow, getCommentsByPost, addComment, addCommentLike, addCommentDisLike }) => {
   /* GET posts listing. */
   router.get("/", (req, res) => {
     getCommentsByShow()
@@ -49,6 +49,25 @@ module.exports = ({ getCommentsByShow, getCommentsByPost, addComment, addComment
         })
       );
   });
+
+  router.put("/:comment_id/dislike", (req, res) => {
+
+    const { comment_id } = req.params;
+
+    console.log("req params >>",req.params);
+
+    addCommentDisLike(comment_id)
+      .then((comment) => {
+        res.json(comment)
+        console.log(comment)
+      })
+      .catch((err) =>
+        res.json({
+          error: err.message,
+        })
+      );
+  });
+
 
   router.get("/:post_id", (req, res) => {
 

@@ -45,6 +45,18 @@ module.exports = (db) => {
       .catch((err) => err);
   };
 
+  const addCommentDisLike = (comment_id) => {
+    const query = {
+      text: "UPDATE comments SET dislikes = dislikes + 1 WHERE id=$1 RETURNING *",
+      values:[comment_id]
+    };
+
+    return db
+      .query(query)
+      .then((result) => result.rows)
+      .catch((err) => err);
+  };
+
   const addDisLike = (post_id) => {
     const query = {
       text: "UPDATE posts SET dislikes = dislikes + 1 WHERE id=$1 RETURNING *",
@@ -208,6 +220,7 @@ module.exports = (db) => {
       addComment,
       addLike,
       addDisLike,
-      addCommentLike
+      addCommentLike,
+      addCommentDisLike
   };
 };
