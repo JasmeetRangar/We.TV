@@ -23,7 +23,31 @@ module.exports = (db) => {
 
   const addLike = (post_id) => {
     const query = {
-      text: "UPDATE posts SET likes = likes + 1 WHERE id=$1",
+      text: "UPDATE posts SET likes = likes + 1 WHERE id=$1 RETURNING *",
+      values:[post_id]
+    };
+
+    return db
+      .query(query)
+      .then((result) => result.rows)
+      .catch((err) => err);
+  };
+
+  const addCommentLike = (comment_id) => {
+    const query = {
+      text: "UPDATE comments SET likes = likes + 1 WHERE id=$1 RETURNING *",
+      values:[comment_id]
+    };
+
+    return db
+      .query(query)
+      .then((result) => result.rows)
+      .catch((err) => err);
+  };
+
+  const addDisLike = (post_id) => {
+    const query = {
+      text: "UPDATE posts SET dislikes = dislikes + 1 WHERE id=$1 RETURNING *",
       values:[post_id]
     };
 
@@ -182,6 +206,8 @@ module.exports = (db) => {
       addShow,
       addPost,
       addComment,
-      addLike
+      addLike,
+      addDisLike,
+      addCommentLike
   };
 };

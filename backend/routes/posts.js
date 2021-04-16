@@ -1,8 +1,8 @@
 const express = require("express");
 const router = express.Router();
-const { getPosts, getPostsByShow, addPost, addLike } = require("../helpers/dbHelpers");
+const { getPosts, getPostsByShow, addPost, addLike, addDislike } = require("../helpers/dbHelpers");
 
-module.exports = ({ getPosts, getPostsByShow, addPost, addLike }) => {
+module.exports = ({ getPosts, getPostsByShow, addPost, addLike, addDisLike }) => {
   /* GET posts listing. */
   router.get("/", (req, res) => {
     getPosts()
@@ -32,13 +32,31 @@ module.exports = ({ getPosts, getPostsByShow, addPost, addLike }) => {
       );
   });
 
-  router.put("/api/posts/:post_id/like", (req, res) => {
+  router.put("/:post_id/like", (req, res) => {
 
     const { post_id } = req.params;
 
-    console.log(req.params);
+    console.log("req params >>",req.params);
 
     addLike(post_id)
+      .then((post) => {
+        res.json(post)
+        console.log(post)
+      })
+      .catch((err) =>
+        res.json({
+          error: err.message,
+        })
+      );
+  });
+
+  router.put("/:post_id/dislike", (req, res) => {
+
+    const { post_id } = req.params;
+
+    console.log("req params >>",req.params);
+
+    addDisLike(post_id)
       .then((post) => {
         res.json(post)
         console.log(post)

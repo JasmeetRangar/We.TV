@@ -52,19 +52,44 @@ export default function Show(props) {
     })
   }
 
-  function likeHandler(post_id) {
-    axios({
-      method: 'put',
-      url: `/api/posts/${post_id}/like`,
-      data: {
-        post_id: post_id
-    }
-      })
-    .then((res) => {
+  function likeHandler(post_id, index) {
+    console.log("adding a like from show")
 
-      console.log('addedALike',res.data);
+    axios.put(`/api/posts/${post_id}/like`).then(res => {
+      console.log('response', res.data[0]);
+
+      const { posts } = state;
+
+      posts[index] = res.data[0]
+
+      setState({posts})
       
-      setState((prev) => ({...prev, posts:[...state.posts, res.data]}))
+      // setState((prev) => ({...prev, posts:[...state.posts, posts.post_id]}))
+    })
+
+    // axios({
+    //   method: 'put',
+    //   url: `/api/posts/${post_id}/like`,
+    //   data: {
+    //     post_id: post_id
+    // }
+    //   })
+    // .then((res) => {
+
+    //   console.log('addedALike',res.data);
+      
+    //   setState((prev) => ({...prev, posts:[...state.posts, res.data]}))
+    // })
+  }
+
+  function dislikeHandler(post_id, index) {
+    console.log("adding a disike from show")
+
+    axios.put(`/api/posts/${post_id}/dislike`).then(res => {
+      console.log('response', res.data[0]);
+      const { posts } = state;
+      posts[index] = res.data[0]
+      setState({posts})
     })
   }
 
@@ -109,6 +134,7 @@ export default function Show(props) {
         comments={comments}
         id={params.id}
         likeHandler={likeHandler}
+        dislikeHandler={dislikeHandler}
       />
         </Box>
     </React.Fragment>

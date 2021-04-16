@@ -51,8 +51,8 @@ import PostCard from "./PostCard";
 export default function PostsList(props) {
 	const { posts, comments } = props;
 	console.log("👉🏻", posts)
-	return posts.map(post => {
+	return posts.map((post, index) => {
 		// return <h1>Hello</h1>
-		return (<PostCard comments={comments} post={post} likeHandler={props.likeHandler} />)
+		return (<PostCard comments={comments} post={post} index={index} likeHandler={props.likeHandler} dislikeHandler={props.dislikeHandler} />)
 	});
 }

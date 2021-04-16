@@ -4,8 +4,8 @@ CREATE TABLE "comments" (
   "creator_id" int,
   "post_id" int,
   "created_at" timestamp,
-  "likes" int,
-  "dislikes" int,
+  "likes" int DEFAULT 0,
+  "dislikes" int DEFAULT 0,
   "image" varchar,
   "video" varchar,
   "text" varchar
