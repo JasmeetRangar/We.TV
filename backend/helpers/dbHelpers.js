@@ -21,6 +21,18 @@ module.exports = (db) => {
       .catch((err) => err);
   };
 
+  const addLike = (post_id) => {
+    const query = {
+      text: "UPDATE posts SET likes = likes + 1 WHERE id=$1",
+      values:[post_id]
+    };
+
+    return db
+      .query(query)
+      .then((result) => result.rows)
+      .catch((err) => err);
+  };
+
   const getShows = () => {
     const query = {
       text: "SELECT * FROM shows",
@@ -169,6 +181,7 @@ module.exports = (db) => {
       getShow,
       addShow,
       addPost,
-      addComment
+      addComment,
+      addLike
   };
 };

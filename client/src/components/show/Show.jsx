@@ -52,6 +52,22 @@ export default function Show(props) {
     })
   }
 
+  function likeHandler(post_id) {
+    axios({
+      method: 'put',
+      url: `/api/posts/${post_id}/like`,
+      data: {
+        post_id: post_id
+    }
+      })
+    .then((res) => {
+
+      console.log('addedALike',res.data);
+      
+      setState((prev) => ({...prev, posts:[...state.posts, res.data]}))
+    })
+  }
+
   // function onSubmitComment(comment, post_id) {
   //   console.log('Line 55 Show.jsx', comment);
   //   //console.log(params.id)
@@ -92,6 +108,7 @@ export default function Show(props) {
         posts={posts}
         comments={comments}
         id={params.id}
+        likeHandler={likeHandler}
       />
         </Box>
     </React.Fragment>

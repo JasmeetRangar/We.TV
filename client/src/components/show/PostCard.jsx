@@ -71,6 +71,11 @@ export default function PostCard(props) {
   
   }, [])
 
+  function likeHandler() {
+    console.log('added a like');
+    props.likeHandler(post.id)
+  }
+
 
 
   const { post } = props;
@@ -93,6 +98,8 @@ export default function PostCard(props) {
       
     })
   }
+
+  
 
   console.log("💦", post);
   return (
@@ -126,7 +133,7 @@ export default function PostCard(props) {
       <CardActions disableSpacing>
         <IconButton aria-label="like post">
           <Badge badgeContent={post.likes} color="primary">
-            <ThumbUpIcon />
+            <ThumbUpIcon onClick={likeHandler} />
           </Badge>
         </IconButton>
         <IconButton aria-label="dislike post">
