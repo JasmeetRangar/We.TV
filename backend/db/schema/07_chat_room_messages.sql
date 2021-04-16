@@ -1,10 +1,10 @@
 DROP TABLE IF EXISTS chat_room_messages CASCADE;
 CREATE TABLE "chat_room_messages" (
-  "id" SERIAL PRIMARY KEY,
-  "show_id" int,
-  "creator_id" int,
+  "id" SERIAL PRIMARY KEY NOT NULL,
+  "show_id" int NOT NULL,
+  "creator_id" int NOT NULL,
   "created_at" TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  "message" varchar
+  "message" VARCHAR NOT NULL
 );
 ALTER TABLE "favourites" ADD FOREIGN KEY ("user_id") REFERENCES "users" ("id");
 
