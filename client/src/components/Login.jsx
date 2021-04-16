@@ -52,12 +52,12 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Login() {
-	const { authenticateLogin } = useApplicationData();
+	const { authenticateLogin, currUser } = useApplicationData();
   const [open, setOpen] = React.useState(false);
 	const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const classes = useStyles();
-
+	console.log("currUser", currUser)
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -72,8 +72,9 @@ export default function Login() {
      validLogin = authenticateLogin({
       email,
       password
-    });
+    })
 		console.log("Login: ", validLogin);
+		
 		
   }
 

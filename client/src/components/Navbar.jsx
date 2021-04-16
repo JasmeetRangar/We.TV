@@ -27,21 +27,26 @@ export default function Navbar() {
     <div className={classes.root}>
     <AppBar position="fixed">
       <Toolbar className={classes.Toolbar}>
+      <Link to="/myshows" color="inherit">
         <IconButton color="inherit" aria-label="shows">
           <TvIcon />
         </IconButton>
-        <Link to={{ pathname: "/search"}} onClick={preventDefault} color="inherit">
+        </Link>
+        <Link to="/search" color="inherit">
           <IconButton color="inherit" aria-label="search">
             <SearchIcon />
           </IconButton>
         </Link>
-        
+        <Link to="/profile" color="inherit">
         <IconButton color="inherit" aria-label="account">
           <AccountCircle />
         </IconButton>
+        </Link>
+        <Link to="/logout" color="inherit">
         <IconButton color="inherit" aria-label="logout">
           <ExitToAppIcon />
         </IconButton>
+        </Link>
       </Toolbar>
     </AppBar>
   </div>
