@@ -25,7 +25,7 @@ const useStyles = makeStyles(() => ({
 
 export default function Show(props) {
 
-  const [ upload, setUpload ] = useState('')
+  
   const params = useParams();
 
   function uploadHandler(url) {
@@ -39,6 +39,7 @@ export default function Show(props) {
     state, setState
   } = useApplicationData(params.id);
 
+  const [ upload, setUpload ] = useState('')
 
   function onSubmit(post) {
     //console.log('Line 37 Show.jsx', post);
@@ -137,7 +138,7 @@ export default function Show(props) {
       <ShowBanner 
         id={params.id}
         />
-      <PostInput id={params.id} onSubmit={onSubmit} uploadHandler={uploadHandler} />
+      <PostInput id={params.id} onSubmit={onSubmit} uploadHandler={uploadHandler} posts={posts} />
       <PostsList 
         posts={posts}
         comments={comments}

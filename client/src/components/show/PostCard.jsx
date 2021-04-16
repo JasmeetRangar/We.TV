@@ -155,7 +155,7 @@ export default function PostCard(props) {
         title="UserName"
         subheader={post.created_at}
       />
-      {post.image_url && (
+      {post.image && (
         <CardMedia
           className={classes.media}
           image={post.image}
