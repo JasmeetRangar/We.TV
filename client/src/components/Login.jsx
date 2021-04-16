@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -17,7 +17,7 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-
+import useApplicationData from '../hooks/useApplicationData';
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
@@ -52,8 +52,9 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Login() {
+	const { authenticateLogin } = useApplicationData();
   const [open, setOpen] = React.useState(false);
-	const [username, setUserName] = useState();
+	const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const classes = useStyles();
 
@@ -64,14 +65,16 @@ export default function Login() {
   const handleClose = () => {
     setOpen(false);
   };
-
+	let validLogin = false;
 	const handleSubmit =  e => {
     e.preventDefault();
-		console.log("Login: ", username, password)
-    const token = authenticateLogin({
-      username,
+		// console.log("Login: ", email, password)
+     validLogin = authenticateLogin({
+      email,
       password
     });
+		console.log("Login: ", validLogin);
+		
   }
 
   return (
@@ -95,7 +98,7 @@ export default function Login() {
             name="email"
             autoComplete="email"
             autoFocus
-						onChange={e => setUserName(e.target.value)}
+						onChange={e => setEmail(e.target.value)}
           />
           <TextField
             variant="outlined"

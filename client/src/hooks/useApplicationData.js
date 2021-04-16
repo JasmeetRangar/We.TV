@@ -9,6 +9,7 @@ export default function useApplicationData(id) {
   //   loading: true,
   // });
   const [state, setState] = useState({
+    currUser: {},
     users: [],
     posts: [],
     comments:[]
@@ -40,10 +41,26 @@ export default function useApplicationData(id) {
   //     })
   //     .catch((err) => console.log(err));
   // }, []);
+  const authenticateLogin = (userInfo) => {
+    // console.log("hook: ", userInfo);
+    const {email, password} = userInfo;
+    // console.log(state.users)
+    for(let user of state.users) {
+      if (user.email === email && user.password === password) {
+        console.log("before", state.currUser);
+        setState(() => ({currUser: {id: user.id}}))
+        console.log("after", state.currUser);
 
+        return true;
+      }
+    }
+    return false;
+  }
  
 
   return {
-    state, setState
+    state, 
+    setState,
+    authenticateLogin,
   };
 };
