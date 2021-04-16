@@ -15,6 +15,7 @@ export default function Chat(props) {
   };
 
   const handleSendMessage = () => {
+		console.log(newMessage) //Get rid of this console.log
     sendMessage(newMessage);
     setNewMessage("");
   };
