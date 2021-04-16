@@ -51,7 +51,7 @@ io.on("connection", (socket) => {
 
   // Listen for new messages
   socket.on(NEW_CHAT_MESSAGE_EVENT, (data) => {
-    console.log(data.body) // get rid of this console.log
+    console.log(data) // get rid of this console.log
     io.in(roomId).emit(NEW_CHAT_MESSAGE_EVENT, data);
   });
 

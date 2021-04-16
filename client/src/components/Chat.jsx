@@ -5,9 +5,13 @@ import useChat from "../hooks/useChat";
 export default function Chat(props) {
   const params = useParams();
 
-  const roomId = 1; //This is a hardcoded test value
+	const userId = "1"; //This is a hardcoded test value, figure out how to implent it when we have user auth set up
+	const displayName = "Jerry Seinfeld" //This is a hardcoded test value. We'll get these from the user auth prop or whatever
+
+
+  const roomId = 1; //This is a hardcoded test value, use the next line instead
   // const { roomId } =params.id; // roomId == show_id in the DataBase
-  const { messages, sendMessage } = useChat(roomId); // Creates a websocket and manages messaging
+  const { messages, sendMessage } = useChat({roomId, userId, displayName}); // Creates a websocket and manages messaging
   const [newMessage, setNewMessage] = React.useState(""); // Message to be sent
 
   const handleNewMessageChange = (event) => {
@@ -15,7 +19,7 @@ export default function Chat(props) {
   };
 
   const handleSendMessage = () => {
-		console.log(newMessage) //Get rid of this console.log
+		console.log(newMessage) //Logs before message is send to server. Get rid of this console.log
     sendMessage(newMessage);
     setNewMessage("");
   };
@@ -32,6 +36,7 @@ export default function Chat(props) {
                 message.ownedByCurrentUser ? "my-message" : "received-message"
               }`}
             >
+							<h2>{message.displayName}</h2>
               {message.body}
             </li>
           ))}
