@@ -33,11 +33,14 @@ export default function Chat(props) {
           {oldChat.map((message, i) => (
             <li
               key={i}
+              // HEY HEY YOU MIGHT HAVE TO UPDATE userID here depending on how you handle auth
               className={`message-item ${
-                message.ownedByCurrentUser ? "my-message" : "received-message"
+                message.creator_id === userId  ? "my-message" : "received-message"
               }`}
             >
-							<h2>{message.display_name}</h2>
+							<h2>{message.display_name} {
+                message.creator_id == userId ? "✅my-message" : "🔵received-message"
+              }</h2>
               {message.message}
             </li>
           ))}
@@ -48,7 +51,10 @@ export default function Chat(props) {
                 message.ownedByCurrentUser ? "my-message" : "received-message"
               }`}
             >
-							<h2>{message.displayName}</h2>
+							<h2>{message.displayName} ${
+                message.ownedByCurrentUser ? "✅my-message" : "🔵received-message"
+              }</h2>
+
               {message.body}
             </li>
           ))}
