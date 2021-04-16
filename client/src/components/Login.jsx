@@ -53,6 +53,8 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Login() {
   const [open, setOpen] = React.useState(false);
+	const [username, setUserName] = useState();
+  const [password, setPassword] = useState();
   const classes = useStyles();
 
   const handleClickOpen = () => {
@@ -62,6 +64,15 @@ export default function Login() {
   const handleClose = () => {
     setOpen(false);
   };
+
+	const handleSubmit = async e => {
+    e.preventDefault();
+    const token = await loginUser({
+      username,
+      password
+    });
+    setToken(token);
+  }
 
   return (
     <Container component="main" maxWidth="xs">
@@ -84,6 +95,7 @@ export default function Login() {
             name="email"
             autoComplete="email"
             autoFocus
+						onChange={e => setUserName(e.target.value)}
           />
           <TextField
             variant="outlined"
@@ -95,6 +107,7 @@ export default function Login() {
             type="password"
             id="password"
             autoComplete="current-password"
+						onChange={e => setPassword(e.target.value)}
           />
           <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}
