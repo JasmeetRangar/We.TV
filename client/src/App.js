@@ -75,12 +75,9 @@ export default function App() {
               </div>
             </Route>
 
-            <Route path="/register" exact>
-              <Register />
-            </Route>
-            <Route path="/login" exact>
-              <Login />
-            </Route>
+            <Route exact path="/register" component={Register} />
+            <Route exact path="/login" component={Login} />
+                        
             {/* <Route path="/users" exact>
               <div className={classes.mainContent} style={{marginTop: '100px'}}>
                 <h1> Users </h1>
