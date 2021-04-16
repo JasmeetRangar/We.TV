@@ -9,13 +9,13 @@ import { useParams } from 'react-router-dom';
 import { useState } from "react";
 import axios from 'axios';
 
-const testShow = {
-  id: 1,
-  name: "Watchmen",
-  description: "Who watches the watchmen? Who watches the watchmen?Who watches the watchmen?Who watches the watchmen?Who watches the watchmen?",
-  // image_url: "https://cdn.collider.com/wp-content/uploads/2019/12/watchmen-poster.jpg" 
-  image_url: "https://uploads5.wikiart.org/images/edgar-degas/ballet-class-the-dance-hall-1880.jpg"
-}
+// const testShow = {
+//   id: 1,
+//   name: "Watchmen",
+//   description: "Who watches the watchmen? Who watches the watchmen?Who watches the watchmen?Who watches the watchmen?Who watches the watchmen?",
+//   // image_url: "https://cdn.collider.com/wp-content/uploads/2019/12/watchmen-poster.jpg" 
+//   image_url: "https://uploads5.wikiart.org/images/edgar-degas/ballet-class-the-dance-hall-1880.jpg"
+// }
 
 const useStyles = makeStyles(() => ({
   show: {
@@ -34,7 +34,7 @@ export default function Show(props) {
 
 
   function onSubmit(post) {
-    console.log('Line 20 PostInput.jsx', post);
+    console.log('Line 37 Show.jsx', post);
     console.log(params.id)
     axios({
       method: 'post',
