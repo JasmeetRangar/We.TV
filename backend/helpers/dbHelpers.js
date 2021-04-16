@@ -164,14 +164,15 @@ module.exports = (db) => {
     const creator_id = data.senderId;
     const message = data.body;
     const query = {
-      text: `INSERT INTO users (first_name, last_name, email, password, display_name) VALUES ($1, $2, $3, $4, $5) RETURNING *`,
+      text: `INSERT INTO chat_room_messages (show_id, creator_id, message) values ($1, $2, $3) RETURNING *;`,
       values: [show_id, creator_id, message],
     };
 
     return db
       .query(query)
-      .then((result) => result.rows[0])
-      .catch((err) => err);
+      .then((result) => console.log("🎶🎷",result.rows[0]))
+      // .then(()=> io.in(roomId).emit(NEW_CHAT_MESSAGE_EVENT, data))
+      .catch((err) => console.log("😩",err));
   };
 
   const addUser = (firstName, lastName, email, password, display_name) => {

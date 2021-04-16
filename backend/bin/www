@@ -6,8 +6,12 @@
 const app = require('../app');
 const debug = require('debug')('backend:server');
 const http = require('http');
-// const socketio = require('socket.io');
 const cors = require('cors');
+
+// I shouldn't have to import these here, they're in the app.js file
+const db = require('../db');
+const {addChatRoomMessage} = require('../helpers/dbHelpers')(db);
+
 app.use(cors());
 
 /**
@@ -52,7 +56,8 @@ io.on("connection", (socket) => {
   // Listen for new messages
   socket.on(NEW_CHAT_MESSAGE_EVENT, (data) => {
     console.log(data) // get rid of this console.log
-    io.in(roomId).emit(NEW_CHAT_MESSAGE_EVENT, data);
+    addChatRoomMessage(roomId, data)
+    .then(()=> io.in(roomId).emit(NEW_CHAT_MESSAGE_EVENT, data))
   });
 
   // Leave the room if the user closes the socket
