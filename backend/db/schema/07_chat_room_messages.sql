@@ -3,7 +3,7 @@ CREATE TABLE "chat_room_messages" (
   "id" SERIAL PRIMARY KEY,
   "show_id" int,
   "creator_id" int,
-  "created_at" timestamp,
+  "created_at" TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   "message" varchar
 );
 ALTER TABLE "favourites" ADD FOREIGN KEY ("user_id") REFERENCES "users" ("id");
