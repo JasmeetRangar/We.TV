@@ -11,7 +11,8 @@ export default function useApplicationData(id) {
   const [state, setState] = useState({
     users: [],
     posts: [],
-    comments:[]
+    comments:[], 
+    oldChat: []
   })
 
   useEffect(()=> {
@@ -19,12 +20,13 @@ export default function useApplicationData(id) {
       axios.get('/api/users'),
       axios.get(`/api/posts/${id}`),
       axios.get('/api/comments'),
+      axios.get(`/api/shows/${id}/chat`)
       // axios.get('/api/interviewers')
     ]).then(all => {
-      setState(prev => ({...prev, users: all[0].data, posts: all[1].data, comments: all[2].data}))
+      setState(prev => ({...prev, users: all[0].data, posts: all[1].data, comments: all[2].data, oldChat: all[3].data}))
     })
     
-  }, [])
+  }, [id])
   
   // useEffect(() => {
   //   axios({

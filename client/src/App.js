@@ -16,7 +16,7 @@ import ProfileDisplay from "./components/ProfileDisplay";
 import Search from "./components/search/Search";
 import Show from "./components/show/Show";
 import MyShows from "./components/MyShows/MyShows";
-import Chat from "./components/Chat";
+import Chat from "./components/show/Chat";
 
 const theme = createMuiTheme({
   // palette: {
@@ -63,7 +63,6 @@ export default function App() {
               
               <div className={classes.mainContent} style={{marginTop: '100px'}}>
                <h1>Bro welcome to the app</h1>
-               <Chat id={1}/>
                 {/* <Show /> */}
               </div>
             </Route>

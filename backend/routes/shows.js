@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const { getShows, getShow, addShow, getChatMessagesByShow } = require("../helpers/dbHelpers");
 
-module.exports = ({ getShows, getShow, addShow }) => {
+module.exports = ({ getShows, getShow, addShow, getChatMessagesByShow }) => {
   /* GET posts listing. */
   router.get("/", (req, res) => {
     getShows()

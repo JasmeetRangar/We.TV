@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import useChat from "../hooks/useChat";
+import useChat from "../../hooks/useChat";
 
 export default function Chat(props) {
   const params = useParams();
@@ -9,8 +9,8 @@ export default function Chat(props) {
 	const displayName = "Jerry Seinfeld" //This is a hardcoded test value. We'll get these from the user auth prop or whatever
 
 
-  const roomId = 1; //This is a hardcoded test value, use the next line instead
-  // const { roomId } =params.id; // roomId == show_id in the DataBase
+  // const roomId = 1; //This is a hardcoded test value, use the next line instead
+  const { roomId, oldChat } = props; // roomId == show_id in the DataBase
   const { messages, sendMessage } = useChat({roomId, userId, displayName}); // Creates a websocket and manages messaging
   const [newMessage, setNewMessage] = React.useState(""); // Message to be sent
 
@@ -20,6 +20,7 @@ export default function Chat(props) {
 
   const handleSendMessage = () => {
 		console.log(newMessage) //Logs before message is send to server. Get rid of this console.log
+   console.log('💦',oldChat) // REALLY delete this one, it doesn't even have anything to do with this function
     sendMessage(newMessage);
     setNewMessage("");
   };
@@ -29,6 +30,17 @@ export default function Chat(props) {
       <div className="messages-container">
         <ul className="messages-list">
 					<li>test</li>
+          {oldChat.map((message, i) => (
+            <li
+              key={i}
+              className={`message-item ${
+                message.ownedByCurrentUser ? "my-message" : "received-message"
+              }`}
+            >
+							<h2>{message.display_name}</h2>
+              {message.message}
+            </li>
+          ))}
           {messages.map((message, i) => (
             <li
               key={i}

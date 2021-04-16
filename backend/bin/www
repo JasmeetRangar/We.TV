@@ -56,6 +56,7 @@ io.on("connection", (socket) => {
   // Listen for new messages
   socket.on(NEW_CHAT_MESSAGE_EVENT, (data) => {
     console.log(data) // get rid of this console.log
+    // When a new message is recieved, it is stored in the database. If the storage is successful, the message is sent back to be displayed.
     addChatRoomMessage(roomId, data)
     .then(()=> io.in(roomId).emit(NEW_CHAT_MESSAGE_EVENT, data))
   });

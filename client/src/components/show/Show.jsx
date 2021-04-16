@@ -4,6 +4,7 @@ import ShowBanner from "./ShowBanner";
 import PostsList from "./PostsList";
 import Box from "@material-ui/core/Box"
 import PostInput from "./PostInput";
+import Chat from "./Chat"
 import useApplicationData from '../../hooks/useApplicationData';
 import { useParams } from 'react-router-dom';
 import { useState } from "react";
@@ -78,7 +79,7 @@ export default function Show(props) {
 
   
 
-  const {posts, comments} = state;
+  const {posts, comments, oldChat} = state;
 
   const classes = useStyles();
   return (
@@ -87,6 +88,7 @@ export default function Show(props) {
       <ShowBanner 
         id={params.id}
         />
+        <Chat roomId={params.id} oldChat={oldChat}/>
       <PostInput id={params.id} onSubmit={onSubmit} />
       <PostsList 
         posts={posts}
