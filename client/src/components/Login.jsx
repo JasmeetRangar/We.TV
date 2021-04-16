@@ -65,13 +65,13 @@ export default function Login() {
     setOpen(false);
   };
 
-	const handleSubmit = async e => {
+	const handleSubmit =  e => {
     e.preventDefault();
-    const token = await loginUser({
+		console.log("Login: ", username, password)
+    const token = authenticateLogin({
       username,
       password
     });
-    setToken(token);
   }
 
   return (
@@ -84,7 +84,7 @@ export default function Login() {
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
-        <form className={classes.form} noValidate>
+        <form className={classes.form} onSubmit={handleSubmit}>
           <TextField
             variant="outlined"
             margin="normal"
@@ -124,7 +124,7 @@ export default function Login() {
           </Button>
           <Grid container>
             <Grid item xs>
-              <Link href="#" variant="body2" onClick={handleClickOpen}>
+              <Link href="#" variant="body2">
                 Forgot password?
               </Link>
             </Grid>
