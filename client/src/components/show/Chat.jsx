@@ -1,17 +1,56 @@
 import React, { useEffect, useState } from "react";
+import { makeStyles } from "@material-ui/core/styles";
 import { useParams } from "react-router-dom";
 import useChat from "../../hooks/useChat";
+import {
+  Paper,
+  Box,
+  FormControl,
+  Input,
+  InputAdornment,
+  IconButton,
+  withTheme,
+} from "@material-ui/core";
+import { Send } from "@material-ui/icons";
+
+const useStyles = makeStyles((theme) => ({
+  MessagesContainer: {
+    maxWidth: 500,
+    minWidth: "40%",
+    marginTop: "1%",
+    marginBottom: "1%",
+    margin: "auto",
+  },
+  messagesList: {
+    listStyleType: "none",
+    margin: "5%"
+  },
+  messageItemMyMessage: {
+    textAlign: "right",
+    marginRight: "2%",
+    marginLeft: "10%",
+    background: "CornflowerBlue",
+    color: "white",
+  },
+  MessageItemReceivedMessage: {
+    textAlign: "left",
+    marginRight: "10%",
+    marginLeft: "2%",
+    background: "DodgerBlue",
+    color: "white",
+  },
+}));
 
 export default function Chat(props) {
+  const classes = useStyles();
   const params = useParams();
 
-	const userId = "1"; //This is a hardcoded test value, figure out how to implent it when we have user auth set up
-	const displayName = "Jerry Seinfeld" //This is a hardcoded test value. We'll get these from the user auth prop or whatever
-
+  const userId = "1"; //This is a hardcoded test value, figure out how to implent it when we have user auth set up
+  const displayName = "Jerry Seinfeld"; //This is a hardcoded test value. We'll get these from the user auth prop or whatever
 
   // const roomId = 1; //This is a hardcoded test value, use the next line instead
   const { roomId, oldChat } = props; // roomId == show_id in the DataBase
-  const { messages, sendMessage } = useChat({roomId, userId, displayName}); // Creates a websocket and manages messaging
+  const { messages, sendMessage } = useChat({ roomId, userId, displayName }); // Creates a websocket and manages messaging
   const [newMessage, setNewMessage] = React.useState(""); // Message to be sent
 
   const handleNewMessageChange = (event) => {
@@ -19,57 +58,79 @@ export default function Chat(props) {
   };
 
   const handleSendMessage = () => {
-		console.log(newMessage) //Logs before message is send to server. Get rid of this console.log
-   console.log('💦',oldChat) // REALLY delete this one, it doesn't even have anything to do with this function
+    console.log(newMessage); //Logs before message is send to server. Get rid of this console.log
+    console.log("💦", oldChat); // REALLY delete this one, it doesn't even have anything to do with this function
     sendMessage(newMessage);
     setNewMessage("");
   };
 
   return (
-    <div>
-      <div className="messages-container">
-        <ul className="messages-list">
-					<li>test</li>
+    <Paper className={classes.MessagesContainer}>
+      <div>
+        <ul className={classes.messagesList}>
           {oldChat.map((message, i) => (
             <li
               key={i}
               // HEY HEY YOU MIGHT HAVE TO UPDATE userID here depending on how you handle auth
-              className={`message-item ${
-                message.creator_id === userId  ? "my-message" : "received-message"
-              }`}
             >
-							<h2>{message.display_name} {
-                message.creator_id == userId ? "✅my-message" : "🔵received-message"
-              }</h2>
-              {message.message}
+              <Paper
+                className={
+                  message.creator_id == userId
+                    ? classes.messageItemMyMessage
+                    : classes.MessageItemReceivedMessage
+                }
+              >
+                <Box m={1}>
+                  <h4>
+                    {message.display_name}{" "}
+                    {message.creator_id == userId ? "✅" : "🔵"}
+                  </h4>
+                  {message.message}
+                </Box>
+              </Paper>
             </li>
           ))}
           {messages.map((message, i) => (
-            <li
-              key={i}
-              className={`message-item ${
-                message.ownedByCurrentUser ? "my-message" : "received-message"
-              }`}
-            >
-							<h2>{message.displayName} ${
-                message.ownedByCurrentUser ? "✅my-message" : "🔵received-message"
-              }</h2>
-
-              {message.body}
+            <li key={i}>
+              <Paper
+                className={
+                  message.ownedByCurrentUser
+                    ? classes.messageItemMyMessage
+                    : classes.MessageItemReceivedMessage
+                }
+              >
+                <Box m={1}>
+                  <h4>
+                    {message.displayName}{" "}
+                    {message.ownedByCurrentUser ? "✅" : "🔵"}
+                  </h4>
+                  {message.body}
+                </Box>
+              </Paper>
             </li>
           ))}
         </ul>
       </div>
-      <textarea
-        value={newMessage}
-        onChange={handleNewMessageChange}
-        placeholder="Write message..."
-        className="new-message-input-field"
-      />
-      <button onClick={handleSendMessage} className="send-message-button">
-        Send
-      </button>
-    </div>
+      <FormControl style={{ width: "95%", marginBottom: "5%" }}>
+        <Input
+          autoFocus="true"
+          type="reset"
+          id="standard-textarea"
+          value={newMessage}
+          onChange={handleNewMessageChange}
+          label="Chat"
+          placeholder="Write message..."
+          multiline
+          endAdornment={
+            <InputAdornment position="end">
+              <IconButton onClick={handleSendMessage}>
+                <Send />
+              </IconButton>
+            </InputAdornment>
+          }
+        />
+      </FormControl>
+    </Paper>
 
     // Trash everything below this line.
     // I just kept it to check the props
