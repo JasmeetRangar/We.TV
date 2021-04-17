@@ -18,6 +18,9 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import useApplicationData from '../hooks/useApplicationData';
+import { useHistory } from 'react-router-dom';
+import LoginError from './LoginError';
+
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
@@ -56,8 +59,10 @@ export default function Login() {
   const [open, setOpen] = React.useState(false);
 	const [email, setEmail] = useState();
   const [password, setPassword] = useState();
+	const [error, setError] = useState(false);
   const classes = useStyles();
-	console.log("currUser", currUser)
+  const history = useHistory();
+
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -73,9 +78,15 @@ export default function Login() {
       email,
       password
     })
-		console.log("Login: ", validLogin);
-		
-		
+		if (!validLogin) {
+      setError(true);
+    }	else {
+      setError(false);
+    }	
+  }
+
+  if (currUser) {
+    history.push(`/myshows`);
   }
 
   return (
@@ -126,6 +137,8 @@ export default function Login() {
           >
             Sign In
           </Button>
+          {console.log(error)}
+          { error && <LoginError />}
           <Grid container>
             <Grid item xs>
               <Link href="#" variant="body2">
