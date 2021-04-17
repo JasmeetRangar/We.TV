@@ -9,6 +9,9 @@ import useApplicationData from "../../hooks/useApplicationData";
 import { useParams } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
+import { useContext } from 'react';
+import { authContext } from '../AuthProvider';
+
 
 const useStyles = makeStyles(() => ({
   show: {
@@ -18,8 +21,12 @@ const useStyles = makeStyles(() => ({
 
 export default function Show(props) {
   const params = useParams();
+  
+  const { user } = useContext(authContext);
 
-  const { state, setState } = useApplicationData(params.id);
+  const { state, setState } = useApplicationData(user.id, params.id);
+
+
 
   // Sets state to conditionally render Chat component
   const [viewChat, setViewChat] = useState(0);
@@ -81,22 +88,8 @@ export default function Show(props) {
 
       setState({ posts });
 
-      // setState((prev) => ({...prev, posts:[...state.posts, posts.post_id]}))
     });
 
-    // axios({
-    //   method: 'put',
-    //   url: `/api/posts/${post_id}/like`,
-    //   data: {
-    //     post_id: post_id
-    // }
-    //   })
-    // .then((res) => {
-
-    //   console.log('addedALike',res.data);
-
-    //   setState((prev) => ({...prev, posts:[...state.posts, res.data]}))
-    // })
   }
 
   function dislikeHandler(post_id, index) {
@@ -110,26 +103,6 @@ export default function Show(props) {
     });
   }
 
-  // function onSubmitComment(comment, post_id) {
-  //   console.log('Line 55 Show.jsx', comment);
-  //   //console.log(params.id)
-  //   axios({
-  //     method: 'post',
-  //     url: '/api/comments',
-  //     data: {
-  //       text: comment,
-  //       post_id: post_id
-  //   }})
-  //   .then((res) => {
-
-  //     console.log('postInput',res.data);
-
-  //     setState((prev) => ({...prev, comments:[...state.comments, res.data]}))
-
-  //   })
-  // }
-
-  //console.log(params);
 
   const { posts, comments, oldChat } = state;
 

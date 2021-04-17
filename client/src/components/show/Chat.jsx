@@ -13,6 +13,8 @@ import {
 } from "@material-ui/core";
 import { Send } from "@material-ui/icons";
 import ShowNav from "./ShowNav"
+import { useContext } from 'react';
+import { authContext } from '../AuthProvider';
 
 const useStyles = makeStyles((theme) => ({
   MessagesContainer: {
@@ -44,9 +46,13 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Chat(props) {
   const classes = useStyles();
-  
-  const userId = "1"; //This is a hardcoded test value, figure out how to implent it when we have user auth set up
-  const displayName = "Jerry Seinfeld"; //This is a hardcoded test value. We'll get these from the user auth prop or whatever
+
+  const { user } = useContext(authContext);
+
+  const userId = user.id
+  const displayName = user.display_name
+  // const userId = "1"; //This is a hardcoded test value, figure out how to implent it when we have user auth set up
+  // const displayName = "Jerry Seinfeld"; //This is a hardcoded test value. We'll get these from the user auth prop or whatever
 
   // const roomId = 1; //This is a hardcoded test value, use the next line instead
   const { roomId, oldChat } = props; // roomId == show_id in the DataBase
