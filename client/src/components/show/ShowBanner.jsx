@@ -46,6 +46,14 @@ export default function ShowBanner(props) {
     show: [{}],
   });
 
+  const removeHtmlTags = (string) => {
+    const regex = /(<([^>]+)>)/ig;
+    if (string) {
+      return(string.replace(regex, ""));
+    }
+    return "";
+}
+
 
   useEffect(()=> {
    
@@ -53,20 +61,13 @@ export default function ShowBanner(props) {
     .then(showInfo => { 
       setState(prev => ({...prev, show:showInfo.data}))});
   
-  }, [])
+  }, [props.id])
 
   console.log("this the state",state.show[0])
   
   return (
     <React.Fragment>
       <Box className={classes.bannerBox}>
-        {/* <Paper className={classes.imageBannerPaper} elevation={4}>
-        <Image
-            src={image_url}
-            cover="true"
-            style={{width:"100%"}}
-          />
-        </Paper> */}
         <div className={classes.showDetails}>
           <Paper
             elevation={4}
@@ -80,7 +81,9 @@ export default function ShowBanner(props) {
 
           />
             <Typography variant="h2">{state.show[0].name}</Typography>
-            <Typography>{state.show[0].description}</Typography>
+           
+              <Typography>{removeHtmlTags(state.show[0].description)}</Typography>
+            
             <ShowNav 
             transitionToChat={props.transitionToChat}
             viewChat={props.viewChat}

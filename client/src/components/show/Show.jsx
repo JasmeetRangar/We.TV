@@ -25,6 +25,7 @@ export default function Show(props) {
   const [viewChat, setViewChat] = useState(0);
 
   // Sets state to conditionally render Chat component (viewChat is passed as props to the ShowNav component)
+  // State is updated every time componenet is rendered
   const transitionToChat = () => {
     viewChat === 0 ?
      setViewChat(1) : 
