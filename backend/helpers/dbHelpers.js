@@ -25,6 +25,54 @@ module.exports = (db) => {
       .catch((err) => err);
   };
 
+  const addLike = (post_id) => {
+    const query = {
+      text: "UPDATE posts SET likes = likes + 1 WHERE id=$1 RETURNING *",
+      values:[post_id]
+    };
+
+    return db
+      .query(query)
+      .then((result) => result.rows)
+      .catch((err) => err);
+  };
+
+  const addCommentLike = (comment_id) => {
+    const query = {
+      text: "UPDATE comments SET likes = likes + 1 WHERE id=$1 RETURNING *",
+      values:[comment_id]
+    };
+
+    return db
+      .query(query)
+      .then((result) => result.rows)
+      .catch((err) => err);
+  };
+
+  const addCommentDisLike = (comment_id) => {
+    const query = {
+      text: "UPDATE comments SET dislikes = dislikes + 1 WHERE id=$1 RETURNING *",
+      values:[comment_id]
+    };
+
+    return db
+      .query(query)
+      .then((result) => result.rows)
+      .catch((err) => err);
+  };
+
+  const addDisLike = (post_id) => {
+    const query = {
+      text: "UPDATE posts SET dislikes = dislikes + 1 WHERE id=$1 RETURNING *",
+      values:[post_id]
+    };
+
+    return db
+      .query(query)
+      .then((result) => result.rows)
+      .catch((err) => err);
+  };
+
   const getShows = () => {
     const query = {
       text: "SELECT * FROM shows",
@@ -135,11 +183,11 @@ module.exports = (db) => {
       .catch((err) => err);
   };
 
-  const addPost = (text, show_id) => {
+  const addPost = (text, show_id, image) => {
     const query = {
-      text: `INSERT INTO posts (text, show_id) VALUES ($1, $2) RETURNING *`,
-      values: [text, show_id],
-    };
+        text: `INSERT INTO posts (text, show_id, image) VALUES ($1, $2, $3) RETURNING *` ,
+        values: [text, show_id, image]
+    }
 
     return db
       .query(query)
@@ -202,5 +250,10 @@ module.exports = (db) => {
     addPost,
     addComment,
     addChatRoomMessage,
+    addLike,
+      addDisLike,
+      addCommentLike,
+      addCommentDisLike
   };
 };
+  

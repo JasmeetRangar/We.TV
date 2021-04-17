@@ -62,6 +62,38 @@ export default function PostCard(props) {
     comments: [],
   });
 
+  function commentLikeHandler(comment_id, index) {
+    console.log("adding a comment like from post card");
+
+    axios.put(`/api/comments/${comment_id}/like`).then(res => {
+      console.log('response', res.data[0]);
+
+      const { comments } = state;
+
+      comments[index] = res.data[0]
+
+      setState({comments})
+      
+      // setState((prev) => ({...prev, posts:[...state.posts, posts.post_id]}))
+    })
+  }
+
+  function commentDisLikeHandler(comment_id, index) {
+    console.log("adding a comment dislike from post card");
+
+    axios.put(`/api/comments/${comment_id}/dislike`).then(res => {
+      console.log('response', res.data[0]);
+
+      const { comments } = state;
+
+      comments[index] = res.data[0]
+
+      setState({comments})
+      
+      // setState((prev) => ({...prev, posts:[...state.posts, posts.post_id]}))
+    })
+  }
+
 
   useEffect(()=> {
    
@@ -70,6 +102,16 @@ export default function PostCard(props) {
       setState(prev => ({...prev, comments:commentsFrom.data}))});
   
   }, [])
+
+  function likeHandler() {
+    console.log('adding a like from post card');
+    props.likeHandler(post.id, props.index)
+  }
+
+  function dislikeHandler() {
+    console.log('adding a dislike from post card');
+    props.dislikeHandler(post.id, props.index)
+  }
 
 
 
@@ -94,7 +136,9 @@ export default function PostCard(props) {
     })
   }
 
-  console.log("💦", post);
+  
+
+  //console.log("💦", post);
   return (
     <Card className={classes.root}>
       <CardHeader
@@ -111,10 +155,10 @@ export default function PostCard(props) {
         title="UserName"
         subheader={post.created_at}
       />
-      {post.image_url && (
+      {post.image && (
         <CardMedia
           className={classes.media}
-          image={post.image_url}
+          image={post.image}
           title="Paella dish"
         />
       )}
@@ -126,12 +170,12 @@ export default function PostCard(props) {
       <CardActions disableSpacing>
         <IconButton aria-label="like post">
           <Badge badgeContent={post.likes} color="primary">
-            <ThumbUpIcon />
+            <ThumbUpIcon onClick={likeHandler} />
           </Badge>
         </IconButton>
         <IconButton aria-label="dislike post">
           <Badge badgeContent={post.dislikes} color="primary">
-            <ThumbDownIcon />
+            <ThumbDownIcon onClick={dislikeHandler} />
           </Badge>
         </IconButton>
         <IconButton
@@ -148,7 +192,7 @@ export default function PostCard(props) {
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
           <InputComment onSubmitComment={onSubmitComment} post_id={post.id} />
-          <Comment comments={state.comments} />
+          <Comment comments={state.comments} commentLikeHandler={commentLikeHandler} commentDisLikeHandler={commentDisLikeHandler} />
         </CardContent>
         <IconButton
           className={clsx(classes.expand, {

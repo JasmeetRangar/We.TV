@@ -50,9 +50,22 @@ export default function Comment(props) {
     setOpen(false);
   };
 
+  
+
   return (
     <List className={classes.root}>
-      {comments.map((comment) => {
+      {comments.map((comment, index) => {
+
+        function commentLikeHandler() {
+          console.log('adding a like from comment component');
+          props.commentLikeHandler(comment.id, index)
+        }
+
+        function commentDisLikeHandler() {
+          console.log('adding a disike from comment component');
+          props.commentDisLikeHandler(comment.id, index)
+        }
+
         return (
           <React.Fragment key={comment.id}>
             <ListItem key={comment.id} alignItems="flex-start">
@@ -81,12 +94,12 @@ export default function Comment(props) {
                     <br></br>
                     <IconButton aria-label="like post">
                       <Badge badgeContent={comment.likes} color="primary">
-                        <ThumbUpIcon />
+                        <ThumbUpIcon onClick={commentLikeHandler} />
                       </Badge>
                     </IconButton>
                     <IconButton aria-label="dislike post">
                       <Badge badgeContent={comment.dislikes} color="primary">
-                        <ThumbDownIcon />
+                        <ThumbDownIcon onClick={commentDisLikeHandler} />
                       </Badge>
                     </IconButton>
                   </>

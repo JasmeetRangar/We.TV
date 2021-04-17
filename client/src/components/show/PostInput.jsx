@@ -5,6 +5,7 @@ import InputArea from "../InputArea";
 
 
 
+
 const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 500,
@@ -26,7 +27,7 @@ export default function PostInput(props) {
     <Card className={classes.root}>
       <CardContent>
         <Typography>What's on your mind?</Typography>
-        <InputArea onSubmit={props.onSubmit}/>
+        <InputArea onSubmit={props.onSubmit} uploadHandler={props.uploadHandler}/>
       </CardContent>
     </Card>
   );

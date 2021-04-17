@@ -18,7 +18,10 @@
   "homepage": "https://github.com/JasmeetRangar/final-project#readme",
   "dependencies": {
     "axios": "^0.21.1",
+    "cloudinary-core": "^2.11.3",
+    "cloudinary-react": "^1.7.0",
     "material-ui-image": "^3.3.1",
-    "node-sass": "^5.0.0"
+    "node-sass": "^5.0.0",
+    "react-cloudinary-upload-widget": "^1.4.3"
   }
 }

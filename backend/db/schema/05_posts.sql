@@ -2,8 +2,8 @@ DROP TABLE IF EXISTS posts CASCADE;
 CREATE TABLE "posts" (
   "id" SERIAL PRIMARY KEY,
   "text" varchar,
-  "likes" int,
-  "dislikes" int,
+  "likes" int DEFAULT 0,
+  "dislikes" int DEFAULT 0,
   "image" varchar,
   "video" varchar,
   "poll_id" int,

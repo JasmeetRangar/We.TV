@@ -30,17 +30,26 @@ export default function Show(props) {
     console.log("✅", viewChat);
   };
 
-  // const {viewChat, setViewChat, transitionToChat} = useViewChat();
+  function uploadHandler(url) {
+    setUpload(url);
+    console.log("state set for upload");
+  }
+
+  //console.log("this my stateeeeee for upload", upload);
+
+  const [upload, setUpload] = useState("");
 
   function onSubmit(post) {
-    console.log("Line 20 PostInput.jsx", post);
-    console.log(params.id);
+    //console.log('Line 37 Show.jsx', post);
+    console.log("this my stateeeeee for upload", upload);
+
     axios({
       method: "post",
       url: "/api/posts",
       data: {
         text: post,
         show_id: params.id,
+        image: upload,
       },
     }).then((res) => {
       console.log("postInput", res.data);
@@ -48,6 +57,68 @@ export default function Show(props) {
       setState((prev) => ({ ...prev, posts: [...state.posts, res.data] }));
     });
   }
+
+  function likeHandler(post_id, index) {
+    //console.log("adding a like from show")
+
+    axios.put(`/api/posts/${post_id}/like`).then((res) => {
+      //console.log('response', res.data[0]);
+
+      const { posts } = state;
+
+      posts[index] = res.data[0];
+
+      setState({ posts });
+
+      // setState((prev) => ({...prev, posts:[...state.posts, posts.post_id]}))
+    });
+
+    // axios({
+    //   method: 'put',
+    //   url: `/api/posts/${post_id}/like`,
+    //   data: {
+    //     post_id: post_id
+    // }
+    //   })
+    // .then((res) => {
+
+    //   console.log('addedALike',res.data);
+
+    //   setState((prev) => ({...prev, posts:[...state.posts, res.data]}))
+    // })
+  }
+
+  function dislikeHandler(post_id, index) {
+    //console.log("adding a disike from show")
+
+    axios.put(`/api/posts/${post_id}/dislike`).then((res) => {
+      //console.log('response', res.data[0]);
+      const { posts } = state;
+      posts[index] = res.data[0];
+      setState({ posts });
+    });
+  }
+
+  // function onSubmitComment(comment, post_id) {
+  //   console.log('Line 55 Show.jsx', comment);
+  //   //console.log(params.id)
+  //   axios({
+  //     method: 'post',
+  //     url: '/api/comments',
+  //     data: {
+  //       text: comment,
+  //       post_id: post_id
+  //   }})
+  //   .then((res) => {
+
+  //     console.log('postInput',res.data);
+
+  //     setState((prev) => ({...prev, comments:[...state.comments, res.data]}))
+
+  //   })
+  // }
+
+  //console.log(params);
 
   const { posts, comments, oldChat } = state;
 
@@ -61,16 +132,27 @@ export default function Show(props) {
           viewChat={viewChat}
         />
         {viewChat === 0 ? (
-            <Chat
-              roomId={params.id}
-              oldChat={oldChat}
-              transitionToChat={transitionToChat}
-              viewChat={viewChat}
-            />
+          <Chat
+            roomId={params.id}
+            oldChat={oldChat}
+            transitionToChat={transitionToChat}
+            viewChat={viewChat}
+          />
         ) : (
           <>
-            <PostInput id={params.id} onSubmit={onSubmit} />
-            <PostsList posts={posts} comments={comments} id={params.id} />
+            <PostInput
+              id={params.id}
+              onSubmit={onSubmit}
+              uploadHandler={uploadHandler}
+              posts={posts}
+            />
+            <PostsList
+              posts={posts}
+              comments={comments}
+              id={params.id}
+              likeHandler={likeHandler}
+              dislikeHandler={dislikeHandler}
+            />
           </>
         )}
       </Box>

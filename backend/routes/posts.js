@@ -1,8 +1,8 @@
 const express = require("express");
 const router = express.Router();
-const { getPosts, getPostsByShow, addPost } = require("../helpers/dbHelpers");
+const { getPosts, getPostsByShow, addPost, addLike, addDislike } = require("../helpers/dbHelpers");
 
-module.exports = ({ getPosts, getPostsByShow, addPost }) => {
+module.exports = ({ getPosts, getPostsByShow, addPost, addLike, addDisLike }) => {
   /* GET posts listing. */
   router.get("/", (req, res) => {
     getPosts()
@@ -16,11 +16,11 @@ module.exports = ({ getPosts, getPostsByShow, addPost }) => {
 
   router.post("/", (req, res) => {
 
-    const {text, show_id } = req.body;
+    const {text, show_id, image } = req.body;
 
     console.log(req.body);
 
-    addPost(text, show_id)
+    addPost(text, show_id, image)
       .then((shows) => {
         res.json(shows)
         console.log(shows)
@@ -31,6 +31,45 @@ module.exports = ({ getPosts, getPostsByShow, addPost }) => {
         })
       );
   });
+
+  router.put("/:post_id/like", (req, res) => {
+
+    const { post_id } = req.params;
+
+    console.log("req params >>",req.params);
+
+    addLike(post_id)
+      .then((post) => {
+        res.json(post)
+        console.log(post)
+      })
+      .catch((err) =>
+        res.json({
+          error: err.message,
+        })
+      );
+  });
+
+  router.put("/:post_id/dislike", (req, res) => {
+
+    const { post_id } = req.params;
+
+    console.log("req params >>",req.params);
+
+    addDisLike(post_id)
+      .then((post) => {
+        res.json(post)
+        console.log(post)
+      })
+      .catch((err) =>
+        res.json({
+          error: err.message,
+        })
+      );
+  });
+
+  // router put request req.params it will get post_id, addLike helper function, which will make aquery into the database update posts likes = likes + 1;
+  //auto incrementing postgres function that i can use
 
   router.get("/:id", (req, res) => {
 
