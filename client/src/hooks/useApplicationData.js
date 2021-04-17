@@ -12,7 +12,8 @@ export default function useApplicationData(id) {
     users: [],
     posts: [],
     comments:[]
-  })
+  });
+  const [currUser, setCurrUser] = useState(null);
 
   useEffect(()=> {
     Promise.all([
@@ -40,10 +41,23 @@ export default function useApplicationData(id) {
   //     })
   //     .catch((err) => console.log(err));
   // }, []);
-
+  const authenticateLogin = (userInfo) => {
+    const {email, password} = userInfo;
+    for(let user of state.users) {
+      if (user.email === email && user.password === password) {
+        console.log("before", currUser);
+        setCurrUser(user)
+        return true;
+      }
+    }
+    return false;
+  }
  
 
   return {
-    state, setState
+    state, 
+    setState,
+    authenticateLogin,
+    currUser
   };
 };

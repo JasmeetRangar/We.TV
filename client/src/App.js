@@ -101,7 +101,13 @@ export default function App() {
               </div>
             </Route> */}
             <Route path="/search" exact>
+            <Navbar />
+              <div
+                className={classes.mainContent}
+                style={{ marginTop: "100px" }}
+              >
               <Search />
+              </div>
             </Route>
             <Route path="/myshows" exact>
               <Navbar />

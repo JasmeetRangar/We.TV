@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -17,6 +17,9 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import useApplicationData from '../hooks/useApplicationData';
+import { useHistory } from 'react-router-dom';
+import LoginError from './LoginError';
 
 function Copyright() {
   return (
@@ -52,8 +55,13 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Login() {
+	const { authenticateLogin, currUser } = useApplicationData();
   const [open, setOpen] = React.useState(false);
+	const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
+	const [error, setError] = useState(false);
   const classes = useStyles();
+  const history = useHistory();
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -62,6 +70,24 @@ export default function Login() {
   const handleClose = () => {
     setOpen(false);
   };
+	let validLogin = false;
+	const handleSubmit =  e => {
+    e.preventDefault();
+		// console.log("Login: ", email, password)
+     validLogin = authenticateLogin({
+      email,
+      password
+    })
+		if (!validLogin) {
+      setError(true);
+    }	else {
+      setError(false);
+    }	
+  }
+
+  if (currUser) {
+    history.push(`/myshows`);
+  }
 
   return (
     <Container component="main" maxWidth="xs">
@@ -73,7 +99,7 @@ export default function Login() {
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
-        <form className={classes.form} noValidate>
+        <form className={classes.form} onSubmit={handleSubmit}>
           <TextField
             variant="outlined"
             margin="normal"
@@ -84,6 +110,7 @@ export default function Login() {
             name="email"
             autoComplete="email"
             autoFocus
+						onChange={e => setEmail(e.target.value)}
           />
           <TextField
             variant="outlined"
@@ -95,6 +122,7 @@ export default function Login() {
             type="password"
             id="password"
             autoComplete="current-password"
+						onChange={e => setPassword(e.target.value)}
           />
           <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}
@@ -109,9 +137,11 @@ export default function Login() {
           >
             Sign In
           </Button>
+          {console.log(error)}
+          { error && <LoginError />}
           <Grid container>
             <Grid item xs>
-              <Link href="#" variant="body2" onClick={handleClickOpen}>
+              <Link href="#" variant="body2">
                 Forgot password?
               </Link>
             </Grid>
