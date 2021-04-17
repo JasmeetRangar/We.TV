@@ -13,15 +13,17 @@ module.exports = ({ getUsers, getUserByEmail, getUsersPosts, getFavouriteShowsFo
       );
   });
   
-  router.get("/favourite/:showId", (req, res) => {
-    const {userId, showId } = req.body
-    getFavouriteByShow()
-      .then((favourite) => res.json(favourite))
-      .catch((err) =>
-        res.json({
-          error: err.message,
-        })
-      );
+  router.get("/:userid/favourites/:showid", (req, res) => {
+    const {userid, showid } = req.params
+    console.log('UserId:', req.params.userid)
+    console.log('showId:', req.params.showid)
+    getFavouriteByShow(userid,showid)
+    .then((shows) => res.json(shows))
+    .catch((err) =>
+      res.json({
+        error: err.message,
+      })
+    );
   });
   
   router.get("/shows", (req, res) => {

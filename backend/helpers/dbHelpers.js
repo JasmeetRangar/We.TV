@@ -147,7 +147,7 @@ module.exports = (db) => {
  
   const getFavouriteByShow = (userId, showId) => {
     const query = {
-      text: `SELECT * FROM favourites WHERE user_id = $1 AND show_id = $2`,
+      text: `SELECT * FROM favourites WHERE user_id=$1 AND show_id=$2`,
       values: [userId, showId],
     };
 
@@ -157,10 +157,10 @@ module.exports = (db) => {
       .catch((err) => err);
   };
 
-  const getFavouriteShowsForUser = () => {
+  const getFavouriteShowsForUser = (user_id) => {
     const query = {
-      text: `SELECT shows.id, shows.name, shows.description, shows.image FROM SHOWS JOIN favourites ON shows.id = favourites.show_id WHERE favourites.user_id = 1;`,
-      // values: [user_id]
+      text: `SELECT shows.id, shows.name, shows.description, shows.image FROM SHOWS JOIN favourites ON shows.id = favourites.show_id WHERE favourites.user_id = $1;`,
+      values: [user_id]
     };
 
     return db

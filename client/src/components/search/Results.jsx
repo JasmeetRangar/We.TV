@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 
 import ShowImage from "../ShowImage";
 import { Typography, Button } from '@material-ui/core';
@@ -17,6 +17,24 @@ export default function Results(props) {
 
   async function clickHandler(show) {
     console.log(show);
+
+    const dbCheck = await axios({
+      method: 'get',
+      url: '/api/shows'
+    })  
+
+    console.log("========>=====>=====>>>>>>>>>",dbCheck)
+    // console.log(res.data);
+    
+    const shows = dbCheck.data
+    
+    const filtShows = shows.filter((each) => each.api_id == show.id)
+
+    if (filtShows.length !== 0) {
+      const id = filtShows[0].id
+      history.push(`/shows/${id}`)
+    } else {
+    
     const res = await axios({
       method: 'post',
       url: '/api/shows',
@@ -27,11 +45,9 @@ export default function Results(props) {
         api_id: show.id
     }})
 
-    console.log(res.data);
-    
-
     const url = `/shows/${res.data.id}`
     history.push(url);
+    }
   }
   
 

@@ -11,6 +11,7 @@ import { useState } from "react";
 import axios from "axios";
 import { useContext } from 'react';
 import { authContext } from '../AuthProvider';
+import useFavourites from "../../hooks/useFavourites";
 
 
 const useStyles = makeStyles(() => ({
@@ -24,7 +25,7 @@ export default function Show(props) {
   
   const { user } = useContext(authContext);
 
-  const { state, setState } = useApplicationData(user.id, params.id);
+  const { state, setState } = useApplicationData(params.id, user.id);
 
 
 
@@ -39,9 +40,10 @@ export default function Show(props) {
      setViewChat(0)
      axios.get(`/api/shows/${params.id}/chat`)
      .then((res) => {
-       console.log("🔥",res.data)
+      //  console.log("🔥",res.data)
        setState((prev =>({...prev, oldChat:res.data})))
       })
+      console.log("Favourites::::", state.favourites)
       ;
 
 
@@ -110,6 +112,10 @@ export default function Show(props) {
   return (
     <React.Fragment className={classes.show}>
       <Box className={classes.show}>
+        {state.favourites.length === 0 ?
+        <h1 >HI</h1> :
+        <h1>Bye</h1>
+} 
         <ShowBanner
           id={params.id}
           transitionToChat={transitionToChat}
