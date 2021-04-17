@@ -1,3 +1,5 @@
+import { useContext } from 'react';
+import { authContext } from './components/AuthProvider';
 import "./App.css";
 import useApplicationData from "./hooks/useApplicationData";
 import {
@@ -44,12 +46,13 @@ const useStyles = makeStyles({
 
 export default function App() {
   const classes = useStyles();
-  // const {
-  //     state
-  // } = useApplicationData();
+  const {
+      currUser
+  } = useApplicationData();
   //   const userList = state.users.map((user) => (<li key={user.id} > {user.first_name} {user.last_name} {user.email} {user.display_name}</li>));
   //   const postsList = state.posts.map((post) => (<li key={post.id} > {post.text}</li>))
     //const commentsList = state.comments.map((comment) => (<li key={comment.id} > {comment.text}</li>));   
+    const { auth } = useContext(authContext);
   
       
   return (

@@ -1,5 +1,8 @@
-import { useState, useEffect, } from "react";
+import { createContext, useState, useEffect, useReducer } from "react";
+import dataReducer, { SET_USERS } from "../reducers/dataReducer";
 import axios from "axios";
+
+
 
 export default function useApplicationData(id) {
   // const [state, dispatch] = useReducer(dataReducer, {
@@ -13,8 +16,6 @@ export default function useApplicationData(id) {
     comments:[],
     oldChat: []
   });
-  const [currUser, setCurrUser] = useState(null);
-
   useEffect(()=> {
     Promise.all([
       axios.get('/api/users'),
@@ -42,23 +43,11 @@ export default function useApplicationData(id) {
   //     })
   //     .catch((err) => console.log(err));
   // }, []);
-  const authenticateLogin = (userInfo) => {
-    const {email, password} = userInfo;
-    for(let user of state.users) {
-      if (user.email === email && user.password === password) {
-        console.log("before", currUser);
-        setCurrUser(user)
-        return true;
-      }
-    }
-    return false;
-  }
+ 
  
 
   return {
     state, 
     setState,
-    authenticateLogin,
-    currUser
   };
 };

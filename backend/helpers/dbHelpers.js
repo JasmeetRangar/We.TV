@@ -102,6 +102,8 @@ module.exports = (db) => {
       values: [show_id],
     };
 
+    // SELECT * FROM posts WHERE show_id=$1 JOIN users ON users.id = posts.users_id
+
     return db
       .query(query)
       .then((result) => result.rows)
