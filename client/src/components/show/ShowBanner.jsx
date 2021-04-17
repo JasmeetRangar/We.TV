@@ -1,7 +1,8 @@
 import React from "react";
 
 import { makeStyles } from "@material-ui/core/styles";
-import { Paper, Typography, Box } from "@material-ui/core";
+import { Paper, Typography, Box, Fab } from "@material-ui/core";
+import { Add, Remove } from "@material-ui/icons"
 import ShowNav from "./ShowNav";
 import Image from "material-ui-image";
 import { useState, useEffect } from "react";
@@ -69,10 +70,19 @@ export default function ShowBanner(props) {
     <React.Fragment>
       <Box className={classes.bannerBox}>
         <div className={classes.showDetails}>
+            <Fab variant="extended" color="primary">
+              <Add />
+              Add to Favourites
+            </Fab>
+            <Fab variant="extended" color="secondary">
+              <Remove />
+              Remove from Favourites
+            </Fab>
           <Paper
             elevation={4}
             style={{ color: "white", background: "black" }}
           >
+
           <Image
             src={state.show[0].image}
             cover="true"

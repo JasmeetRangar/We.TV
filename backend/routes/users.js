@@ -1,11 +1,22 @@
 const express = require("express");
 const router = express.Router();
 
-module.exports = ({ getUsers, getUserByEmail, getUsersPosts, getFavouriteShowsForUser }) => {
+module.exports = ({ getUsers, getUserByEmail, getUsersPosts, getFavouriteShowsForUser, getFavouriteByShow, addFavourite }) => {
   /* GET users listing. */
   router.get("/", (req, res) => {
     getUsers()
       .then((users) => res.json(users))
+      .catch((err) =>
+        res.json({
+          error: err.message,
+        })
+      );
+  });
+  
+  router.get("/favourite/:showId", (req, res) => {
+    const {userId, showId } = req.body
+    getFavouriteByShow()
+      .then((favourite) => res.json(favourite))
       .catch((err) =>
         res.json({
           error: err.message,
@@ -44,6 +55,20 @@ module.exports = ({ getUsers, getUserByEmail, getUsersPosts, getFavouriteShowsFo
         })
       );
   });
+
+  router.post("/favourite", (req, res) => {
+    const { userId, showId } = req.body;
+
+    addFavourite(userId, showId)
+      .then((fav) => {
+        res.json(fav)
+      })
+      .catch((err) =>
+        res.json({
+          error: err.message,
+        })
+      );
+  } )
 
   return router;
 };

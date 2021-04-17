@@ -142,6 +142,18 @@ module.exports = (db) => {
       .then((result) => result.rows[0])
       .catch((err) => err);
   };
+ 
+  const getFavouriteByShow = (userId, showId) => {
+    const query = {
+      text: `SELECT * FROM favourites WHERE user_id = $1 AND show_id = $2`,
+      values: [userId, showId],
+    };
+
+    return db
+      .query(query)
+      .then((result) => result.rows[0])
+      .catch((err) => err);
+  };
 
   const getFavouriteShowsForUser = () => {
     const query = {
@@ -255,6 +267,7 @@ module.exports = (db) => {
     getPostsByShow,
     getCommentsByPost,
     getChatMessagesByShow,
+    getFavouriteByShow,
     getShows,
     getShow,
     addShow,
