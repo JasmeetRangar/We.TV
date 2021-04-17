@@ -18,7 +18,7 @@ function Copyright() {
     <Typography variant="body2" color="textSecondary" align="center">
       {"Copyright © "}
       <Link color="inherit" href="/">
-        TeleBuddies
+        We.TV
       </Link>{" "}
       {new Date().getFullYear()}
       {"."}

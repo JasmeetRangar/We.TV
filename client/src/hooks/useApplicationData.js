@@ -1,5 +1,4 @@
-import { useState, useEffect, useReducer } from "react";
-import dataReducer, { SET_USERS } from "../reducers/dataReducer";
+import { useState, useEffect, } from "react";
 import axios from "axios";
 
 export default function useApplicationData(id) {

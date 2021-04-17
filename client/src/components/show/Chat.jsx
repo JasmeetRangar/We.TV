@@ -12,6 +12,7 @@ import {
   withTheme,
 } from "@material-ui/core";
 import { Send } from "@material-ui/icons";
+import ShowNav from "./ShowNav"
 
 const useStyles = makeStyles((theme) => ({
   MessagesContainer: {
@@ -58,8 +59,7 @@ export default function Chat(props) {
   };
 
   const handleSendMessage = () => {
-    console.log(newMessage); //Logs before message is send to server. Get rid of this console.log
-    console.log("💦", oldChat); // REALLY delete this one, it doesn't even have anything to do with this function
+    // console.log(newMessage); //Logs before message is send to server. Get rid of this console.log
     sendMessage(newMessage);
     setNewMessage("");
   };
@@ -83,7 +83,6 @@ export default function Chat(props) {
                 <Box m={1}>
                   <h4>
                     {message.display_name}{" "}
-                    {message.creator_id == userId ? "✅" : "🔵"}
                   </h4>
                   {message.message}
                 </Box>
@@ -102,7 +101,6 @@ export default function Chat(props) {
                 <Box m={1}>
                   <h4>
                     {message.displayName}{" "}
-                    {message.ownedByCurrentUser ? "✅" : "🔵"}
                   </h4>
                   {message.body}
                 </Box>
@@ -130,20 +128,10 @@ export default function Chat(props) {
           }
         />
       </FormControl>
+      <ShowNav 
+      transitionToChat={props.transitionToChat}
+      viewChat={props.viewChat}
+      />
     </Paper>
-
-    // Trash everything below this line.
-    // I just kept it to check the props
-    // ---------------------------->
-    // <div>
-    //   {messages.map((chatMessage) => {
-    //     return (
-    //       <div>
-    //         <h1>{chatMessage.display_name}</h1>
-    //         <h2>{chatMessage.message}</h2>
-    //       </div>
-    //     );
-    //   })}
-    // </div>
   );
 }

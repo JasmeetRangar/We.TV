@@ -24,15 +24,20 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-export default function Show(props) {
-
-  
+export default function Show(props) {  
   const params = useParams();
 
   const {
     state, setState
   } = useApplicationData(params.id);
 
+  // Sets state to conditionally render Chat component
+  const [viewChat, setViewChat] = useState(0);
+  
+  const transitionToChat = () => {
+    viewChat === 0 ? setViewChat(1) : setViewChat(0);
+    console.log("✅",viewChat);
+  };
 
   function onSubmit(post) {
     console.log('Line 20 PostInput.jsx', post);
@@ -46,38 +51,13 @@ export default function Show(props) {
     }})
     .then((res) => {
 
-      console.log('postInput',res.data);
       
+      console.log('postInput',res.data);
 
       setState((prev) => ({...prev, posts:[...state.posts, res.data]}))
     })
   }
-
-  // function onSubmitComment(comment, post_id) {
-  //   console.log('Line 55 Show.jsx', comment);
-  //   //console.log(params.id)
-  //   axios({
-  //     method: 'post',
-  //     url: '/api/comments',
-  //     data: {
-  //       text: comment,
-  //       post_id: post_id
-  //   }})
-  //   .then((res) => {
-
-  //     console.log('postInput',res.data);
-
-  //     setState((prev) => ({...prev, comments:[...state.comments, res.data]}))
-      
-  //   })
-  // }
-
-
-  
-
-  console.log(params);
-
-  
+ 
 
   const {posts, comments, oldChat} = state;
 
@@ -87,14 +67,25 @@ export default function Show(props) {
       <Box className={classes.show}>
       <ShowBanner 
         id={params.id}
+        transitionToChat={transitionToChat}
+        viewChat={viewChat}
         />
-        <Chat roomId={params.id} oldChat={oldChat}/>
+        {viewChat === 0 ? 
+        <Chat 
+          roomId={params.id}
+          oldChat={oldChat}
+          transitionToChat={transitionToChat}
+          viewChat={viewChat}
+          /> :
+        <>
       <PostInput id={params.id} onSubmit={onSubmit} />
       <PostsList 
         posts={posts}
         comments={comments}
         id={params.id}
       />
+     </>
+        }
         </Box>
     </React.Fragment>
   );

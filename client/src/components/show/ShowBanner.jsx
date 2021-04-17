@@ -2,7 +2,6 @@ import React from "react";
 
 import { makeStyles } from "@material-ui/core/styles";
 import { Paper, Typography, Box } from "@material-ui/core";
-import ShowImage from "../ShowImage";
 import ShowNav from "./ShowNav";
 import Image from "material-ui-image";
 import { useState, useEffect } from "react";
@@ -82,7 +81,10 @@ export default function ShowBanner(props) {
           />
             <Typography variant="h2">{state.show[0].name}</Typography>
             <Typography>{state.show[0].description}</Typography>
-            <ShowNav />
+            <ShowNav 
+            transitionToChat={props.transitionToChat}
+            viewChat={props.viewChat}
+            />
           </Paper>
         </div>
       </Box>
