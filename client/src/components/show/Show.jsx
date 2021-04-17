@@ -9,6 +9,7 @@ import useApplicationData from '../../hooks/useApplicationData';
 import { useParams } from 'react-router-dom';
 import { useState } from "react";
 import axios from 'axios';
+import useViewChat from "../../hooks/useViewChat";
 
 const testShow = {
   id: 1,
@@ -34,10 +35,13 @@ export default function Show(props) {
   // Sets state to conditionally render Chat component
   const [viewChat, setViewChat] = useState(0);
   
+  // Sets state to conditionally render Chat component (viewChat is passed as props to the ShowNav component)
   const transitionToChat = () => {
     viewChat === 0 ? setViewChat(1) : setViewChat(0);
     console.log("✅",viewChat);
   };
+
+  // const {viewChat, setViewChat, transitionToChat} = useViewChat();
 
   function onSubmit(post) {
     console.log('Line 20 PostInput.jsx', post);

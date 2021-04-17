@@ -44,8 +44,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Chat(props) {
   const classes = useStyles();
-  const params = useParams();
-
+  
   const userId = "1"; //This is a hardcoded test value, figure out how to implent it when we have user auth set up
   const displayName = "Jerry Seinfeld"; //This is a hardcoded test value. We'll get these from the user auth prop or whatever
 
