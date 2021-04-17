@@ -4,7 +4,6 @@ import BottomNavigation from "@material-ui/core/BottomNavigation";
 import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
 import ChatIcon from "@material-ui/icons/Chat";
 import ForumIcon from "@material-ui/icons/Forum";
-import LocationOnIcon from "@material-ui/icons/LocationOn";
 
 const useStyles = makeStyles({
   root: {
