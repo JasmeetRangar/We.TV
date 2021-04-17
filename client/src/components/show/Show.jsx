@@ -26,7 +26,17 @@ export default function Show(props) {
 
   // Sets state to conditionally render Chat component (viewChat is passed as props to the ShowNav component)
   const transitionToChat = () => {
-    viewChat === 0 ? setViewChat(1) : setViewChat(0);
+    viewChat === 0 ?
+     setViewChat(1) : 
+     setViewChat(0)
+     axios.get(`/api/shows/${params.id}/chat`)
+     .then((res) => {
+       console.log("🔥",res.data)
+       setState((prev =>({...prev, oldChat:res.data})))
+      })
+      ;
+
+
     console.log("✅", viewChat);
   };
 
@@ -35,7 +45,6 @@ export default function Show(props) {
     console.log("state set for upload");
   }
 
-  //console.log("this my stateeeeee for upload", upload);
 
   const [upload, setUpload] = useState("");
 
