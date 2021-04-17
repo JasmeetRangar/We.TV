@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import AuthProvider from './AuthProvider';
+import AuthProvider from './components/AuthProvider';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';

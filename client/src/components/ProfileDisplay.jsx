@@ -1,4 +1,6 @@
 import React from "react";
+import { useContext } from 'react';
+import { authContext } from './AuthProvider';
 import {
   makeStyles,
   Avatar,
@@ -38,20 +40,19 @@ const useStyles = makeStyles((theme) => ({
 
 export default function ProfileDisplay() {
   const classes = useStyles();
-	const { currUser } = useApplicationData();
-  const user = currUser;
+	const { user } = useContext(authContext);
   console.log("profile", user)
   return (
     <Container component="main" maxWidth="xs">
       <Paper className={classes.paper}>
         <Avatar
           alt="Remy Sharp"
-          src="/static/images/avatar/1.jpg"
+          src={user.profile_pic}
           className={classes.large}
         />
-        <Typography variant="subtitle2" gutterBottom>Display Name</Typography>
-        <Typography>FirstName Lastname</Typography>
-        <Typography>EmailName</Typography>
+        <Typography variant="subtitle2" gutterBottom>{user.display_name}</Typography>
+        <Typography>{user.first_name} {user.last_name}</Typography>
+        <Typography>{user.email}</Typography>
         <Fab 
           color="secondary" 
           size="small"

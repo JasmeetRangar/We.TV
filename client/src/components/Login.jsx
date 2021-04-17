@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -20,6 +20,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import useApplicationData from '../hooks/useApplicationData';
 import { useHistory } from 'react-router-dom';
 import LoginError from './LoginError';
+import { authContext } from "./AuthProvider";
 
 function Copyright() {
   return (
@@ -62,6 +63,7 @@ export default function Login() {
 	const [error, setError] = useState(false);
   const classes = useStyles();
   const history = useHistory();
+  const { login, user } = useContext(authContext);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -74,7 +76,7 @@ export default function Login() {
 	const handleSubmit =  e => {
     e.preventDefault();
 		// console.log("Login: ", email, password)
-     validLogin = authenticateLogin({
+     validLogin = login({
       email,
       password
     })
@@ -85,7 +87,7 @@ export default function Login() {
     }	
   }
 
-  if (currUser) {
+  if (user) {
     history.push(`/myshows`);
   }
 

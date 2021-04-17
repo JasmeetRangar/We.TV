@@ -1,3 +1,5 @@
+import { useContext } from 'react';
+import { authContext } from './components/AuthProvider';
 import "./App.css";
 import useApplicationData from "./hooks/useApplicationData";
 import {
