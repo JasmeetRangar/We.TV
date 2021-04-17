@@ -8,6 +8,7 @@ import {
   Fab
 } from "@material-ui/core";
 import { Edit } from "@material-ui/icons";
+import useApplicationData from '../hooks/useApplicationData';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -37,6 +38,9 @@ const useStyles = makeStyles((theme) => ({
 
 export default function ProfileDisplay() {
   const classes = useStyles();
+	const { currUser } = useApplicationData();
+  const user = currUser;
+  console.log("profile", user)
   return (
     <Container component="main" maxWidth="xs">
       <Paper className={classes.paper}>
