@@ -234,6 +234,17 @@ module.exports = (db) => {
       .catch((err) => err);
   };
 
+  const addFavourite = (userId, showId) => {
+    const query = {
+      text: `INSERT INTO favourites (user_id, show_id, is_active) VALUES ($1, $2, true)`,
+      values: [userId, showId]
+    };
+    return db
+    .query(query)
+    .then((result) => result.rows[0])
+    .catch((err) => err);
+  }
+
   return {
     getUsers,
     getUserByEmail,
@@ -251,9 +262,10 @@ module.exports = (db) => {
     addComment,
     addChatRoomMessage,
     addLike,
-      addDisLike,
-      addCommentLike,
-      addCommentDisLike
+    addDisLike,
+    addCommentLike,
+    addCommentDisLike,
+    addFavourite
   };
 };
   

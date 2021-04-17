@@ -42,6 +42,9 @@ export default function MyShows() {
           >
     <Typography variant="h1">My Shows</Typography>
           </Paper>
+          {results.length === 0 &&
+          <Typography>Looks kinda empty. Why not get started by searching for your favourite shows?</Typography>             
+          }
     <Results results={results.length > 0? results : []} />
     </React.Fragment>
   )
