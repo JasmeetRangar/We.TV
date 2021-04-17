@@ -64,6 +64,7 @@ export default function Show(props) {
     }).then((res) => {
       console.log("postInput", res.data);
 
+      setUpload('');
       setState((prev) => ({ ...prev, posts: [...state.posts, res.data] }));
     });
   }
