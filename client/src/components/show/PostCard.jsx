@@ -19,8 +19,9 @@ import MoreVertIcon from "@material-ui/icons/MoreVert";
 import Comment from "./Comment";
 import InputArea from "../InputArea";
 import InputComment from "../InputComment";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import axios from "axios";
+import { authContext } from "../AuthProvider";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -50,6 +51,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function PostCard(props) {
+  const { user } = useContext(authContext);
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
 
@@ -125,7 +127,8 @@ export default function PostCard(props) {
       url: '/api/comments',
       data: {
         text: comment,
-        post_id: post.id
+        post_id: post.id,
+        creator_id: user.id
     }})
     .then((res) => {
 
