@@ -56,9 +56,9 @@ module.exports = ({
     }
   })
   
-  router.get("/shows", (req, res) => {
-
-    getFavouriteShowsForUser()
+  router.get("/:userid/shows", (req, res) => {
+    const { userid } = req.params
+    getFavouriteShowsForUser(userid)
       .then((shows) => res.json(shows))
       .catch((err) =>
         res.json({

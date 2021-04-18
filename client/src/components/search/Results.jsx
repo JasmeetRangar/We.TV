@@ -54,7 +54,7 @@ export default function Results(props) {
   
 
   return results.map(info => {
-    console.log("-------Here-------", info.show)
+    // console.log("-------Here-------", info.show)
     return (
     <React.Fragment>
       

@@ -162,7 +162,7 @@ module.exports = (db) => {
 
   const getFavouriteShowsForUser = (user_id) => {
     const query = {
-      text: `SELECT shows.id, shows.name, shows.description, shows.image FROM SHOWS JOIN favourites ON shows.id = favourites.show_id WHERE favourites.user_id = $1;`,
+      text: `SELECT shows.id, shows.name, shows.description, shows.image FROM SHOWS JOIN favourites ON shows.id = favourites.show_id WHERE favourites.user_id = $1 AND is_active=true;`,
       values: [user_id]
     };
 

@@ -12,6 +12,7 @@ import axios from "axios";
 import { authContext } from "../AuthProvider";
 
 
+
 const useStyles = makeStyles(() => ({
   show: {
     // margin: "2%"
@@ -57,13 +58,13 @@ export default function Show(props) {
           setState((prev) => ({ ...prev, favourites: res.data }));
           // console.log("👘", res.data);
         })
-        .then(console.log("🧵", state.favourites))
+        // .then(console.log("🧵", state.favourites))
         .catch();
     }
   };
 
   // Sets state to conditionally render Chat component
-  const [viewChat, setViewChat] = useState(0);
+  const [viewChat, setViewChat] = useState(1);
 
   // Sets state to conditiona lly render Chat component (viewChat is passed as props to the ShowNav component)
   // State is updated every time componenet is rendered
@@ -120,7 +121,7 @@ export default function Show(props) {
 
       posts[index].likes = res.data[0].likes;
 
-      setState({ posts });
+      setState((prev) => ({...prev, posts }));
     });
   }
 
@@ -131,7 +132,7 @@ export default function Show(props) {
       //console.log('response', res.data[0]);
       const { posts } = state;
       posts[index].dislikes = res.data[0].dislikes;
-      setState({ posts });
+      setState((prev) => ({...prev, posts }));
     });
   }
 

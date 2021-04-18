@@ -1,46 +1,31 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 
 import Results from "./Results"
 import { Typography, Paper } from '@material-ui/core';
+import { authContext } from "../AuthProvider";
 
-const data = 
- [{
-    show: {
-      name: 'Girls',
-      image: {
-       medium: 'https://static.tvmaze.com/uploads/images/medium_portrait/31/78286.jpg'
-      }
-  }
-}
-  ,{
-    show: {
-      name: 'Boys',
-      image: {
-        medium: 'https://static.tvmaze.com/uploads/images/medium_portrait/267/668204.jpg'
-      }
-  }}]
 
 export default function MyShows() {
+  const { user } = useContext(authContext);
+
   const [results, setResults] = useState([]);
   
   useEffect(() => {
-    if (results.length === 0) {
-    axios.get("/api/users/shows")
+    axios.get(`/api/users/${user.id}/shows`)
     .then((res) => {
       // console.log(res.data)
       setResults(() => res.data)})
       .catch(e => console.log(e))
-    }
     }, [])
 
   return (
     <React.Fragment>
       <Paper
             elevation={4}
-            style={{ color: "white", background: "black" }}
+            // style={{ color: "white", background: "black" }}
           >
-    <Typography variant="h1">My Shows</Typography>
+    <Typography variant="h2">My Shows</Typography>
           </Paper>
           {results.length === 0 &&
           <Typography>Looks kinda empty. Why not get started by searching for your favourite shows?</Typography>             

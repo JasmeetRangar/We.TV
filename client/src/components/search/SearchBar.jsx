@@ -28,7 +28,7 @@ export default function CustomizedInputBase(props) {
   const {label} = props;
 
   const [value, setValue] = useState("");
-  const term = useDebounce(value, 2000);
+  const term = useDebounce(value, 500);
 
   const onSearch = useCallback(props.onSearch, [term]);
 

@@ -148,7 +148,7 @@ export default function PostCard(props) {
       .then((response) =>{
         console.log(response.data);
         // setUpload('');
-        setState((prev) => ({ ...prev, comments: [response.data[0],...state.comments] }));
+        setState((prev) => ({ ...prev, comments: [response.data[response.data.length - 1],...state.comments] }));
       })
 
       setState((prev) => ({...prev, comments:[...state.comments, res.data]}))
