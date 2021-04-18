@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
   },
   backgroundImage: {
     backgroundImage:
-      "url(https://64.media.tumblr.com/0f8bb8b9f511e6fea8d311c142be7656/tumblr_ogzcz1QxYn1u9hf7po1_500.gif)",
+      "url(https://raw.githubusercontent.com/JasmeetRangar/final-project/master/client/public/tv_screen.gif)",
     backgroundRepeat: "no-repeat",
     backgroundPosition: "center",
     backgroundSize: "contain",
