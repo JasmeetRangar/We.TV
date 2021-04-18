@@ -89,7 +89,7 @@ export default function Show(props) {
 
       const { posts } = state;
 
-      posts[index] = res.data[0];
+      posts[index].likes = res.data[0].likes;
 
       setState({ posts });
 
@@ -117,7 +117,7 @@ export default function Show(props) {
     axios.put(`/api/posts/${post_id}/dislike`).then((res) => {
       //console.log('response', res.data[0]);
       const { posts } = state;
-      posts[index] = res.data[0];
+      posts[index].dislikes = res.data[0].dislikes;
       setState({ posts });
     });
   }

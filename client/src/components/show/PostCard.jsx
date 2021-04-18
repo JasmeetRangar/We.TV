@@ -19,8 +19,9 @@ import MoreVertIcon from "@material-ui/icons/MoreVert";
 import Comment from "./Comment";
 import InputArea from "../InputArea";
 import InputComment from "../InputComment";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import axios from "axios";
+import { authContext } from "../AuthProvider";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -50,6 +51,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function PostCard(props) {
+  const { user } = useContext(authContext);
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
 
@@ -70,7 +72,7 @@ export default function PostCard(props) {
 
       const { comments } = state;
 
-      comments[index] = res.data[0]
+      comments[index].likes = res.data[0].likes
 
       setState({comments})
       
@@ -86,7 +88,7 @@ export default function PostCard(props) {
 
       const { comments } = state;
 
-      comments[index] = res.data[0]
+      comments[index].dislikes = res.data[0].dislikes
 
       setState({comments})
       
@@ -117,19 +119,29 @@ export default function PostCard(props) {
 
   const { post } = props;
 
-  function onSubmitComment(comment, post_id) {
-    console.log('Line 55 Show.jsx', comment);
-    //console.log(params.id)
+  console.log('fuck me', post);
+
+  function onSubmitComment(comment) {
+    console.log('Line 121 Post card', comment);
+    console.log('fuck me', post.id)
     axios({
       method: 'post',
       url: '/api/comments',
       data: {
         text: comment,
-        post_id: post.id
+        post_id: post.id,
+        creator_id: user.id
     }})
     .then((res) => {
 
       console.log('postInput',res.data);
+
+      axios.get(`/api/comments/${post.id}`)
+      .then((response) =>{
+        console.log(response.data);
+        // setUpload('');
+        setState((prev) => ({ ...prev, comments: [response.data[0],...state.comments] }));
+      })
 
       setState((prev) => ({...prev, comments:[...state.comments, res.data]}))
       
@@ -138,7 +150,8 @@ export default function PostCard(props) {
 
   
 
-  console.log("💦", post.first_name);
+  console.log("💦", post.profile_pic);
+  console.log("💦", post.display_name);
   return (
     <Card className={classes.root}>
       <CardHeader

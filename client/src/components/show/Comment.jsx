@@ -56,6 +56,8 @@ export default function Comment(props) {
     <List className={classes.root}>
       {comments.map((comment, index) => {
 
+        console.log("this the comment pic", comment)
+
         function commentLikeHandler() {
           console.log('adding a like from comment component');
           props.commentLikeHandler(comment.id, index)
@@ -70,7 +72,7 @@ export default function Comment(props) {
           <React.Fragment key={comment.id}>
             <ListItem key={comment.id} alignItems="flex-start">
               <ListItemAvatar>
-                <Avatar aria-label="recipe" className={classes.avatar}>
+                <Avatar aria-label="recipe" src={comment.profile_pic} className={classes.avatar}>
                   R
                 </Avatar>
               </ListItemAvatar>
@@ -82,9 +84,9 @@ export default function Comment(props) {
                 }
                 secondary={
                   <>
-                  {comment.image_url && 
+                  {comment.image && 
                     <Image
-                    src={comment.image_url}
+                    src={comment.image}
                     cover="true"
                     onClick={handleClickOpen}
                     disableSpinner
@@ -116,7 +118,7 @@ export default function Comment(props) {
               <DialogContent>
                 <img
                     alt="ggg"
-                    src={comment.image_url}
+                    src={comment.image}
                     style={{ height: "auto", width: "500px" }}
                   ></img>
               </DialogContent>
