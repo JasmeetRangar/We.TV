@@ -9,5 +9,5 @@ CREATE TABLE "posts" (
   "poll_id" int,
   "creator_id" int,
   "show_id" int,
-  "created_at" timestamp
+  "created_at" timestamp DEFAULT CURRENT_TIMESTAMP
 );

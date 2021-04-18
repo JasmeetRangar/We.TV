@@ -7,10 +7,10 @@ import PostInput from "./PostInput";
 import Chat from "./Chat";
 import useApplicationData from "../../hooks/useApplicationData";
 import { useParams } from "react-router-dom";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import axios from "axios";
-import { useContext } from "react";
 import { authContext } from "../AuthProvider";
+
 
 const useStyles = makeStyles(() => ({
   show: {
@@ -19,9 +19,8 @@ const useStyles = makeStyles(() => ({
 }));
 
 export default function Show(props) {
-  const params = useParams();
-
   const { user } = useContext(authContext);
+  const params = useParams();
 
   const { state, setState } = useApplicationData(params.id, user.id);
 
@@ -86,6 +85,8 @@ export default function Show(props) {
     //console.log('Line 37 Show.jsx', post);
     // console.log("this my stateeeeee for upload", upload);
 
+    console.log("this be the user",user)
+
     axios({
       method: "post",
       url: "/api/posts",
@@ -93,12 +94,19 @@ export default function Show(props) {
         text: post,
         show_id: params.id,
         image: upload,
+        creator_id: user.id,
       },
     }).then((res) => {
       // console.log("postInput", res.data);
 
-      setUpload("");
-      setState((prev) => ({ ...prev, posts: [...state.posts, res.data] }));
+      axios.get(`/api/posts/${params.id}`)
+      .then((response) =>{
+        console.log(response.data);
+        setUpload('');
+        setState((prev) => ({ ...prev, posts: [response.data[0],...state.posts] }));
+      })
+
+      
     });
   }
 
@@ -110,7 +118,7 @@ export default function Show(props) {
 
       const { posts } = state;
 
-      posts[index] = res.data[0];
+      posts[index].likes = res.data[0].likes;
 
       setState({ posts });
     });
@@ -122,7 +130,7 @@ export default function Show(props) {
     axios.put(`/api/posts/${post_id}/dislike`).then((res) => {
       //console.log('response', res.data[0]);
       const { posts } = state;
-      posts[index] = res.data[0];
+      posts[index].dislikes = res.data[0].dislikes;
       setState({ posts });
     });
   }
