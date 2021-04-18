@@ -1,7 +1,16 @@
 const express = require("express");
 const router = express.Router();
 
-module.exports = ({ getUsers, getUserByEmail, getUsersPosts, getFavouriteShowsForUser, getFavouriteByShow, addFavourite }) => {
+module.exports = ({
+  getUsers,
+  getUserByEmail,
+  getUsersPosts,
+  getFavouriteShowsForUser,
+  getFavouriteByShow,
+  addFavourite,
+  removeFavourite,
+  activateFavourite
+ }) => {
   /* GET users listing. */
   router.get("/", (req, res) => {
     getUsers()
@@ -25,6 +34,30 @@ module.exports = ({ getUsers, getUserByEmail, getUsersPosts, getFavouriteShowsFo
       })
     );
   });
+
+  router.put("/:userid/favourites/:showid/:isactive", (req, res) => {
+    const {userid, showid, isactive } = req.params
+    console.log("🧶",isactive )
+    if (isactive === "active") {
+    removeFavourite(userid, showid)
+    .then((removed) => res.json(removed)
+    )
+    .catch((err) =>
+      res.json({
+        error: err.message,
+      })
+    );
+    } else {
+      activateFavourite(userid, showid)
+      .then((activated) => res.json(activated)
+    )
+    .catch((err) =>
+      res.json({
+        error: err.message,
+      })
+    );
+    }
+  })
   
   router.get("/shows", (req, res) => {
 

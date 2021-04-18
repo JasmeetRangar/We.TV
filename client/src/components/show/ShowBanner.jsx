@@ -2,7 +2,7 @@ import React from "react";
 
 import { makeStyles } from "@material-ui/core/styles";
 import { Paper, Typography, Box, Fab } from "@material-ui/core";
-import { Add, Remove } from "@material-ui/icons"
+import { Add, Remove } from "@material-ui/icons";
 import ShowNav from "./ShowNav";
 import Image from "material-ui-image";
 import { useState, useEffect } from "react";
@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
   },
   bannerBox: {
     display: "flex",
-    justifyContent: "center"
+    justifyContent: "center",
   },
   showDetails: {
     display: "flex",
@@ -40,63 +40,66 @@ const useStyles = makeStyles((theme) => ({
 
 export default function ShowBanner(props) {
   const classes = useStyles();
-  
 
   const [state, setState] = useState({
-   
     show: [{}],
   });
 
+  const { favourites, transitionToChat, viewChat, updateFavourite } = props;
+
   const removeHtmlTags = (string) => {
-    const regex = /(<([^>]+)>)/ig;
+    const regex = /(<([^>]+)>)/gi;
     if (string) {
-      return(string.replace(regex, ""));
+      return string.replace(regex, "");
     }
     return "";
-}
+  };
 
+  useEffect(() => {
+    axios.get(`/api/shows/${props.id}`).then((showInfo) => {
+      setState((prev) => ({ ...prev, show: showInfo.data }));
+    });
+  }, [props.id]);
 
-  useEffect(()=> {
-   
-    axios.get(`/api/shows/${props.id}`)
-    .then(showInfo => { 
-      setState(prev => ({...prev, show:showInfo.data}))});
-  
-  }, [props.id])
+  console.log("this the state", state.show[0]);
 
-  console.log("this the state",state.show[0])
-  
   return (
     <React.Fragment>
       <Box className={classes.bannerBox}>
         <div className={classes.showDetails}>
-            <Fab variant="extended" color="primary">
+          {(favourites.length === 0) || (favourites && !favourites.is_active) ? (
+            <Fab
+            variant="extended" 
+            color="primary"
+            onClick={updateFavourite}
+            >
               <Add />
               Add to Favourites
             </Fab>
-            <Fab variant="extended" color="secondary">
+          ) : (
+            <Fab
+            variant="extended"
+            color="secondary"
+            onClick={updateFavourite}
+            >
               <Remove />
               Remove from Favourites
             </Fab>
-          <Paper
-            elevation={4}
-            style={{ color: "white", background: "black" }}
-          >
+          )}
 
-          <Image
-            src={state.show[0].image}
-            cover="true"
-            style={{width:"100%"}}
-
-
-          />
+          <Paper elevation={4} style={{ color: "white", background: "black" }}>
+            <Image
+              src={state.show[0].image}
+              cover="true"
+              style={{ width: "100%" }}
+            />
             <Typography variant="h2">{state.show[0].name}</Typography>
-           
-              <Typography>{removeHtmlTags(state.show[0].description)}</Typography>
-            
-            <ShowNav 
-            transitionToChat={props.transitionToChat}
-            viewChat={props.viewChat}
+
+            <Typography>{removeHtmlTags(state.show[0].description)}</Typography>
+
+            <ShowNav
+              transitionToChat={transitionToChat}
+              viewChat={viewChat}
             />
           </Paper>
         </div>

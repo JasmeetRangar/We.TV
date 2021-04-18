@@ -23,7 +23,7 @@ export default function Results(props) {
       url: '/api/shows'
     })  
 
-    console.log("========>=====>=====>>>>>>>>>",dbCheck)
+    // console.log("========>=====>=====>>>>>>>>>",dbCheck)
     // console.log(res.data);
     
     const shows = dbCheck.data

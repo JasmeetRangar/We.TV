@@ -27,12 +27,30 @@ export default function Show(props) {
 
   const { state, setState } = useApplicationData(params.id, user.id);
 
-
+  const updateFavourite = () => {
+    const userid = user.id
+    const showid = params.id 
+    let isactive = ""
+    if (state.favourites.is_active) {
+      isactive = "active"
+    } else {
+      isactive = "inactive"
+    }
+    axios.put(`/api/users/${userid}/favourites/${showid}/${isactive}`)
+    .then((res) =>{
+      setState((prev) => ({...prev, favourites: res.data}))
+      console.log("👘", res.data)
+    })
+    .then(
+      console.log("🧵", state.favourites)
+    )
+    .catch(e => console.log("🪢",e))
+  }
 
   // Sets state to conditionally render Chat component
   const [viewChat, setViewChat] = useState(0);
 
-  // Sets state to conditionally render Chat component (viewChat is passed as props to the ShowNav component)
+  // Sets state to conditiona lly render Chat component (viewChat is passed as props to the ShowNav component)
   // State is updated every time componenet is rendered
   const transitionToChat = () => {
     viewChat === 0 ?
@@ -44,6 +62,7 @@ export default function Show(props) {
        setState((prev =>({...prev, oldChat:res.data})))
       })
       console.log("Favourites::::", state.favourites)
+      console.log("Favourites.is_active::::==>>", state.favourites.is_active)
       ;
 
 
@@ -110,16 +129,19 @@ export default function Show(props) {
 
   const classes = useStyles();
   return (
-    <React.Fragment className={classes.show}>
+    <div className={classes.show}>
       <Box className={classes.show}>
-        {state.favourites.length === 0 ?
-        <h1 >HI</h1> :
-        <h1>Bye</h1>
+      {/* (state.favourites && state.favourites.length === 0) */}
+        { (state.favourites && state.favourites.is_active) ?
+        <h1 >Favourites + isactive</h1> :
+        <h1>NoFav or Favs not active</h1>
 } 
         <ShowBanner
           id={params.id}
           transitionToChat={transitionToChat}
           viewChat={viewChat}
+          favourites={state.favourites}
+          updateFavourite={updateFavourite}
         />
         {viewChat === 0 ? (
           <Chat
@@ -146,6 +168,6 @@ export default function Show(props) {
           </>
         )}
       </Box>
-    </React.Fragment>
+    </div>
   );
 }

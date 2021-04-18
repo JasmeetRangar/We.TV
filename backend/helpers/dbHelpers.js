@@ -259,6 +259,30 @@ module.exports = (db) => {
     .catch((err) => err);
   }
 
+  const removeFavourite = (userId, showId) => {
+    const query = {
+      text: `UPDATE favourites SET is_active=false WHERE user_id=$1 AND show_id=$2 RETURNING *`,
+      values: [userId, showId]
+    };
+    return db
+      .query(query)
+      .then((result) => result.rows[0])
+      .catch((err) => err);
+  }
+  
+  const activateFavourite = (userId, showId) => {
+    const query = {
+      text: `UPDATE favourites SET is_active=true WHERE user_id=$1 AND show_id=$2 RETURNING *`,
+      values: [userId, showId]
+    };
+    return db
+      .query(query)
+      .then((result) => result.rows[0])
+      .catch((err) => err);
+  }
+
+
+
   return {
     getUsers,
     getUserByEmail,
@@ -280,7 +304,9 @@ module.exports = (db) => {
     addDisLike,
     addCommentLike,
     addCommentDisLike,
-    addFavourite
+    addFavourite,
+    removeFavourite,
+    activateFavourite
   };
 };
   

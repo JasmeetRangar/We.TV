@@ -26,7 +26,7 @@ export default function useApplicationData(showId, userId) {
       axios.get(`/api/users/${userId}/favourites/${showId}`)
       // axios.get('/api/interviewers')
     ]).then(all => {
-      setState(prev => ({...prev, users: all[0].data, posts: all[1].data, comments: all[2].data, oldChat: all[3].data, favourites: ["hello"]}))
+      setState(prev => ({...prev, users: all[0].data, posts: all[1].data, comments: all[2].data, oldChat: all[3].data, favourites: all[4].data}))
     })
     
   }, [userId, showId])
