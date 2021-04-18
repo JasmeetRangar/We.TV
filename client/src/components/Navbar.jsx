@@ -42,7 +42,7 @@ export default function Navbar() {
           <AccountCircle />
         </IconButton>
         </Link>
-        <Link to="/logout" color="inherit">
+        <Link to="/" color="inherit">
         <IconButton color="inherit" aria-label="logout">
           <ExitToAppIcon />
         </IconButton>

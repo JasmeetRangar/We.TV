@@ -19,6 +19,7 @@ import Search from "./components/search/Search";
 import Show from "./components/show/Show";
 import MyShows from "./components/MyShows/MyShows";
 import Chat from "./components/show/Chat";
+import HomePage from './HomePage';
 
 const theme = createMuiTheme({
   // palette: {
@@ -62,11 +63,8 @@ export default function App() {
           <CssBaseline />
           <Switch>
             <Route path="/" exact>
-              <Navbar />
-              
-              <div className={classes.mainContent} style={{marginTop: '100px'}}>
-               <h1>Bro welcome to the app</h1>
-                {/* <Show /> */}
+              <div style={{marginTop: '0px'}}>
+               <HomePage />
               </div>
             </Route>
 
