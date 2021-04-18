@@ -24,8 +24,6 @@ module.exports = ({
   
   router.get("/:userid/favourites/:showid", (req, res) => {
     const {userid, showid } = req.params
-    console.log('UserId:', req.params.userid)
-    console.log('showId:', req.params.showid)
     getFavouriteByShow(userid,showid)
     .then((shows) => res.json(shows))
     .catch((err) =>
@@ -37,7 +35,6 @@ module.exports = ({
 
   router.put("/:userid/favourites/:showid/:isactive", (req, res) => {
     const {userid, showid, isactive } = req.params
-    console.log("🧶",isactive )
     if (isactive === "active") {
     removeFavourite(userid, showid)
     .then((removed) => res.json(removed)

@@ -11,7 +11,6 @@ import { useState } from "react";
 import axios from "axios";
 import { useContext } from "react";
 import { authContext } from "../AuthProvider";
-import useFavourites from "../../hooks/useFavourites";
 
 const useStyles = makeStyles(() => ({
   show: {
@@ -57,10 +56,10 @@ export default function Show(props) {
         .put(`/api/users/${userid}/favourites/${showid}/${isactive}`)
         .then((res) => {
           setState((prev) => ({ ...prev, favourites: res.data }));
-          console.log("👘", res.data);
+          // console.log("👘", res.data);
         })
         .then(console.log("🧵", state.favourites))
-        .catch((e) => console.log("🪢", e));
+        .catch();
     }
   };
 
@@ -72,15 +71,8 @@ export default function Show(props) {
   const transitionToChat = () => {
     viewChat === 0 ? setViewChat(1) : setViewChat(0);
     axios.get(`/api/shows/${params.id}/chat`).then((res) => {
-      //  console.log("🔥",res.data)
       setState((prev) => ({ ...prev, oldChat: res.data }));
     });
-    console.log("Favourites::::", state.favourites);
-    console.log("State::::", state);
-    console.log("FavouritesLength::::", state.favourites.length);
-    console.log("Favourites.is_active::::==>>", state.favourites.is_active);
-
-    console.log("✅", viewChat);
   };
 
   function uploadHandler(url) {
@@ -92,7 +84,7 @@ export default function Show(props) {
 
   function onSubmit(post) {
     //console.log('Line 37 Show.jsx', post);
-    console.log("this my stateeeeee for upload", upload);
+    // console.log("this my stateeeeee for upload", upload);
 
     axios({
       method: "post",
@@ -103,7 +95,7 @@ export default function Show(props) {
         image: upload,
       },
     }).then((res) => {
-      console.log("postInput", res.data);
+      // console.log("postInput", res.data);
 
       setUpload("");
       setState((prev) => ({ ...prev, posts: [...state.posts, res.data] }));
@@ -141,12 +133,6 @@ export default function Show(props) {
   return (
     <div className={classes.show}>
       <Box className={classes.show}>
-        {/* (state.favourites && state.favourites.length === 0) */}
-        {state.favourites && state.favourites.is_active ? (
-          <h1>Favourites + isactive</h1>
-        ) : (
-          <h1>NoFav or Favs not active</h1>
-        )}
         <ShowBanner
           id={params.id}
           transitionToChat={transitionToChat}
