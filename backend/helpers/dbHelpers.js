@@ -250,7 +250,7 @@ module.exports = (db) => {
 
   const addFavourite = (userId, showId) => {
     const query = {
-      text: `INSERT INTO favourites (user_id, show_id, is_active) VALUES ($1, $2, true)`,
+      text: `INSERT INTO favourites (user_id, show_id, is_active) VALUES ($1, $2, true) RETURNING *`,
       values: [userId, showId]
     };
     return db

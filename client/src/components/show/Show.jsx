@@ -9,10 +9,9 @@ import useApplicationData from "../../hooks/useApplicationData";
 import { useParams } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
-import { useContext } from 'react';
-import { authContext } from '../AuthProvider';
+import { useContext } from "react";
+import { authContext } from "../AuthProvider";
 import useFavourites from "../../hooks/useFavourites";
-
 
 const useStyles = makeStyles(() => ({
   show: {
@@ -22,30 +21,48 @@ const useStyles = makeStyles(() => ({
 
 export default function Show(props) {
   const params = useParams();
-  
+
   const { user } = useContext(authContext);
 
   const { state, setState } = useApplicationData(params.id, user.id);
 
+  const addFavourite = () => {
+    const userid = user.id;
+    const showid = params.id;
+
+    axios
+      .post(`/api/users/${userid}/favourites/${showid}/`)
+      .then((res) => {
+        setState((prev) => ({ ...prev, favourites: res.data }));
+      })
+      .catch((e) => console.log("🪢", e));
+  };
+
   const updateFavourite = () => {
-    const userid = user.id
-    const showid = params.id 
-    let isactive = ""
-    if (state.favourites.is_active) {
-      isactive = "active"
+    const userid = user.id;
+    const showid = params.id;
+    // is favourite does not exist, add it to DB
+    if (state.favourites.length === 0) {
+      addFavourite(userid, showid);
+      return;
     } else {
-      isactive = "inactive"
+      // if favourite exists, handle the is_active column
+      let isactive = "";
+      if (state.favourites.is_active) {
+        isactive = "active";
+      } else {
+        isactive = "inactive";
+      }
+      axios
+        .put(`/api/users/${userid}/favourites/${showid}/${isactive}`)
+        .then((res) => {
+          setState((prev) => ({ ...prev, favourites: res.data }));
+          console.log("👘", res.data);
+        })
+        .then(console.log("🧵", state.favourites))
+        .catch((e) => console.log("🪢", e));
     }
-    axios.put(`/api/users/${userid}/favourites/${showid}/${isactive}`)
-    .then((res) =>{
-      setState((prev) => ({...prev, favourites: res.data}))
-      console.log("👘", res.data)
-    })
-    .then(
-      console.log("🧵", state.favourites)
-    )
-    .catch(e => console.log("🪢",e))
-  }
+  };
 
   // Sets state to conditionally render Chat component
   const [viewChat, setViewChat] = useState(0);
@@ -53,18 +70,15 @@ export default function Show(props) {
   // Sets state to conditiona lly render Chat component (viewChat is passed as props to the ShowNav component)
   // State is updated every time componenet is rendered
   const transitionToChat = () => {
-    viewChat === 0 ?
-     setViewChat(1) : 
-     setViewChat(0)
-     axios.get(`/api/shows/${params.id}/chat`)
-     .then((res) => {
+    viewChat === 0 ? setViewChat(1) : setViewChat(0);
+    axios.get(`/api/shows/${params.id}/chat`).then((res) => {
       //  console.log("🔥",res.data)
-       setState((prev =>({...prev, oldChat:res.data})))
-      })
-      console.log("Favourites::::", state.favourites)
-      console.log("Favourites.is_active::::==>>", state.favourites.is_active)
-      ;
-
+      setState((prev) => ({ ...prev, oldChat: res.data }));
+    });
+    console.log("Favourites::::", state.favourites);
+    console.log("State::::", state);
+    console.log("FavouritesLength::::", state.favourites.length);
+    console.log("Favourites.is_active::::==>>", state.favourites.is_active);
 
     console.log("✅", viewChat);
   };
@@ -73,7 +87,6 @@ export default function Show(props) {
     setUpload(url);
     console.log("state set for upload");
   }
-
 
   const [upload, setUpload] = useState("");
 
@@ -92,7 +105,7 @@ export default function Show(props) {
     }).then((res) => {
       console.log("postInput", res.data);
 
-      setUpload('');
+      setUpload("");
       setState((prev) => ({ ...prev, posts: [...state.posts, res.data] }));
     });
   }
@@ -108,9 +121,7 @@ export default function Show(props) {
       posts[index] = res.data[0];
 
       setState({ posts });
-
     });
-
   }
 
   function dislikeHandler(post_id, index) {
@@ -124,18 +135,18 @@ export default function Show(props) {
     });
   }
 
-
   const { posts, comments, oldChat } = state;
 
   const classes = useStyles();
   return (
     <div className={classes.show}>
       <Box className={classes.show}>
-      {/* (state.favourites && state.favourites.length === 0) */}
-        { (state.favourites && state.favourites.is_active) ?
-        <h1 >Favourites + isactive</h1> :
-        <h1>NoFav or Favs not active</h1>
-} 
+        {/* (state.favourites && state.favourites.length === 0) */}
+        {state.favourites && state.favourites.is_active ? (
+          <h1>Favourites + isactive</h1>
+        ) : (
+          <h1>NoFav or Favs not active</h1>
+        )}
         <ShowBanner
           id={params.id}
           transitionToChat={transitionToChat}

@@ -91,10 +91,10 @@ module.exports = ({
       );
   });
 
-  router.post("/favourite", (req, res) => {
-    const { userId, showId } = req.body;
+  router.post("/:userid/favourites/:showid/", (req, res) => {
+    const { userid, showid } = req.params;
 
-    addFavourite(userId, showId)
+    addFavourite(userid, showid)
       .then((fav) => {
         res.json(fav)
       })
