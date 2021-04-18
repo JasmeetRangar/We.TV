@@ -7,8 +7,10 @@ import PostInput from "./PostInput";
 import Chat from "./Chat";
 import useApplicationData from "../../hooks/useApplicationData";
 import { useParams } from "react-router-dom";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import axios from "axios";
+import { authContext } from "../AuthProvider";
+
 
 const useStyles = makeStyles(() => ({
   show: {
@@ -17,6 +19,7 @@ const useStyles = makeStyles(() => ({
 }));
 
 export default function Show(props) {
+  const { user } = useContext(authContext);
   const params = useParams();
 
   const { state, setState } = useApplicationData(params.id);
@@ -53,6 +56,8 @@ export default function Show(props) {
     //console.log('Line 37 Show.jsx', post);
     console.log("this my stateeeeee for upload", upload);
 
+    console.log("this be the user",user)
+
     axios({
       method: "post",
       url: "/api/posts",
@@ -60,12 +65,19 @@ export default function Show(props) {
         text: post,
         show_id: params.id,
         image: upload,
+        creator_id: user.id,
       },
     }).then((res) => {
       console.log("postInput", res.data);
 
-      setUpload('');
-      setState((prev) => ({ ...prev, posts: [...state.posts, res.data] }));
+      axios.get(`/api/posts/${params.id}`)
+      .then((response) =>{
+        console.log(response.data);
+        setUpload('');
+        setState((prev) => ({ ...prev, posts: [...state.posts, response.data[response.data.length - 1]] }));
+      })
+
+      
     });
   }
 

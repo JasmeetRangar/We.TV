@@ -98,11 +98,14 @@ module.exports = (db) => {
 
   const getPostsByShow = (show_id) => {
     const query = {
-      text: `SELECT * FROM posts WHERE show_id=$1`,
+      text: `SELECT * FROM posts JOIN users ON users.id=posts.creator_id WHERE show_id=$1`,
       values: [show_id],
     };
 
-    // SELECT * FROM posts WHERE show_id=$1 JOIN users ON users.id = posts.users_id
+    
+
+
+
 
     return db
       .query(query)
@@ -185,10 +188,10 @@ module.exports = (db) => {
       .catch((err) => err);
   };
 
-  const addPost = (text, show_id, image) => {
+  const addPost = (text, show_id, image, creator_id) => {
     const query = {
-        text: `INSERT INTO posts (text, show_id, image) VALUES ($1, $2, $3) RETURNING *` ,
-        values: [text, show_id, image]
+        text: `INSERT INTO posts (text, show_id, image, creator_id) VALUES ($1, $2, $3, $4) RETURNING *` ,
+        values: [text, show_id, image, creator_id]
     }
 
     return db

@@ -138,12 +138,12 @@ export default function PostCard(props) {
 
   
 
-  //console.log("💦", post);
+  console.log("💦", post.first_name);
   return (
     <Card className={classes.root}>
       <CardHeader
         avatar={
-          <Avatar aria-label="recipe" className={classes.avatar} alt={"User_Name"}>
+          <Avatar aria-label="recipe" src={post.profile_pic} className={classes.avatar} alt={"User_Name"}>
             R
           </Avatar>
         }
@@ -152,7 +152,7 @@ export default function PostCard(props) {
             <MoreVertIcon />
           </IconButton>
         }
-        title="UserName"
+        title={post.display_name}
         subheader={post.created_at}
       />
       {post.image && (
