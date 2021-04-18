@@ -2,7 +2,7 @@ import React from "react";
 
 import { makeStyles } from "@material-ui/core/styles";
 import { Paper, Typography, Box, Fab } from "@material-ui/core";
-import { Add, Remove } from "@material-ui/icons";
+import { Add, Remove, StarRounded, StarBorderRounded } from "@material-ui/icons";
 import ShowNav from "./ShowNav";
 import Image from "material-ui-image";
 import { useState, useEffect } from "react";
@@ -36,6 +36,16 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "row",
     alignItems: "center",
   },
+  fabEdit: {
+    zIndex: "10",
+    position: "relative",
+    top: "5.5em",
+    left: "14.2em",
+    opacity: "75%",
+    '&:hover': {
+      opacity: "100%",
+   },
+  }
 }));
 
 export default function ShowBanner(props) {
@@ -69,21 +79,23 @@ export default function ShowBanner(props) {
         <div className={classes.showDetails}>
           {(favourites.length === 0) || (favourites && !favourites.is_active) ? (
             <Fab
-            variant="extended" 
+            // variant="extended" 
             color="primary"
             onClick={updateFavourite}
+            className={classes.fabEdit}
             >
               <Add />
-              Add to Favourites
+              {/* <StarBorderRounded /> */}
             </Fab>
           ) : (
             <Fab
-            variant="extended"
+            // variant="extended"
             color="secondary"
             onClick={updateFavourite}
+            className={classes.fabEdit}
             >
               <Remove />
-              Remove from Favourites
+              {/* <StarRounded /> */}
             </Fab>
           )}
 
