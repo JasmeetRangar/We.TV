@@ -55,6 +55,13 @@ export default function PostCard(props) {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
 
+  const [upload, setUpload] = useState("");
+
+  function uploadHandler(url) {
+    setUpload(url);
+    console.log("state set for upload");
+  }
+
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
@@ -130,7 +137,8 @@ export default function PostCard(props) {
       data: {
         text: comment,
         post_id: post.id,
-        creator_id: user.id
+        creator_id: user.id,
+        image: upload,
     }})
     .then((res) => {
 
@@ -204,7 +212,7 @@ export default function PostCard(props) {
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
-          <InputComment onSubmitComment={onSubmitComment} post_id={post.id} />
+          <InputComment onSubmitComment={onSubmitComment} uploadHandler={uploadHandler} post_id={post.id} />
           <Comment comments={state.comments} commentLikeHandler={commentLikeHandler} commentDisLikeHandler={commentDisLikeHandler} />
         </CardContent>
         <IconButton

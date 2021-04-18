@@ -16,11 +16,11 @@ module.exports = ({ getCommentsByShow, getCommentsByPost, addComment, addComment
 
   router.post("/", (req, res) => {
 
-    const {text, post_id } = req.body;
+    const {text, post_id, creator_id, image } = req.body;
 
     console.log(req.body);
 
-    addComment(text, post_id)
+    addComment(text, post_id, creator_id, image)
       .then((comment) => {
         res.json(comment)
         console.log(comment)

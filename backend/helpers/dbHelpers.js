@@ -98,7 +98,7 @@ module.exports = (db) => {
 
   const getPostsByShow = (show_id) => {
     const query = {
-      text: `SELECT * FROM posts JOIN users ON users.id=posts.creator_id WHERE show_id=$1 ORDER BY created_at DESC`,
+      text: `SELECT posts.id, text, likes, dislikes, image, video, poll_id, creator_id, show_id, created_at, users.display_name, users.profile_pic FROM posts JOIN users ON users.id=posts.creator_id WHERE show_id=$1 ORDER BY created_at DESC`,
       values: [show_id],
     };
 
@@ -126,7 +126,7 @@ module.exports = (db) => {
 
   const getCommentsByPost = (post_id) => {
     const query = {
-      text: `SELECT * FROM comments WHERE post_id=$1`,
+      text: `SELECT comments.id, text, likes, dislikes, image, video, creator_id, users.display_name, profile_pic FROM comments JOIN users ON users.id=comments.creator_id WHERE post_id=$1`,
       values: [post_id],
     };
 
@@ -200,10 +200,10 @@ module.exports = (db) => {
       .catch((err) => err);
   };
 
-  const addComment = (text, post_id) => {
+  const addComment = (text, post_id, creator_id,  image) => {
     const query = {
-      text: `INSERT INTO comments (text, post_id) VALUES ($1, $2) RETURNING *`,
-      values: [text, post_id],
+      text: `INSERT INTO comments (text, post_id, creator_id, image) VALUES ($1, $2, $3, $4) RETURNING *`,
+      values: [text, post_id, creator_id, image],
     };
 
     return db
