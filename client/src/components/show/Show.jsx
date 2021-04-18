@@ -74,7 +74,7 @@ export default function Show(props) {
       .then((response) =>{
         console.log(response.data);
         setUpload('');
-        setState((prev) => ({ ...prev, posts: [...state.posts, response.data[response.data.length - 1]] }));
+        setState((prev) => ({ ...prev, posts: [response.data[0],...state.posts] }));
       })
 
       

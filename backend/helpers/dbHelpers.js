@@ -98,7 +98,7 @@ module.exports = (db) => {
 
   const getPostsByShow = (show_id) => {
     const query = {
-      text: `SELECT * FROM posts JOIN users ON users.id=posts.creator_id WHERE show_id=$1`,
+      text: `SELECT * FROM posts JOIN users ON users.id=posts.creator_id WHERE show_id=$1 ORDER BY created_at DESC`,
       values: [show_id],
     };
 
