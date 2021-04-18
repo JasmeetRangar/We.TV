@@ -2,6 +2,8 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Button } from "@material-ui/core";
 import tv_screen from "../src/docs/tv_screen.gif";
+import { useHistory } from 'react-router-dom';
+
 
 const useStyles = makeStyles((theme) => ({
   background: {
@@ -48,7 +50,12 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function HomePage() {
+  const history = useHistory();
   const classes = useStyles();
+
+  const handleClick = (route) => {
+    history.push(`/${route}`)
+  }
 
   return (
     <div className={classes.background}>
@@ -56,8 +63,8 @@ export default function HomePage() {
         <h1 className={classes.title}>We.TV</h1>
       </div>
       <div className={classes.buttons}>
-        <Button className={classes.button}>Login</Button>
-        <Button className={classes.button}>Register</Button>
+        <Button className={classes.button} onClick={() => handleClick("login")}>Login</Button>
+        <Button className={classes.button} onClick={() => handleClick("register")}>Register</Button>
       </div>
     </div>
   );

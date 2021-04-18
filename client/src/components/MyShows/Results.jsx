@@ -12,7 +12,7 @@ import {
   Avatar,
   CardActionArea
 } from "@material-ui/core";
-import { useHistory, Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 
 
