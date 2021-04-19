@@ -2,31 +2,20 @@ import React, { useState, useEffect } from "react";
 import SearchBar from './SearchBar';
 import Results from './Results';
 import PageTitle from '../PageTitle';
-import { Typography } from "@material-ui/core";
-import { spacing } from '@material-ui/system';
+import { makeStyles } from "@material-ui/core/styles";
 const axios = require('axios');
 
-// const data = 
-//  [{
-//     show: {
-//       name: 'Girls',
-//       image: {
-//        medium: 'https://static.tvmaze.com/uploads/images/medium_portrait/31/78286.jpg'
-//       }
-//   }
-// }
-//   ,{
-//     show: {
-//       name: 'Girls',
-//       image: {
-//         medium: 'https://static.tvmaze.com/uploads/images/medium_portrait/31/78286.jpg'
-//       }
-//   }}
-// ]
 
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    margin: "1% 5% 1% 5%"
+  },
+}));
 
 
 export default function Search(props) {
+  const classes = useStyles();
   const [term, setTerm] = useState("");
   const [results, setResults] = useState([]);
   useEffect(() => {
@@ -41,10 +30,10 @@ export default function Search(props) {
     }
   }, [term])
   return (
-    <React.Fragment>
+    <div className={classes.root}>
       <PageTitle title={"Search Shows"}></PageTitle>
       <SearchBar onSearch={term => setTerm(term)} />
       <Results results={results.length > 0? results : []} />
-    </React.Fragment>
+    </div>
   )
 }

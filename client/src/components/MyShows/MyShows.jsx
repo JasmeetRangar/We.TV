@@ -12,6 +12,9 @@ const useStyles = makeStyles((theme) => ({
   paperGradient: {
     background: theme.palette.background.paperGradient
   },
+  root: {
+    margin: "1% 5% 1% 5%"
+  },
 }));
 
 
@@ -29,12 +32,12 @@ export default function MyShows() {
     }, [])
 
   return (
-    <React.Fragment>
+    <div className={classes.root}>
         <PageTitle title={"My Shows"}/>
           {results.length === 0 &&
           <Typography>Looks kinda empty. Why not get started by searching for your favourite shows?</Typography>             
           }
     <Results results={results.length > 0? results : []} />
-    </React.Fragment>
+    </div>
   )
 }

@@ -5,6 +5,6 @@ export default function PageTitle(props) {
   const {title} = props;
 
   return (
-    <Typography variant="h4" spacing="2">{title}</Typography>
+    <Typography variant="h4" >{title}</Typography>
   )
 }

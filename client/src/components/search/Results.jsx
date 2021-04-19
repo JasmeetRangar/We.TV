@@ -1,71 +1,120 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 
 import ShowImage from "../ShowImage";
-import { Typography, Button } from '@material-ui/core';
-import axios from 'axios';
-import { useHistory } from 'react-router-dom';
+import {
+  Typography,
+  List,
+  ListItem,
+  Card,
+  ListItemAvatar,
+  ListItemText,
+  Avatar,
+  CardActionArea,
+  Button,
+} from "@material-ui/core";
+import axios from "axios";
+import { makeStyles } from "@material-ui/core/styles";
+import { useHistory } from "react-router-dom";
 
-
-
+const useStyles = makeStyles((theme) => ({
+  root: {
+    marginBottom: "2%",
+  },
+  resultsPaper: {
+    width: "100%",
+  },
+  descHover: {
+    opacity: "0",
+    "&:hover": {
+      opacity: "1",
+    },
+  },
+}));
 
 export default function Results(props) {
-
+  const classes = useStyles();
   const history = useHistory();
 
   const { results } = props;
-  console.log(results);
 
   async function clickHandler(show) {
-    console.log(show);
-
     const dbCheck = await axios({
-      method: 'get',
-      url: '/api/shows'
-    })  
+      method: "get",
+      url: "/api/shows",
+    });
 
-    // console.log("========>=====>=====>>>>>>>>>",dbCheck)
-    // console.log(res.data);
-    
-    const shows = dbCheck.data
-    
-    const filtShows = shows.filter((each) => each.api_id == show.id)
+    const shows = dbCheck.data;
+
+    const filtShows = shows.filter((each) => each.api_id.toString() === show.id.toString());
 
     if (filtShows.length !== 0) {
-      const id = filtShows[0].id
-      history.push(`/shows/${id}`)
+      const id = filtShows[0].id;
+      history.push(`/shows/${id}`);
     } else {
-    
-    const res = await axios({
-      method: 'post',
-      url: '/api/shows',
-      data: {
-        name: show.name,
-        description: show.summary,
-        image: show.image.original,
-        api_id: show.id
-    }})
+      const res = await axios({
+        method: "post",
+        url: "/api/shows",
+        data: {
+          name: show.name,
+          description: show.summary,
+          image: show.image.original,
+          api_id: show.id,
+        },
+      });
 
-    const url = `/shows/${res.data.id}`
-    history.push(url);
+      const url = `/shows/${res.data.id}`;
+      history.push(url);
     }
   }
-  
 
-  
+  const removeHtmlTags = (string) => {
+    const regex = /(<([^>]+)>)/gi;
+    if (string) {
+      return string.replace(regex, "");
+    }
+    return "";
+  };
 
-  return results.map(info => {
-    // console.log("-------Here-------", info.show)
-    return (
-    <React.Fragment>
-      
-      <ShowImage key={info.show.id} imageSource={(info.show.image) ? info.show.image.medium : 'https://media1.tenor.com/images/27c20af3fdf3806d059732caa8699ef0/tenor.gif'} />
-      <Typography>{info.show.name}</Typography>
-      <Button onClick={() => clickHandler(info.show)}>Save the Show</Button>
+  const cardDescriptionFormatting = (desc) => {
+    if (!desc) {
+      return;
+    }
+    const notags = removeHtmlTags(desc);
+    return `${notags.slice(0, 87)}...`;
+  };
 
-     
-    </React.Fragment>
-    );
-  });
+  return (
+    <List>
+      {results.map((info) => {
+        return (
+          <Card className={classes.root}>
+            <CardActionArea>
+              <ListItem
+                key={info.show.id}
+                alignItems={"flex-start"}
+                onClick={() => clickHandler(info.show)}
+              >
+                <ListItemAvatar>
+                  <ShowImage
+                    key={info.show.id}
+                    imageSource={
+                      info.show.image
+                        ? info.show.image.medium
+                        : "https://media1.tenor.com/images/27c20af3fdf3806d059732caa8699ef0/tenor.gif"
+                    }
+                  />
+                </ListItemAvatar>
+                <ListItemText>
+                  <Typography variant="h6">{info.show.name}</Typography>
+                  <Typography className={classes.descHover}>
+                    {cardDescriptionFormatting(info.show.summary)}
+                  </Typography>
+                </ListItemText>
+              </ListItem>
+            </CardActionArea>
+          </Card>
+        );
+      })}
+    </List>
+  );
 }
-
-//key={album.collectionId} {...album}
