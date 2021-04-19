@@ -74,7 +74,7 @@ export default function InputArea(props) {
             // Located on https://cloudinary.com/console/
             uploadPreset={'l1xxccjh'} // check that an upload preset exists and check mode is signed or unisgned
             buttonText={
-            <Badge badgeContent={"✓"} color="secondary">
+            <Badge badgeContent={ props.upload ? "✓" : "x" } color="secondary">
               <PhotoCamera color="primary"/>
             </Badge>
           } // default 'Upload Files'
