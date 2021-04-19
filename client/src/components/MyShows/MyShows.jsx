@@ -9,7 +9,7 @@ import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
   paperGradient: {
-    background: theme.palette.background.paper
+    background: theme.palette.background.paperGradient
   },
 }));
 

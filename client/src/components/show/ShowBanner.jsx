@@ -9,32 +9,35 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 
 const useStyles = makeStyles((theme) => ({
+  // root: {
+  //   // display: "flex",
+  //   // justifyContent: "center",
+  //   // flexWrap: "wrap",
+  //   margin: "1% 5% 1% 5%",
+  //   "& > *": {
+  //     margin: theme.spacing(1),
+  //     width: theme.spacing(16),
+  //     height: theme.spacing(16),
+  //   },
+  // },
+  // bannerBox: {
+  //   // display: "flex",
+  //   // justifyContent: "center",
+  // },
+  // showDetails: {
+  //   // display: "flex",
+  //   // flexDirection: "row",
+  //   // alignItems: "center",
+  //   // justifyContent: "center",
+  //   // flexWrap: "wrap",
+  // },
+  // showBannerBox: {
+  //   // display: "flex",
+  //   // flexDirection: "row",
+  //   // alignItems: "center",
+  // },
   root: {
-    display: "flex",
-    justifyContent: "center",
-    flexWrap: "wrap",
-    "& > *": {
-      margin: theme.spacing(1),
-      width: theme.spacing(16),
-      height: theme.spacing(16),
-    },
-  },
-  bannerBox: {
-    display: "flex",
-    justifyContent: "center",
-  },
-  showDetails: {
-    display: "flex",
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
-    width: "30%",
-    flexWrap: "wrap",
-  },
-  showBannerBox: {
-    display: "flex",
-    flexDirection: "row",
-    alignItems: "center",
+    margin: "1% 5% 1% 5%"
   },
   fabEdit: {
     zIndex: "10",
@@ -74,7 +77,7 @@ export default function ShowBanner(props) {
   console.log("this the state", state.show[0]);
 
   return (
-    <React.Fragment>
+    <div className={classes.root}>
       <Box className={classes.bannerBox}>
         <div className={classes.showDetails}>
           {(favourites.length === 0) || (favourites && !favourites.is_active) ? (
@@ -103,7 +106,7 @@ export default function ShowBanner(props) {
             <Image
               src={state.show[0].image}
               cover="true"
-              style={{ width: "100%" }}
+              // style={{ maxWidth: "700px" }}
             />
             <Typography variant="h2">{state.show[0].name}</Typography>
 
@@ -116,6 +119,6 @@ export default function ShowBanner(props) {
           </Paper>
         </div>
       </Box>
-    </React.Fragment>
+    </div>
   );
 }

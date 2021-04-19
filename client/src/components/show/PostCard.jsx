@@ -25,11 +25,7 @@ import { authContext } from "../AuthProvider";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    maxWidth: 500,
-    minWidth: "40%",
-    marginTop: "1%",
-    marginBottom: "1%",
-    margin: "auto"
+    margin: "1% 5% 1% 5%"
   },
   media: {
     height: 0,
@@ -59,7 +55,7 @@ export default function PostCard(props) {
 
   function uploadHandler(url) {
     setUpload(url);
-    console.log("state set for upload");
+    // console.log("state set for upload");
   }
 
   const handleExpandClick = () => {
@@ -72,10 +68,10 @@ export default function PostCard(props) {
   });
 
   function commentLikeHandler(comment_id, index) {
-    console.log("adding a comment like from post card");
+    // console.log("adding a comment like from post card");
 
     axios.put(`/api/comments/${comment_id}/like`).then(res => {
-      console.log('response', res.data[0]);
+      // console.log('response', res.data[0]);
 
       const { comments } = state;
 
@@ -88,10 +84,10 @@ export default function PostCard(props) {
   }
 
   function commentDisLikeHandler(comment_id, index) {
-    console.log("adding a comment dislike from post card");
+    // console.log("adding a comment dislike from post card");
 
     axios.put(`/api/comments/${comment_id}/dislike`).then(res => {
-      console.log('response', res.data[0]);
+      // console.log('response', res.data[0]);
 
       const { comments } = state;
 
@@ -113,12 +109,12 @@ export default function PostCard(props) {
   }, [])
 
   function likeHandler() {
-    console.log('adding a like from post card');
+    // console.log('adding a like from post card');
     props.likeHandler(post.id, props.index)
   }
 
   function dislikeHandler() {
-    console.log('adding a dislike from post card');
+    // console.log('adding a dislike from post card');
     props.dislikeHandler(post.id, props.index)
   }
 
@@ -126,11 +122,11 @@ export default function PostCard(props) {
 
   const { post } = props;
 
-  console.log('fuck me', post);
+  // console.log('fuck me', post);
 
   function onSubmitComment(comment) {
-    console.log('Line 121 Post card', comment);
-    console.log('fuck me', post.id)
+    // console.log('Line 121 Post card', comment);
+    // console.log('fuck me', post.id)
     axios({
       method: 'post',
       url: '/api/comments',

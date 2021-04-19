@@ -18,30 +18,27 @@ import { authContext } from '../AuthProvider';
 
 const useStyles = makeStyles((theme) => ({
   MessagesContainer: {
-    maxWidth: 500,
-    minWidth: "40%",
-    marginTop: "1%",
-    marginBottom: "1%",
-    margin: "auto",
+    margin: "1% 5% 1% 5%",
   },
   messagesList: {
     listStyleType: "none",
-    margin: "5%"
+    // listStylePosition: "outside",
+    marginBottom: "4%",
+    padding: "1% 0% 0% 0%"
+
   },
   messageItemMyMessage: {
     textAlign: "right",
-    marginRight: "2%",
+    marginRight: "5%",
     marginLeft: "10%",
-    // background: "CornflowerBlue",
-    // color: "white",
+    padding: "0px",
     background: theme.palette.primary.main
   },
   MessageItemReceivedMessage: {
     textAlign: "left",
     marginRight: "10%",
-    marginLeft: "2%",
-    // background: "DodgerBlue",
-    color: "white",
+    marginLeft: "5%",
+    padding: "0px",
     background: theme.palette.primary.dark
   },
 }));
@@ -53,10 +50,7 @@ export default function Chat(props) {
 
   const userId = user.id
   const displayName = user.display_name
-  // const userId = "1"; //This is a hardcoded test value, figure out how to implent it when we have user auth set up
-  // const displayName = "Jerry Seinfeld"; //This is a hardcoded test value. We'll get these from the user auth prop or whatever
 
-  // const roomId = 1; //This is a hardcoded test value, use the next line instead
   const { roomId, oldChat } = props; // roomId == show_id in the DataBase
   const { messages, sendMessage } = useChat({ roomId, userId, displayName }); // Creates a websocket and manages messaging
   const [newMessage, setNewMessage] = React.useState(""); // Message to be sent
@@ -66,7 +60,6 @@ export default function Chat(props) {
   };
 
   const handleSendMessage = () => {
-    // console.log(newMessage); //Logs before message is send to server. Get rid of this console.log
     sendMessage(newMessage);
     setNewMessage("");
   };
@@ -78,11 +71,10 @@ export default function Chat(props) {
           {oldChat.map((message, i) => (
             <li
               key={i}
-              // HEY HEY YOU MIGHT HAVE TO UPDATE userID here depending on how you handle auth
             >
               <Paper
                 className={
-                  message.creator_id == userId
+                  message.creator_id === userId
                     ? classes.messageItemMyMessage
                     : classes.MessageItemReceivedMessage
                 }
