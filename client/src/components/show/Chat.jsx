@@ -31,16 +31,20 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "right",
     marginRight: "5%",
     marginLeft: "10%",
-    padding: "0px",
+    marginTop: "2%",
+    padding: "0px 1px 1px 1px",
+        // paddingBottom: "2px",
     background: theme.palette.primary.main
   },
   MessageItemReceivedMessage: {
     textAlign: "left",
     marginRight: "10%",
+    marginTop: "2%",
     marginLeft: "5%",
-    padding: "0px",
+    padding: "0px 1px 1px 1px",
+    // paddingBottom: "2px",
     background: theme.palette.primary.dark
-  },
+  }
 }));
 
 export default function Chat(props) {
@@ -80,7 +84,7 @@ export default function Chat(props) {
                 }
               >
                 <Box m={1}>
-                  <h4>
+                  <h4 style={{padding: "0px", opacity: "0.6"}}>
                     {message.display_name}{" "}
                   </h4>
                   {message.message}
@@ -98,7 +102,7 @@ export default function Chat(props) {
                 }
               >
                 <Box m={1}>
-                  <h4>
+                  <h4 style={{padding: "0px", opacity: "0.6"}}>
                     {message.displayName}{" "}
                   </h4>
                   {message.body}
