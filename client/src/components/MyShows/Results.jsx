@@ -18,8 +18,8 @@ import { useHistory } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    // width: "100%",
-    backgroundColor: theme.palette.background.paper,
+    background: theme.palette.background.paper,
+    marginBottom: "2%"
   },
   resultsPaper: {
     width: "100%"
@@ -41,7 +41,7 @@ export default function Results(props) {
       {results.map((info) => {
         // console.log("-------Here-------", info)
         return (
-          <Card>
+          <Card className={classes.root}>
             <CardActionArea>
             <ListItem
             key={info.id}

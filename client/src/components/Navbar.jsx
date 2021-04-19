@@ -15,7 +15,8 @@ const useStyles = makeStyles((theme) => ({
   },
   Toolbar: {
     display: 'flex',
-    justifyContent: 'space-around'
+    justifyContent: 'space-around',
+    background: 'linear-gradient(140deg, rgba(4,4,18,1) 0%, rgba(76,124,251,1) 100%)'
   }
 }));
 
@@ -27,23 +28,23 @@ export default function Navbar() {
     <div className={classes.root}>
     <AppBar position="fixed">
       <Toolbar className={classes.Toolbar}>
-      <Link to="/myshows" color="inherit">
-        <IconButton color="inherit" aria-label="shows">
+      <Link to="/myshows">
+        <IconButton color="#fff" aria-label="shows">
           <TvIcon />
         </IconButton>
         </Link>
-        <Link to="/search" color="inherit">
-          <IconButton color="inherit" aria-label="search">
+        <Link to="/search">
+          <IconButton color="#fff" aria-label="search">
             <SearchIcon />
           </IconButton>
         </Link>
-        <Link to="/profile" color="inherit">
-        <IconButton color="inherit" aria-label="account">
+        <Link to="/profile">
+        <IconButton color="#fff" aria-label="account">
           <AccountCircle />
         </IconButton>
         </Link>
-        <Link to="/" color="inherit">
-        <IconButton color="inherit" aria-label="logout">
+        <Link to="/">
+        <IconButton color="#fff" aria-label="logout">
           <ExitToAppIcon />
         </IconButton>
         </Link>

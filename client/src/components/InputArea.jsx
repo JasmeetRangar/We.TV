@@ -5,10 +5,11 @@ import {
   FormControl,
   InputAdornment,
   Input,
+  Badge
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import { PhotoCamera, Movie, ArrowForward } from "@material-ui/icons";
-import { useState, useEffect } from "react";
+import { PhotoCamera, ArrowForward } from "@material-ui/icons";
+import { useState } from "react";
 import { WidgetLoader, Widget } from 'react-cloudinary-upload-widget'
 
 
@@ -75,14 +76,18 @@ export default function InputArea(props) {
             cloudName={'djayst2jw'} // your cloudinary account cloud name. 
             // Located on https://cloudinary.com/console/
             uploadPreset={'l1xxccjh'} // check that an upload preset exists and check mode is signed or unisgned
-            buttonText={<PhotoCamera />} // default 'Upload Files'
+            buttonText={
+            <Badge badgeContent={"✓"} color="secondary">
+              <PhotoCamera color="primary"/>
+            </Badge>
+          } // default 'Upload Files'
             style={{
                   color: '#3f51b5',
                   border: 'none',
-                  backgroundColor: 'white',
+                  backgroundColor: 'transparent',
                   borderRadius: '4px',
                   height: '25px',
-                  marginTop: '5px',
+                  marginTop: '40%',
                   marginLeft: '0',
                   cursor:'pointer',
                   outline: '0'

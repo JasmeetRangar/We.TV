@@ -6,10 +6,11 @@ import {
   MuiThemeProvider,
   createMuiTheme,
   makeStyles,
+  ThemeProvider
 } from "@material-ui/core/styles";
-import { green, orange } from "@material-ui/core/colors";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+
 
 import Navbar from "./components/Navbar.jsx";
 import Login from "./components/Login";
@@ -18,22 +19,10 @@ import ProfileDisplay from "./components/ProfileDisplay";
 import Search from "./components/search/Search";
 import Show from "./components/show/Show";
 import MyShows from "./components/MyShows/MyShows";
-import Chat from "./components/show/Chat";
 import HomePage from './HomePage';
+import theme from "./theme"
 
-const theme = createMuiTheme({
-  // palette: {
-  //   background: {
-  //     default: '#303030'
-  //   },
-  //   secondary: {
-  //     main: orange[500]
-  //   },
-  //   text: {
-  //     primary : green[500]
-  //   }
-  // }
-});
+
 
 const useStyles = makeStyles({
   mainContent: {
@@ -59,7 +48,7 @@ export default function App() {
   return (
     <Router>
       <div className="App">
-        <MuiThemeProvider theme={theme}>
+        <ThemeProvider theme={theme}>
           <CssBaseline />
           <Switch>
             <Route path="/" exact>
@@ -77,22 +66,6 @@ export default function App() {
 
             <Route exact path="/register" component={Register} />
             <Route exact path="/login" component={Login} />
-                        
-            {/* <Route path="/users" exact>
-              <div className={classes.mainContent} style={{marginTop: '100px'}}>
-                <h1> Users </h1>
-                <ul> {userList} </ul>
-              </div>
-            </Route>
-            <Route path="/posts" exact>
-              <div
-                className={classes.mainContent}
-                style={{ marginTop: "100px" }}
-              >
-                <h1> Posts </h1>
-                <ul> {postsList} </ul>
-              </div>
-            </Route> */}
             <Route path="/search" exact>
             <Navbar />
               <div
@@ -118,11 +91,10 @@ export default function App() {
                 style={{ marginTop: "100px" }}
               >
                 <ProfileDisplay />
-                {/* <ProfileForm />  */}
               </div>
             </Route>
           </Switch>
-        </MuiThemeProvider>
+        </ThemeProvider>
       </div>
     </Router>
   );

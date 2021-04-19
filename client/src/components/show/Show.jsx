@@ -15,7 +15,8 @@ import { authContext } from "../AuthProvider";
 
 const useStyles = makeStyles(() => ({
   show: {
-    // margin: "2%"
+    // margin: "2%",
+    // width: "25%"
   },
 }));
 
@@ -141,7 +142,7 @@ export default function Show(props) {
   const classes = useStyles();
   return (
     <div className={classes.show}>
-      <Box className={classes.show}>
+      <Box>
         <ShowBanner
           id={params.id}
           transitionToChat={transitionToChat}

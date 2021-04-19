@@ -32,15 +32,17 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "right",
     marginRight: "2%",
     marginLeft: "10%",
-    background: "CornflowerBlue",
-    color: "white",
+    // background: "CornflowerBlue",
+    // color: "white",
+    background: theme.palette.primary.main
   },
   MessageItemReceivedMessage: {
     textAlign: "left",
     marginRight: "10%",
     marginLeft: "2%",
-    background: "DodgerBlue",
+    // background: "DodgerBlue",
     color: "white",
+    background: theme.palette.primary.dark
   },
 }));
 

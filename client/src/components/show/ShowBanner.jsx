@@ -99,7 +99,7 @@ export default function ShowBanner(props) {
             </Fab>
           )}
 
-          <Paper elevation={4} style={{ color: "white", background: "black" }}>
+          <Paper elevation={4}>
             <Image
               src={state.show[0].image}
               cover="true"
