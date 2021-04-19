@@ -9,41 +9,14 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 
 const useStyles = makeStyles((theme) => ({
-  // root: {
-  //   // display: "flex",
-  //   // justifyContent: "center",
-  //   // flexWrap: "wrap",
-  //   margin: "1% 5% 1% 5%",
-  //   "& > *": {
-  //     margin: theme.spacing(1),
-  //     width: theme.spacing(16),
-  //     height: theme.spacing(16),
-  //   },
-  // },
-  // bannerBox: {
-  //   // display: "flex",
-  //   // justifyContent: "center",
-  // },
-  // showDetails: {
-  //   // display: "flex",
-  //   // flexDirection: "row",
-  //   // alignItems: "center",
-  //   // justifyContent: "center",
-  //   // flexWrap: "wrap",
-  // },
-  // showBannerBox: {
-  //   // display: "flex",
-  //   // flexDirection: "row",
-  //   // alignItems: "center",
-  // },
   root: {
     margin: "1% 5% 1% 5%"
   },
   fabEdit: {
     zIndex: "10",
-    position: "relative",
+    position: "fixed",
     top: "5.5em",
-    left: "14.2em",
+    right: "7%",
     opacity: "75%",
     '&:hover': {
       opacity: "100%",

@@ -26,17 +26,14 @@ export default function InputArea(props) {
   const [post,setPost] = useState('');
 
   const classes = useStyles();
-
-  // const id = props.id;
   
 
   function onSubmit() {
-    console.log(post);
     props.onSubmit(post);
     setPost('');
   }
   function uploadHandler(url) {
-    console.log('setting upload in inputArea.jsx');
+    // console.log('setting upload in inputArea.jsx');
     props.uploadHandler(url);
   }
 
