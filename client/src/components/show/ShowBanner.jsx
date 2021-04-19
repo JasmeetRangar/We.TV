@@ -12,6 +12,16 @@ const useStyles = makeStyles((theme) => ({
   root: {
     margin: "1% 5% 1% 5%"
   },
+  bannerPaper:{
+    background: "transparent"
+  },
+  bannerText:{
+    background: "radial-gradient(circle, rgba(76,124,251,0.5) 0%, rgba(255,255,255,0) 100%)",
+    border: "1px solid white",
+    borderOpacity: "0.7",
+    borderRadius: "5px",
+    marginTop: "2%"
+  },
   fabEdit: {
     zIndex: "10",
     margin: "1em 1em 0 0",
@@ -75,12 +85,17 @@ export default function ShowBanner(props) {
             </Fab>
           )}
 
-          <Paper elevation={4}>
+          <Paper 
+            elevation={4}
+            className={classes.bannerPaper}
+            >
             <Image
               src={state.show[0].image}
               cover="true"
               // style={{ maxWidth: "700px" }}
             />
+            <div className={classes.bannerText}>
+
             <Typography variant="h2">{state.show[0].name}</Typography>
 
             <Typography>{removeHtmlTags(state.show[0].description)}</Typography>
@@ -88,7 +103,8 @@ export default function ShowBanner(props) {
             <ShowNav
               transitionToChat={transitionToChat}
               viewChat={viewChat}
-            />
+              />
+              </div>
           </Paper>
         </div>
       </Box>

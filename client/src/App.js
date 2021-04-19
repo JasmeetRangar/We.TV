@@ -48,7 +48,7 @@ export default function App() {
   return (
     <Router>
       <div className="App">
-        <ThemeProvider theme={theme}>
+        <MuiThemeProvider theme={theme}>
           <CssBaseline />
           <Switch>
             <Route path="/" exact>
@@ -94,7 +94,7 @@ export default function App() {
               </div>
             </Route>
           </Switch>
-        </ThemeProvider>
+        </MuiThemeProvider>
       </div>
     </Router>
   );

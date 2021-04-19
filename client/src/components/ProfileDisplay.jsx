@@ -11,6 +11,7 @@ import {
 } from "@material-ui/core";
 import { Edit } from "@material-ui/icons";
 import useApplicationData from '../hooks/useApplicationData';
+import PageTitle from "./PageTitle";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -29,7 +30,8 @@ const useStyles = makeStyles((theme) => ({
     margin: "auto",
   },
   paper: {
-    padding: "15px 0px 15px 0px"
+    padding: "15px 0px 15px 0px",
+    marginTop: "2%",
   },
   fabEdit: {
     position: "relative",
@@ -44,6 +46,7 @@ export default function ProfileDisplay() {
   console.log("profile", user)
   return (
     <Container component="main" maxWidth="xs">
+      <PageTitle title={"My Profile"}/>
       <Paper className={classes.paper}>
         <Avatar
           alt="Remy Sharp"
