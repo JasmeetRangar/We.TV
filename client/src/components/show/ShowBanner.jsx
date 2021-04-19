@@ -2,7 +2,7 @@ import React from "react";
 
 import { makeStyles } from "@material-ui/core/styles";
 import { Paper, Typography, Box, Fab } from "@material-ui/core";
-import { Add, Remove, StarRounded, StarBorderRounded } from "@material-ui/icons";
+import { Add, Remove} from "@material-ui/icons";
 import ShowNav from "./ShowNav";
 import Image from "material-ui-image";
 import { useState, useEffect } from "react";
@@ -14,9 +14,9 @@ const useStyles = makeStyles((theme) => ({
   },
   fabEdit: {
     zIndex: "10",
-    position: "fixed",
-    top: "5.5em",
-    right: "7%",
+    margin: "1em 1em 0 0",
+    float: "right",
+    textAlign: "right",
     opacity: "75%",
     '&:hover': {
       opacity: "100%",

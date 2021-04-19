@@ -68,6 +68,12 @@ export default function Chat(props) {
     setNewMessage("");
   };
 
+  const pressEnter = (e) => {
+    if (e.keyCode === 13) {
+      handleSendMessage()
+    }
+  }
+
   return (
     <Paper className={classes.MessagesContainer}>
       <div>
@@ -119,6 +125,7 @@ export default function Chat(props) {
           id="standard-textarea"
           value={newMessage}
           onChange={handleNewMessageChange}
+          onKeyDown={(e) => pressEnter(e)}
           label="Chat"
           placeholder="Write message..."
           multiline
