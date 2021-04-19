@@ -35,7 +35,8 @@ const useStyles = makeStyles((theme) => ({
     padding: "0px 1px 1px 1px",
         // paddingBottom: "2px",
     border: "none",
-    background: theme.palette.primary.main
+    background: theme.palette.primary.main,
+    boxShadow: "0px 8px 16px -3px rgba(43,167,250,0.5)"
   },
   MessageItemReceivedMessage: {
     textAlign: "left",
@@ -45,7 +46,8 @@ const useStyles = makeStyles((theme) => ({
     padding: "0px 1px 1px 1px",
     // paddingBottom: "2px",
     border: "none",
-    background: theme.palette.primary.dark
+    background: theme.palette.primary.dark,
+    boxShadow: "5px 6px 16px -4px rgba(43,167,250,0.5)"
   }
 }));
 

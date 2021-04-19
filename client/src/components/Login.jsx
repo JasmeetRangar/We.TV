@@ -30,7 +30,6 @@ function Copyright() {
         We.TV
       </Link>{' '}
       {new Date().getFullYear()}
-      {'.'}
     </Typography>
   );
 }

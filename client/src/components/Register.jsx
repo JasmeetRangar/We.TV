@@ -18,10 +18,9 @@ function Copyright() {
     <Typography variant="body2" color="textSecondary" align="center">
       {"Copyright © "}
       <Link color="inherit" href="/">
-        We.TVw
+        We.TV
       </Link>{" "}
       {new Date().getFullYear()}
-      {"."}
     </Typography>
   );
 }
@@ -136,7 +135,7 @@ export default function Register() {
             Register
           </Button>
 
-          <Link href="#" variant="body2">
+          <Link href="/login" variant="body2">
             {"Already have an account? Login"}
           </Link>
         </form>
