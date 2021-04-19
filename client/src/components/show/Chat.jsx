@@ -34,6 +34,7 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "2%",
     padding: "0px 1px 1px 1px",
         // paddingBottom: "2px",
+    border: "none",
     background: theme.palette.primary.main
   },
   MessageItemReceivedMessage: {
@@ -43,6 +44,7 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: "5%",
     padding: "0px 1px 1px 1px",
     // paddingBottom: "2px",
+    border: "none",
     background: theme.palette.primary.dark
   }
 }));

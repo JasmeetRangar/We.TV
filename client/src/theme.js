@@ -11,7 +11,7 @@ const theme = createMuiTheme({
       main: "#e65552",
     },
     background: {
-      default: "#040412", 
+      default: "#040412",
       // paperGradient: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
       // paper: '#272727'
     },
@@ -22,15 +22,16 @@ const theme = createMuiTheme({
   overrides: {
     MuiPaper: {
       root: {
-        background: "#FF0000",
-      }
+        backgroundColor: "transparent",
+        // border: "1px solid white",
+      },
     },
     MuiCard: {
       root: {
         background: "transparent",
         border: "1px solid white",
         // borderOpacity: "0.7"
-      }
+      },
     },
   },
 });

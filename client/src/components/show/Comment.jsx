@@ -22,7 +22,7 @@ import ThumbDownIcon from "@material-ui/icons/ThumbDown";
 const useStyles = makeStyles((theme) => ({
   root: {
     width: "100%",
-    backgroundColor: theme.palette.background.paper,
+    // backgroundColor: theme.palette.background.paper,
   },
   fonts: {
     fontWeight: "bold",

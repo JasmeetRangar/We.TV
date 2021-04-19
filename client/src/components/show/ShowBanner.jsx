@@ -13,7 +13,8 @@ const useStyles = makeStyles((theme) => ({
     margin: "1% 5% 1% 5%"
   },
   bannerPaper:{
-    background: "transparent"
+    background: "transparent",
+    border: "none"
   },
   bannerText:{
     background: "radial-gradient(circle, rgba(76,124,251,0.5) 0%, rgba(255,255,255,0) 100%)",

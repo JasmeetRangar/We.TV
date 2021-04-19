@@ -16,7 +16,8 @@ const useStyles = makeStyles((theme) => ({
   Toolbar: {
     display: 'flex',
     justifyContent: 'space-around',
-    background: 'linear-gradient(140deg, rgba(4,4,18,1) 0%, rgba(76,124,251,1) 100%)'
+    background: 'linear-gradient(140deg, rgba(4,4,18,1) 0%, rgba(76,124,251,1) 100%)',
+    border: "none"
   }
 }));
 
