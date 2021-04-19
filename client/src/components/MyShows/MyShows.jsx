@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 
+import PageTitle from "../PageTitle";
 import Results from "./Results"
 import { Typography, Paper } from '@material-ui/core';
 import { authContext } from "../AuthProvider";
@@ -29,12 +30,7 @@ export default function MyShows() {
 
   return (
     <React.Fragment>
-      <Paper
-        elevation={4}
-        className={classes.paperGradient}
-      >
-    <Typography variant="h2">My Shows</Typography>
-          </Paper>
+        <PageTitle title={"My Shows"}/>
           {results.length === 0 &&
           <Typography>Looks kinda empty. Why not get started by searching for your favourite shows?</Typography>             
           }

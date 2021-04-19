@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import SearchBar from './SearchBar';
 import Results from './Results';
+import PageTitle from '../PageTitle';
 import { Typography } from "@material-ui/core";
 import { spacing } from '@material-ui/system';
 const axios = require('axios');
@@ -41,7 +42,7 @@ export default function Search(props) {
   }, [term])
   return (
     <React.Fragment>
-      <Typography variant='h4' spacing='2'>Search Shows</Typography>
+      <PageTitle title={"Search Shows"}></PageTitle>
       <SearchBar onSearch={term => setTerm(term)} />
       <Results results={results.length > 0? results : []} />
     </React.Fragment>

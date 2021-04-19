@@ -18,7 +18,7 @@ import { useHistory } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    background: theme.palette.background.paper,
+    // background: theme.palette.background.paper,
     marginBottom: "2%"
   },
   resultsPaper: {

@@ -7,7 +7,7 @@ import ForumIcon from "@material-ui/icons/Forum";
 
 const useStyles = makeStyles({
   root: {
-    // width: 500,
+    background: "transparent"
   },
 });
 

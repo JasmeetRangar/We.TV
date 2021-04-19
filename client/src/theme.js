@@ -1,22 +1,36 @@
-import { createMuiTheme }  from '@material-ui/core/styles'
+import { createMuiTheme } from "@material-ui/core/styles";
 
 const theme = createMuiTheme({
   palette: {
-    type: 'dark',
+    type: "dark",
     primary: {
-      main: '#4c7cfb',
-      light: '#839de2',
+      main: "#4c7cfb",
+      light: "#839de2",
     },
     secondary: {
-      main: '#e65552',
+      main: "#e65552",
     },
     background: {
-      default: '#040412',
-      paperGradient: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
-      paper: '#272727'
+      default: "#040412", 
+      // paperGradient: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+      // paper: '#272727'
     },
     error: {
-      main: '#cf6679',
+      main: "#cf6679",
+    },
+  },
+  overrides: {
+    MuiPaper: {
+      root: {
+        background: "#FF0000",
+      }
+    },
+    MuiCard: {
+      root: {
+        background: "transparent",
+        border: "1px solid white",
+        // borderOpacity: "0.7"
+      }
     },
   },
 });
