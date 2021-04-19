@@ -144,7 +144,7 @@ export default function Login() {
           { error && <LoginError />}
           <Grid container>
             <Grid item xs>
-              <Link href="#" variant="body2">
+              <Link href="#" variant="body2" onClick={handleClickOpen}>
                 Forgot password?
               </Link>
             </Grid>
