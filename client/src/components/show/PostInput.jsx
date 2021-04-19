@@ -23,7 +23,7 @@ export default function PostInput(props) {
     <Card className={classes.root}>
       <CardContent>
         <Typography>What's on your mind?</Typography>
-        <InputArea onSubmit={props.onSubmit} uploadHandler={props.uploadHandler}/>
+        <InputArea onSubmit={props.onSubmit} upload={props.upload} uploadHandler={props.uploadHandler}/>
       </CardContent>
     </Card>
   );

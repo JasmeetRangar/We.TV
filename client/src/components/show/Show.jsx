@@ -163,6 +163,7 @@ export default function Show(props) {
               id={params.id}
               onSubmit={onSubmit}
               uploadHandler={uploadHandler}
+              upload={upload}
               posts={posts}
             />
             <PostsList
