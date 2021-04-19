@@ -143,7 +143,7 @@ export default function PostCard(props) {
       axios.get(`/api/comments/${post.id}`)
       .then((response) =>{
         console.log(response.data);
-        // setUpload('');
+        setUpload('');
         setState((prev) => ({ ...prev, comments: [response.data[response.data.length - 1],...state.comments] }));
       })
 
@@ -208,7 +208,7 @@ export default function PostCard(props) {
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
-          <InputComment onSubmitComment={onSubmitComment} uploadHandler={uploadHandler} post_id={post.id} />
+          <InputComment onSubmitComment={onSubmitComment} uploadHandler={uploadHandler} post_id={post.id} upload={upload} />
           <Comment comments={state.comments} commentLikeHandler={commentLikeHandler} commentDisLikeHandler={commentDisLikeHandler} />
         </CardContent>
         <IconButton
