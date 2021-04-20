@@ -7,17 +7,12 @@ import {
   Input,
   Badge
 } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
 import { PhotoCamera, ArrowForward } from "@material-ui/icons";
 import { useState } from "react";
 import { WidgetLoader, Widget } from 'react-cloudinary-upload-widget'
 
 
-const useStyles = makeStyles((theme) => ({
-  input: {
-    display: "none",
-  },
-}));
+
 
 export default function InputArea(props) {
 
@@ -25,7 +20,6 @@ export default function InputArea(props) {
 
   const [post,setPost] = useState('');
 
-  const classes = useStyles();
   
 
   function onSubmit() {
@@ -33,7 +27,6 @@ export default function InputArea(props) {
     setPost('');
   }
   function uploadHandler(url) {
-    // console.log('setting upload in inputArea.jsx');
     props.uploadHandler(url);
   }
 
@@ -43,7 +36,7 @@ export default function InputArea(props) {
   return (
     <FormControl style={{ width: "95%" }} >
       <Input
-        autoFocus="true"
+        autoFocus={true}
         type="reset"
         id="standard-textarea"
         value={post}
@@ -104,44 +97,8 @@ export default function InputArea(props) {
 
             // 👇 FOR SIGNED UPLOADS ONLY 👇
           />
-        {/* <CloudinaryContext cloudName="demo">
-          <Image publicId="sample">
-            <Transformation width="200" crop="scale" angle="10"/>
-          </Image>
-        </CloudinaryContext> */}
-          {/* <input
-            accept="image/*"
-            className={classes.input}
-            id="icon-button-file"
-            type="file"
-          />
-          <label htmlFor="icon-button-file">
-            <IconButton
-              color="primary"
-              aria-label="upload picture"
-              component="span"
-            >
-              <PhotoCamera />
-            </IconButton>
-          </label> */}
+        
         </Grid>
-        {/* <Grid item>
-          <input
-            accept="image/*"
-            className={classes.input}
-            id="icon-button-file"
-            type="file"
-          />
-          <label htmlFor="icon-button-file">
-            <IconButton
-              color="primary"
-              aria-label="upload video"
-              component="span"
-            >
-              <Movie />
-            </IconButton>
-          </label>
-        </Grid> */}
       </Grid>
     </FormControl>
   );

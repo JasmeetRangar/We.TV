@@ -17,7 +17,6 @@ import ThumbDownIcon from "@material-ui/icons/ThumbDown";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import Comment from "./Comment";
-import InputArea from "../InputArea";
 import InputComment from "../InputComment";
 import { useState, useEffect, useContext } from "react";
 import axios from "axios";
@@ -55,7 +54,6 @@ export default function PostCard(props) {
 
   function uploadHandler(url) {
     setUpload(url);
-    // console.log("state set for upload");
   }
 
   const handleExpandClick = () => {
@@ -68,10 +66,8 @@ export default function PostCard(props) {
   });
 
   function commentLikeHandler(comment_id, index) {
-    // console.log("adding a comment like from post card");
 
     axios.put(`/api/comments/${comment_id}/like`).then(res => {
-      // console.log('response', res.data[0]);
 
       const { comments } = state;
 
@@ -79,15 +75,12 @@ export default function PostCard(props) {
 
       setState({comments})
       
-      // setState((prev) => ({...prev, posts:[...state.posts, posts.post_id]}))
     })
   }
 
   function commentDisLikeHandler(comment_id, index) {
-    // console.log("adding a comment dislike from post card");
 
     axios.put(`/api/comments/${comment_id}/dislike`).then(res => {
-      // console.log('response', res.data[0]);
 
       const { comments } = state;
 
@@ -95,38 +88,32 @@ export default function PostCard(props) {
 
       setState({comments})
       
-      // setState((prev) => ({...prev, posts:[...state.posts, posts.post_id]}))
     })
   }
 
 
+  const { post } = props;
   useEffect(()=> {
    
     axios.get(`/api/comments/${post.id}`)
     .then(commentsFrom => {
       setState(prev => ({...prev, comments:commentsFrom.data}))});
   
-  }, [])
+  }, [post.id])
 
   function likeHandler() {
-    // console.log('adding a like from post card');
     props.likeHandler(post.id, props.index)
   }
 
   function dislikeHandler() {
-    // console.log('adding a dislike from post card');
     props.dislikeHandler(post.id, props.index)
   }
 
 
 
-  const { post } = props;
 
-  // console.log('fuck me', post);
 
   function onSubmitComment(comment) {
-    // console.log('Line 121 Post card', comment);
-    // console.log('fuck me', post.id)
     axios({
       method: 'post',
       url: '/api/comments',
@@ -138,11 +125,9 @@ export default function PostCard(props) {
     }})
     .then((res) => {
 
-      console.log('postInput',res.data);
 
       axios.get(`/api/comments/${post.id}`)
       .then((response) =>{
-        console.log(response.data);
         setUpload('');
         setState((prev) => ({ ...prev, comments: [response.data[response.data.length - 1],...state.comments] }));
       })
@@ -154,10 +139,8 @@ export default function PostCard(props) {
 
   
 
-  console.log("💦", post.profile_pic);
-  console.log("💦", post.display_name);
   return (
-    <Card className={classes.root}>
+    <Card className={classes.root} key={post.id}>
       <CardHeader
         avatar={
           <Avatar aria-label="recipe" src={post.profile_pic} className={classes.avatar} alt={"User_Name"}>
@@ -176,7 +159,7 @@ export default function PostCard(props) {
         <CardMedia
           className={classes.media}
           image={post.image}
-          title="Paella dish"
+          title="We.TV"
         />
       )}
       <CardContent>

@@ -7,22 +7,13 @@ import {
   Input,
   Badge
 } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
 import { PhotoCamera, ArrowForward } from "@material-ui/icons";
 import { useState } from "react";
 import { WidgetLoader, Widget } from 'react-cloudinary-upload-widget'
 
-const useStyles = makeStyles((theme) => ({
-  input: {
-    display: "none",
-  },
-}));
-
 export default function InputArea(props) {
 
   const [comment,setComment] = useState('');
-
-  const classes = useStyles();
 
   function onSubmitComment() {
     props.onSubmitComment(comment, props.post_id);
@@ -30,7 +21,6 @@ export default function InputArea(props) {
   }
 
   function uploadHandler(url) {
-    // console.log('setting upload in inputArea.jsx');
     props.uploadHandler(url);
   }
 
@@ -40,7 +30,7 @@ export default function InputArea(props) {
   return (
     <FormControl style={{ width: "95%" }} >
       <Input
-        autoFocus="true"
+        autoFocus={true}
         type="reset"
         id="standard-textarea"
         value={comment}

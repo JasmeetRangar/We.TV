@@ -1,7 +1,6 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Button } from "@material-ui/core";
-import tv_screen from "../src/docs/tv_screen.gif";
 import { useHistory } from 'react-router-dom';
 
 
@@ -23,8 +22,6 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "0px",
     display: "flex",
     justifyContent: "center",
-    // alignItems: "center"
-    // position:
   },
   title: {
     color: "white",
@@ -38,7 +35,6 @@ const useStyles = makeStyles((theme) => ({
   buttons: {
     display: "flex",
     justifyContent: "center",
-    // alignItems: "center",
     position: "relative",
     bottom: "50%",
   },

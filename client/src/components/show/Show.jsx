@@ -15,8 +15,6 @@ import { authContext } from "../AuthProvider";
 
 const useStyles = makeStyles(() => ({
   show: {
-    // margin: "2%",
-    // width: "25%"
   },
 }));
 
@@ -57,9 +55,7 @@ export default function Show(props) {
         .put(`/api/users/${userid}/favourites/${showid}/${isactive}`)
         .then((res) => {
           setState((prev) => ({ ...prev, favourites: res.data }));
-          // console.log("👘", res.data);
         })
-        // .then(console.log("🧵", state.favourites))
         .catch();
     }
   };
@@ -78,16 +74,12 @@ export default function Show(props) {
 
   function uploadHandler(url) {
     setUpload(url);
-    console.log("state set for upload");
   }
 
   const [upload, setUpload] = useState("");
 
   function onSubmit(post) {
-    //console.log('Line 37 Show.jsx', post);
-    // console.log("this my stateeeeee for upload", upload);
 
-    console.log("this be the user",user)
 
     axios({
       method: "post",
@@ -99,11 +91,9 @@ export default function Show(props) {
         creator_id: user.id,
       },
     }).then((res) => {
-      // console.log("postInput", res.data);
 
       axios.get(`/api/posts/${params.id}`)
       .then((response) =>{
-        console.log(response.data);
         setUpload('');
         setState((prev) => ({ ...prev, posts: [response.data[0],...state.posts] }));
       })
@@ -113,10 +103,8 @@ export default function Show(props) {
   }
 
   function likeHandler(post_id, index) {
-    //console.log("adding a like from show")
 
     axios.put(`/api/posts/${post_id}/like`).then((res) => {
-      //console.log('response', res.data[0]);
 
       const { posts } = state;
 
@@ -127,10 +115,8 @@ export default function Show(props) {
   }
 
   function dislikeHandler(post_id, index) {
-    //console.log("adding a disike from show")
 
     axios.put(`/api/posts/${post_id}/dislike`).then((res) => {
-      //console.log('response', res.data[0]);
       const { posts } = state;
       posts[index].dislikes = res.data[0].dislikes;
       setState((prev) => ({...prev, posts }));

@@ -18,12 +18,10 @@ module.exports = ({ getCommentsByShow, getCommentsByPost, addComment, addComment
 
     const {text, post_id, creator_id, image } = req.body;
 
-    console.log(req.body);
 
     addComment(text, post_id, creator_id, image)
       .then((comment) => {
         res.json(comment)
-        console.log(comment)
       })
       .catch((err) =>
         res.json({
@@ -36,12 +34,10 @@ module.exports = ({ getCommentsByShow, getCommentsByPost, addComment, addComment
 
     const { comment_id } = req.params;
 
-    console.log("req params >>",req.params);
 
     addCommentLike(comment_id)
       .then((comment) => {
         res.json(comment)
-        console.log(comment)
       })
       .catch((err) =>
         res.json({
@@ -54,12 +50,10 @@ module.exports = ({ getCommentsByShow, getCommentsByPost, addComment, addComment
 
     const { comment_id } = req.params;
 
-    console.log("req params >>",req.params);
 
     addCommentDisLike(comment_id)
       .then((comment) => {
         res.json(comment)
-        console.log(comment)
       })
       .catch((err) =>
         res.json({

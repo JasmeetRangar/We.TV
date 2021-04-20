@@ -58,7 +58,6 @@ export default function ShowBanner(props) {
     });
   }, [props.id]);
 
-  console.log("this the state", state.show[0]);
 
   return (
     <div className={classes.root}>
@@ -66,23 +65,19 @@ export default function ShowBanner(props) {
         <div className={classes.showDetails}>
           {(favourites.length === 0) || (favourites && !favourites.is_active) ? (
             <Fab
-            // variant="extended" 
             color="primary"
             onClick={updateFavourite}
             className={classes.fabEdit}
             >
               <Add />
-              {/* <StarBorderRounded /> */}
             </Fab>
           ) : (
             <Fab
-            // variant="extended"
             color="secondary"
             onClick={updateFavourite}
             className={classes.fabEdit}
             >
               <Remove />
-              {/* <StarRounded /> */}
             </Fab>
           )}
 
@@ -93,7 +88,6 @@ export default function ShowBanner(props) {
             <Image
               src={state.show[0].image}
               cover="true"
-              // style={{ maxWidth: "700px" }}
             />
             <div className={classes.bannerText}>
 

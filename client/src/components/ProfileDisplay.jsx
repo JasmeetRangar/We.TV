@@ -10,7 +10,6 @@ import {
   Fab
 } from "@material-ui/core";
 import { Edit } from "@material-ui/icons";
-import useApplicationData from '../hooks/useApplicationData';
 import PageTitle from "./PageTitle";
 
 const useStyles = makeStyles((theme) => ({
@@ -43,7 +42,6 @@ const useStyles = makeStyles((theme) => ({
 export default function ProfileDisplay() {
   const classes = useStyles();
 	const { user } = useContext(authContext);
-  console.log("profile", user)
   return (
     <Container component="main" maxWidth="xs">
       <PageTitle title={"My Profile"}/>

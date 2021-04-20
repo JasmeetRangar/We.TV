@@ -31,12 +31,10 @@ module.exports = ({ getShows, getShow, addShow, getChatMessagesByShow }) => {
 
     const {name, description, image, api_id } = req.body;
 
-    console.log(req.body);
 
     addShow(name, description, image, api_id)
       .then((shows) => {
         res.json(shows)
-        console.log(shows)
       })
       .catch((err) =>
         res.json({

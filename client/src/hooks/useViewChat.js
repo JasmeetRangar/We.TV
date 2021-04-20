@@ -5,7 +5,6 @@ export default function useViewChat() {
 
   const transitionToChat = () => {
     viewChat === 0 ? setViewChat(1) : setViewChat(0);
-    console.log("✅",viewChat);
   };
 
 

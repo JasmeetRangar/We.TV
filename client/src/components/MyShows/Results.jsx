@@ -9,7 +9,6 @@ import {
   Card,
   ListItemAvatar,
   ListItemText,
-  Avatar,
   CardActionArea,
 } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
@@ -58,7 +57,7 @@ export default function Results(props) {
     <List>
       {results.map((info) => {
         return (
-          <Card className={classes.root}>
+          <Card className={classes.root} key={info.id}>
             <CardActionArea>
               <ListItem
                 key={info.id}

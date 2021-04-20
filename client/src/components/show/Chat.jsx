@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { useParams } from "react-router-dom";
 import useChat from "../../hooks/useChat";
 import {
   Paper,
@@ -9,7 +8,6 @@ import {
   Input,
   InputAdornment,
   IconButton,
-  withTheme,
 } from "@material-ui/core";
 import { Send } from "@material-ui/icons";
 import ShowNav from "./ShowNav"
@@ -124,7 +122,7 @@ export default function Chat(props) {
       </div>
       <FormControl style={{ width: "95%", marginBottom: "5%" }}>
         <Input
-          autoFocus="true"
+          autoFocus={true}
           type="reset"
           id="standard-textarea"
           value={newMessage}

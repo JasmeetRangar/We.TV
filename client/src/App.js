@@ -1,15 +1,10 @@
-import { useContext } from 'react';
-import { authContext } from './components/AuthProvider';
 import "./App.css";
-import useApplicationData from "./hooks/useApplicationData";
 import {
   MuiThemeProvider,
-  createMuiTheme,
   makeStyles,
-  ThemeProvider
 } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 
 import Navbar from "./components/Navbar.jsx";
@@ -36,13 +31,6 @@ const useStyles = makeStyles({
 
 export default function App() {
   const classes = useStyles();
-  const {
-      currUser
-  } = useApplicationData();
-  //   const userList = state.users.map((user) => (<li key={user.id} > {user.first_name} {user.last_name} {user.email} {user.display_name}</li>));
-  //   const postsList = state.posts.map((post) => (<li key={post.id} > {post.text}</li>))
-    //const commentsList = state.comments.map((comment) => (<li key={comment.id} > {comment.text}</li>));   
-    const { auth } = useContext(authContext);
   
       
   return (

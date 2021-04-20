@@ -3,7 +3,7 @@ import axios from "axios";
 
 import PageTitle from "../PageTitle";
 import Results from "./Results"
-import { Typography, Paper } from '@material-ui/core';
+import { Typography } from '@material-ui/core';
 import { authContext } from "../AuthProvider";
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -26,10 +26,9 @@ export default function MyShows() {
   useEffect(() => {
     axios.get(`/api/users/${user.id}/shows`)
     .then((res) => {
-      // console.log(res.data)
       setResults(() => res.data)})
       .catch(e => console.log(e))
-    }, [])
+    }, [user.id])
 
   return (
     <div className={classes.root}>

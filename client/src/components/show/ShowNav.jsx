@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import BottomNavigation from "@material-ui/core/BottomNavigation";
 import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
@@ -14,16 +14,11 @@ const useStyles = makeStyles({
 export default function ShowNav(props) {
   const classes = useStyles();
 
-  const setValue = () => {
-    return props.viewChat === 0 ? props.transitionToChat : console.log("nope");
-  };
-
   return (
     <BottomNavigation
       value={props.viewChat}
       onChange={(event, newValue) => {
         props.transitionToChat();
-        console.log("❌", props.viewChat);
       }}
       showLabels
       className={classes.root}
