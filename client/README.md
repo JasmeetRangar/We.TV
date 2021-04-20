@@ -43,3 +43,4 @@ In another terminal window, run `npm start` to run the frontend (client) server.
 [material-ui-image](https://www.npmjs.com/package/material-ui-image)
 
 [socket.io](https://socket.io/)
+
