@@ -1,4 +1,18 @@
-# Getting Started with Create React App
+# We.TV
+
+We.TV is a social media app for TV fans. Find your favourite show on our app and start sharing content. If a show exists, we’ve got a page for it! Join the community by adding the show to your favourites so you can add, like, and share with fellow fans today.
+
+## Getting Started
+
+This is a self-contained app, with backend and frontend running simultaneously on two servers.
+
+If you have PSQL, I reccomend running `npm run db:reset` in the `backend` file to populate the database.
+
+Thereafter, run the development backend server in the `backend` file with `npm run dev`.
+
+In another terminal window, run `npm start` to run the frontend (client) server.
+
+## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
@@ -72,3 +86,4 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 ## Dependencies
 material-ui-image
 Style.it
+Cloudinary
