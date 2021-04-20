@@ -56,15 +56,12 @@ export default function Comment(props) {
     <List className={classes.root}>
       {comments.map((comment, index) => {
 
-        console.log("this the comment pic", comment)
 
         function commentLikeHandler() {
-          console.log('adding a like from comment component');
           props.commentLikeHandler(comment.id, index)
         }
 
         function commentDisLikeHandler() {
-          console.log('adding a disike from comment component');
           props.commentDisLikeHandler(comment.id, index)
         }
 

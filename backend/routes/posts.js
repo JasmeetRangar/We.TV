@@ -18,12 +18,10 @@ module.exports = ({ getPosts, getPostsByShow, addPost, addLike, addDisLike }) =>
 
     const {text, show_id, image, creator_id } = req.body;
 
-    console.log(req.body);
 
     addPost(text, show_id, image, creator_id)
       .then((shows) => {
         res.json(shows)
-        console.log(shows)
       })
       .catch((err) =>
         res.json({
@@ -36,12 +34,10 @@ module.exports = ({ getPosts, getPostsByShow, addPost, addLike, addDisLike }) =>
 
     const { post_id } = req.params;
 
-    console.log("req params >>",req.params);
 
     addLike(post_id)
       .then((post) => {
         res.json(post)
-        console.log(post)
       })
       .catch((err) =>
         res.json({
@@ -54,12 +50,10 @@ module.exports = ({ getPosts, getPostsByShow, addPost, addLike, addDisLike }) =>
 
     const { post_id } = req.params;
 
-    console.log("req params >>",req.params);
 
     addDisLike(post_id)
       .then((post) => {
         res.json(post)
-        console.log(post)
       })
       .catch((err) =>
         res.json({

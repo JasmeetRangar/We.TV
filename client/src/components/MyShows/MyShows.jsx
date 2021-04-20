@@ -26,7 +26,6 @@ export default function MyShows() {
   useEffect(() => {
     axios.get(`/api/users/${user.id}/shows`)
     .then((res) => {
-      // console.log(res.data)
       setResults(() => res.data)})
       .catch(e => console.log(e))
     }, [])

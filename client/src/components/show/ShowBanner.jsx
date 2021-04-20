@@ -58,7 +58,6 @@ export default function ShowBanner(props) {
     });
   }, [props.id]);
 
-  console.log("this the state", state.show[0]);
 
   return (
     <div className={classes.root}>

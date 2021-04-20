@@ -25,7 +25,6 @@ const useStyles = makeStyles((theme) => ({
 export default function ShowImage(props) {
   const classes = useStyles();
   const { imageSource} = props;
-  // console.log(props);
   return (
     <div className={classes.root}>
       <Paper className={classes.paperClass} elevation={1} square={false} style={{ background:'linear-gradient(to top, rgba(255,0,0,0), rgba(255,0,0,1))'}}>

@@ -75,7 +75,6 @@ export default function Login() {
 	let validLogin = false;
 	const handleSubmit =  e => {
     e.preventDefault();
-		// console.log("Login: ", email, password)
      validLogin = login({
       email,
       password

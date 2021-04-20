@@ -23,7 +23,6 @@ export default function Search(props) {
 
       const testURL = `http://api.tvmaze.com/search/shows?q=${term}`;
       axios.get(testURL).then(response => {
-        //console.log(response.data);
         setResults([...response.data])
       })
       .catch(e => console.log(e));

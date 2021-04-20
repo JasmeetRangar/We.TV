@@ -9,7 +9,6 @@ export default function AuthProvider(props) {
     const {email, password} = userInfo;
     for(let currUser of state.users) {
       if (currUser.email === email && currUser.password === password) {
-        console.log("before", user);
         setUser(currUser);
         setAuth(true);
         return true;

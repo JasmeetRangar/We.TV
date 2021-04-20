@@ -30,7 +30,6 @@ export default function InputArea(props) {
   }
 
   function uploadHandler(url) {
-    // console.log('setting upload in inputArea.jsx');
     props.uploadHandler(url);
   }
 

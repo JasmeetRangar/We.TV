@@ -23,7 +23,6 @@ export default function ShowNav(props) {
       value={props.viewChat}
       onChange={(event, newValue) => {
         props.transitionToChat();
-        console.log("❌", props.viewChat);
       }}
       showLabels
       className={classes.root}
