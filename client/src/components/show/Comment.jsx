@@ -10,8 +10,6 @@ import {
   Typography,
   Badge,
   IconButton,
-  Dialog,
-  DialogContent,
 } from "@material-ui/core";
 
 import Image from "material-ui-image";
@@ -36,19 +34,8 @@ const useStyles = makeStyles((theme) => ({
 // Comment component modified from Gunasai's git repo: https://github.com/gunasai/material-ui-comments
 
 export default function Comment(props) {
-  const [open, setOpen] = React.useState(false);
   const classes = useStyles();
   const {comments} = props
-
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
-
-  
 
   return (
     <List className={classes.root}>
@@ -83,7 +70,6 @@ export default function Comment(props) {
                     <Image
                     src={comment.image}
                     cover="true"
-                    onClick={handleClickOpen}
                     disableSpinner
                     />
                   }
@@ -103,21 +89,6 @@ export default function Comment(props) {
                 }
               />
             </ListItem>
-            <Dialog
-              open={open}
-              onClose={handleClose}
-              aria-labelledby="alert-dialog-title"
-              aria-describedby="alert-dialog-description"
-              classes={classes.transparentBG}
-            >
-              <DialogContent>
-                <img
-                    alt="ggg"
-                    src={comment.image}
-                    style={{ height: "auto", width: "500px" }}
-                  ></img>
-              </DialogContent>
-            </Dialog>
             <Divider />
           </React.Fragment>
         );

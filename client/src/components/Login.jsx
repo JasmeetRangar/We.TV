@@ -136,7 +136,6 @@ export default function Login() {
           >
             Sign In
           </Button>
-          {console.log(error)}
           { error && <LoginError />}
           <Grid container>
             <Grid item xs>

@@ -14,10 +14,6 @@ const useStyles = makeStyles({
 export default function ShowNav(props) {
   const classes = useStyles();
 
-  const setValue = () => {
-    return props.viewChat === 0 ? props.transitionToChat : console.log("nope");
-  };
-
   return (
     <BottomNavigation
       value={props.viewChat}

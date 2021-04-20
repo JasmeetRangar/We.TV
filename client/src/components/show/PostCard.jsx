@@ -140,7 +140,7 @@ export default function PostCard(props) {
   
 
   return (
-    <Card className={classes.root}>
+    <Card className={classes.root} key={post.id}>
       <CardHeader
         avatar={
           <Avatar aria-label="recipe" src={post.profile_pic} className={classes.avatar} alt={"User_Name"}>
@@ -159,7 +159,7 @@ export default function PostCard(props) {
         <CardMedia
           className={classes.media}
           image={post.image}
-          title="Paella dish"
+          title="We.TV"
         />
       )}
       <CardContent>

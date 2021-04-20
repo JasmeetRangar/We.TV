@@ -85,7 +85,7 @@ export default function Results(props) {
     <List>
       {results.map((info) => {
         return (
-          <Card className={classes.root}>
+          <Card className={classes.root} key={info.show.id}>
             <CardActionArea>
               <ListItem
                 key={info.show.id}
