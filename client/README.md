@@ -44,3 +44,7 @@ In another terminal window, run `npm start` to run the frontend (client) server.
 
 [socket.io](https://socket.io/)
 
+## Planning Documents
+
+ERD: https://dbdiagram.io/d/606f8dffecb54e10c33f6909
+Inception Document: https://github.com/JasmeetRangar/final-project/blob/master/client/public/Final%20Project%20We.TV.pdf
