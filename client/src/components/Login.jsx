@@ -17,7 +17,6 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import useApplicationData from '../hooks/useApplicationData';
 import { useHistory } from 'react-router-dom';
 import LoginError from './LoginError';
 import { authContext } from "./AuthProvider";
@@ -56,7 +55,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Login() {
-	const { authenticateLogin, currUser } = useApplicationData();
   const [open, setOpen] = React.useState(false);
 	const [email, setEmail] = useState();
   const [password, setPassword] = useState();

@@ -17,7 +17,6 @@ import ThumbDownIcon from "@material-ui/icons/ThumbDown";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import Comment from "./Comment";
-import InputArea from "../InputArea";
 import InputComment from "../InputComment";
 import { useState, useEffect, useContext } from "react";
 import axios from "axios";
@@ -76,7 +75,6 @@ export default function PostCard(props) {
 
       setState({comments})
       
-      // setState((prev) => ({...prev, posts:[...state.posts, posts.post_id]}))
     })
   }
 
@@ -94,13 +92,14 @@ export default function PostCard(props) {
   }
 
 
+  const { post } = props;
   useEffect(()=> {
    
     axios.get(`/api/comments/${post.id}`)
     .then(commentsFrom => {
       setState(prev => ({...prev, comments:commentsFrom.data}))});
   
-  }, [])
+  }, [post.id])
 
   function likeHandler() {
     props.likeHandler(post.id, props.index)
@@ -112,7 +111,6 @@ export default function PostCard(props) {
 
 
 
-  const { post } = props;
 
 
   function onSubmitComment(comment) {

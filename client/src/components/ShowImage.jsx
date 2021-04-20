@@ -34,7 +34,6 @@ export default function ShowImage(props) {
           cover="true"
           style={{width:'90%'}}
         />
-        {/* <img alt="" style={{width:'90%'}} src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1591219012l/40881621._SX318_.jpg"></img> */}
       </Paper>
     </div>
   );

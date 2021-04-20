@@ -9,7 +9,6 @@ import {
   Card,
   ListItemAvatar,
   ListItemText,
-  Avatar,
   CardActionArea,
 } from "@material-ui/core";
 import { useHistory } from "react-router-dom";

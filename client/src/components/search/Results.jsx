@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 
 import ShowImage from "../ShowImage";
 import {
@@ -8,9 +8,7 @@ import {
   Card,
   ListItemAvatar,
   ListItemText,
-  Avatar,
   CardActionArea,
-  Button,
 } from "@material-ui/core";
 import axios from "axios";
 import { makeStyles } from "@material-ui/core/styles";

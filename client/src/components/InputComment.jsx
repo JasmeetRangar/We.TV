@@ -39,7 +39,7 @@ export default function InputArea(props) {
   return (
     <FormControl style={{ width: "95%" }} >
       <Input
-        autoFocus="true"
+        autoFocus={true}
         type="reset"
         id="standard-textarea"
         value={comment}

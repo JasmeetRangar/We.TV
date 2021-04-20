@@ -15,8 +15,6 @@ import { authContext } from "../AuthProvider";
 
 const useStyles = makeStyles(() => ({
   show: {
-    // margin: "2%",
-    // width: "25%"
   },
 }));
 
