@@ -2,6 +2,33 @@
 
 `We.TV` is a social media app for TV fans. Find your favourite show on our app and start sharing content. If a show exists, we’ve got a page for it! Join the community by adding the show to your favourites so you can add, like, and share with fellow fans today.
 
+---
+
+## Walkthrough
+
+### Homepage
+![homepage](https://raw.githubusercontent.com/JasmeetRangar/We.TV/master/client/public/readme-gifs/01-homepage.gif "Homepage")
+
+### Login
+![login](https://raw.githubusercontent.com/JasmeetRangar/We.TV/master/client/public/readme-gifs/02-login.gif "Login")
+
+### Search
+![search](https://raw.githubusercontent.com/JasmeetRangar/We.TV/master/client/public/readme-gifs/03-search.gif "Search")
+
+### Add Show to Favourites
+![add to favourites](https://raw.githubusercontent.com/JasmeetRangar/We.TV/master/client/public/readme-gifs/04-add-to-favourites.gif "Add show to favourites")
+
+### Add Post
+![add post](https://raw.githubusercontent.com/JasmeetRangar/We.TV/master/client/public/readme-gifs/05-add-post.gif "Add post")
+
+### Like/Dislike/Comment
+![like/dislike/comment](https://raw.githubusercontent.com/JasmeetRangar/We.TV/master/client/public/readme-gifs/06-like-dislike-comment.gif "Like/dislike/comment")
+
+### Chatroom
+![chatroom](https://raw.githubusercontent.com/JasmeetRangar/We.TV/master/client/public/readme-gifs/07-chat.gif "Chatroom")
+
+---
+
 ## Getting Started
 
 This is a self-contained app, with backend and frontend running simultaneously on two servers.
